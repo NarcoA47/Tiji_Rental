@@ -1,10 +1,18 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import SigninForms from '../components/signin/forms';
+import Naviagtion from '@/components/navigation/topNavigation';
+import RegisterButton from '@/components/button';
+import LoginText from '../components/signin/loginText';
+
 
 function Signup() {
   return (
     <View>
-        <Text>Signup</Text>
+      <Naviagtion/>
+      <SigninForms/>
+      <RegisterButton/>
+      <LoginText/>
     </View>
   )
 }
