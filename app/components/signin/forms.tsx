@@ -29,7 +29,7 @@ export default function SigninForms() {
                 onChangeText={text}
                 value={text}
                 placeholder=""
-                keyboardType="te"/>
+                keyboardType="text"/>
             </View>
         </View>
         <View style={styles.inputFormTwo}>
