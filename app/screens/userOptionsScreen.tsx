@@ -4,7 +4,7 @@ import { Text, View } from 'react-native'
 function UserOptions() {
   return (
     <View>
-        <Text>Login</Text>
+        <Text>User Options</Text>
     </View>
   )
 }

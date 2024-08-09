@@ -42,10 +42,10 @@ const App = () => {
           onChange={onChange}
         />
       )}
-      <Image
+      {/* <Image
         source={{ uri: 'https://example.com/your-car-image.jpg' }} // Replace with actual image URL
         style={styles.carImage}
-      />
+      /> */}
       <View style={styles.carInfo}>
         <Text style={styles.carName}>Mercedes AMG</Text>
         <Text style={styles.price}>K 1,000/day</Text>

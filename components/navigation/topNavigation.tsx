@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
     margin: 12,
   },
   icon: {
-    // marginTop: 12,
-    // paddingTop: 50,
+    marginTop: 12,
+    paddingTop: 50,
   },
 
   mainContainer: { 

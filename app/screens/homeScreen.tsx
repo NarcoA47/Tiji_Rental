@@ -12,17 +12,17 @@ const App = () => {
       </View>
 
       <ScrollView style={styles.scrollContainer}>
-        <View style={styles.cardContainer}>
+        {/* <View style={styles.cardContainer}>
           <TouchableOpacity style={styles.card}>
-            <Image source={require('./assets/tickets.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/images/homeScreen/Ticket.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Tickets</Text>
           </TouchableOpacity>
 
           <TouchableOpacity style={styles.card}>
-            <Image source={require('./assets/car_hire.png')} style={styles.cardImage} />
+            <Image source={require('../../assets/images/homeScreen/car_hire.png')} style={styles.cardImage} />
             <Text style={styles.cardTitle}>Car Hire</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
 
         <View style={styles.services}>
           <Text style={styles.serviceTitle}>Services</Text>
@@ -33,14 +33,14 @@ const App = () => {
         </View>
 
         <Text style={styles.sectionTitle}>Popular Places</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {['Victoria Fall', 'Livingstone', 'National Park', 'South Luangwa'].map((place, index) => (
             <View key={index} style={styles.placeCard}>
-              <Image source={require(`./assets/${place.replace(' ', '_').toLowerCase()}.png`)} style={styles.placeImage} />
+              <Image source={require(`../../assets/${place.replace(' ', '_').toLowerCase()}.png`)} style={styles.placeImage} />
               <Text>{place}</Text>
             </View>
           ))}
-        </ScrollView>
+        </ScrollView> */}
 
         <Text style={styles.sectionTitle}>Recent Bookings</Text>
         {/* Add recent bookings component here */}

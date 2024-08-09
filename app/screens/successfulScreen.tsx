@@ -1,10 +1,15 @@
 import React from 'react'
 import { Text, View } from 'react-native'
+import ImageBanner from '../components/successful/imageBanner'
+import SuccessfullTextMessage from '../components/successful/textManager'
+import { Continue } from '@/components/button'
 
 function Success() {
   return (
     <View>
-        <Text>Successful Screen</Text>
+        <ImageBanner/>
+        <SuccessfullTextMessage/>
+        <Continue/>
     </View>
   )
 }
