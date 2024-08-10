@@ -10,6 +10,7 @@ function LoginScreen() {
     <View>
         <Naviagtion/>
         <SigninForms/>
+        <LoginText/>
         <LoginButton/>
     </View>
   )

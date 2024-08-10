@@ -3,6 +3,7 @@ import React from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import Services from '../components/home/service';
 import Popular from '../components/home/popular';
+import Bookings from '../components/home/bookings';
 
 const HomeScreenMain = () => {
   return (
@@ -11,6 +12,7 @@ const HomeScreenMain = () => {
       <MainNavigation/>
       <Services/>
       <Popular/>
+      <Bookings/>
     </View>
     </ScrollView>
    

@@ -31,6 +31,22 @@ export function MainNavigation() {
   )
 }
 
+
+export function ProductCardNavigation() {
+  <View style={styles.productConatiner}>
+    <View style={styles.adjucentContainer}>
+        <View>
+          <Text style={styles.text}>TIJI</Text>
+          <Text style={styles.subText}>Chintu RD, 6039</Text>
+        </View>
+        <View>
+        <EvilIcons name="user" size={40} color="white" />
+        <Text style={styles.subText}>Login</Text>
+        </View>
+      </View>
+  </View>
+}
+
 const styles = StyleSheet.create({
   conatiner:{
     flexDirection: 'row',
@@ -71,5 +87,14 @@ const styles = StyleSheet.create({
     marginLeft: 6,
   },
 
+  productConatiner: {
+    marginTop: 40,
+    // paddingTop: 40,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignContent: 'center',
+    backgroundColor: '#0034BF',
+    height: 380,
+  },
 
 })

@@ -1,3 +1,5 @@
+import 'react-native-gesture-handler'; // Ensure this is at the top
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -10,6 +12,7 @@ import ProductScreen from '../screens/productScreen';
 import BusTicketApp from '../screens/ViewBusScreen';
 import LoginScreen from '../screens/loginScreen';
 import SignupScreen from '../screens/signupScreen';
+import ProductView from '../screens/productView';
 
 const Stack = createNativeStackNavigator();
 
@@ -17,7 +20,8 @@ export default function TabLayout() {
   // const colorScheme = useColorScheme();
 
   return (
-    <Stack.Navigator
+    <GestureHandlerRootView>
+       <Stack.Navigator
       screenOptions={{
       headerShown: false,
       }}
@@ -27,6 +31,9 @@ export default function TabLayout() {
       <Stack.Screen name="Ticket" component={BusTicketApp}/>
       <Stack.Screen name="Home" component={HomeScreenMain}/>
       <Stack.Screen name="Register" component={SignupScreen}/>
+      <Stack.Screen name="ProductView" component={ProductView}/>
       </Stack.Navigator>
+    </GestureHandlerRootView>
+   
   );
 }
