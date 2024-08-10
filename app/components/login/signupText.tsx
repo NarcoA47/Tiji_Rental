@@ -1,12 +1,17 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native'
 
 export default function LoginText() {
+
+
+    const navigation = useNavigation()
+
   return (
     <View style={styles.container}>
         <View style={styles.textManager}> 
         <Text style={styles.text}>I Don't have an account ?</Text>
-        <TouchableOpacity><Text  style={styles.loginController}>Signin</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Register')}><Text  style={styles.loginController}>Signin</Text></TouchableOpacity>
         </View>
     </View>
   )

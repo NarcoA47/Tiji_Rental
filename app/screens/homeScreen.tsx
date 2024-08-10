@@ -1,51 +1,19 @@
+import { MainNavigation } from '@/components/navigation/topNavigation';
 import React from 'react';
 import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import Services from '../components/home/service';
+import Popular from '../components/home/popular';
 
-const App = () => {
+const HomeScreenMain = () => {
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Welcome, Guest</Text>
-        <TouchableOpacity>
-          <Text style={styles.loginText}>Login</Text>
-        </TouchableOpacity>
-      </View>
-
-      <ScrollView style={styles.scrollContainer}>
-        {/* <View style={styles.cardContainer}>
-          <TouchableOpacity style={styles.card}>
-            <Image source={require('../../assets/images/homeScreen/Ticket.png')} style={styles.cardImage} />
-            <Text style={styles.cardTitle}>Tickets</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.card}>
-            <Image source={require('../../assets/images/homeScreen/car_hire.png')} style={styles.cardImage} />
-            <Text style={styles.cardTitle}>Car Hire</Text>
-          </TouchableOpacity>
-        </View> */}
-
-        <View style={styles.services}>
-          <Text style={styles.serviceTitle}>Services</Text>
-          <View style={styles.companyInfo}>
-            <Text>About the Company</Text>
-            <Text>Location</Text>
-          </View>
-        </View>
-
-        <Text style={styles.sectionTitle}>Popular Places</Text>
-        {/* <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {['Victoria Fall', 'Livingstone', 'National Park', 'South Luangwa'].map((place, index) => (
-            <View key={index} style={styles.placeCard}>
-              <Image source={require(`../../assets/${place.replace(' ', '_').toLowerCase()}.png`)} style={styles.placeImage} />
-              <Text>{place}</Text>
-            </View>
-          ))}
-        </ScrollView> */}
-
-        <Text style={styles.sectionTitle}>Recent Bookings</Text>
-        {/* Add recent bookings component here */}
-      </ScrollView>
+    <ScrollView>
+       <View style={styles.container}>
+      <MainNavigation/>
+      <Services/>
+      <Popular/>
     </View>
+    </ScrollView>
+   
   );
 };
 
@@ -68,9 +36,7 @@ const styles = StyleSheet.create({
   loginText: {
     color: '#ffffff',
   },
-  scrollContainer: {
-    padding: 10,
-  },
+  
   cardContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -94,21 +60,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
-  services: {
-    backgroundColor: '#ffffff',
-    borderRadius: 10,
-    padding: 15,
-    marginBottom: 20,
-    elevation: 3,
-  },
-  serviceTitle: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  companyInfo: {
-    marginTop: 10,
-  },
+  
+  
   sectionTitle: {
     fontSize: 18,
     fontWeight: 'bold',
@@ -126,4 +79,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default HomeScreenMain;
