@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { Touchable, View, TouchableOpacity, StyleSheet, Text } from 'react-native'
 
@@ -12,10 +13,13 @@ export default function RegisterButton() {
 }
 
 export function LoginButton() {
+
+  const navigation = useNavigation()
+
     return (
       <View>
-          <TouchableOpacity style={styles.buttonManager}>
-              <Text style={styles.buttonText}>Register</Text>
+          <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.buttonManager}>
+              <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
       </View>
     )

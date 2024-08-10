@@ -6,7 +6,7 @@ import RegisterButton from '@/components/button';
 import LoginText from '../components/signin/loginText';
 
 
-function Signup() {
+function SignupScreen() {
   return (
     <View>
       <Naviagtion/>
@@ -17,4 +17,4 @@ function Signup() {
   )
 }
 
-export default Signup
+export default SignupScreen

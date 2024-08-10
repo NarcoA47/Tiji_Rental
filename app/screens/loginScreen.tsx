@@ -5,7 +5,7 @@ import LoginText from '../components/login/signupText'
 import SigninForms from '../components/login/forms'
 import { LoginButton } from '@/components/button'
 
-function Login() {
+function LoginScreen() {
   return (
     <View>
         <Naviagtion/>
@@ -15,4 +15,4 @@ function Login() {
   )
 }
 
-export default Login
+export default LoginScreen
