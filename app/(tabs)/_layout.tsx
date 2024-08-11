@@ -13,6 +13,8 @@ import BusTicketApp from '../screens/ViewBusScreen';
 import LoginScreen from '../screens/loginScreen';
 import SignupScreen from '../screens/signupScreen';
 import ProductView from '../screens/productView';
+import ForgetPasswordScreen from '../screens/forgetPassword';
+import ResetPasswordScreen from '../screens/resetPasswordScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -31,6 +33,8 @@ export default function TabLayout() {
       <Stack.Screen name="Ticket" component={BusTicketApp}/>
       <Stack.Screen name="Home" component={HomeScreenMain}/>
       <Stack.Screen name="Register" component={SignupScreen}/>
+      <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen}/>
+      <Stack.Screen name="ResetPassword" component={ResetPasswordScreen}/>
       <Stack.Screen name="ProductView" component={ProductView}/>
       </Stack.Navigator>
     </GestureHandlerRootView>

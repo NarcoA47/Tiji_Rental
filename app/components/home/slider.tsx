@@ -1,15 +1,22 @@
 import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, StyleSheet, Text, Touchable, View } from 'react-native'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+import { useNavigation } from '@react-navigation/native'
 
 function Slider() {
+  
+    const navigation = useNavigation()
+  
   return (
     <View style={styles.container}>
         <View style={styles.cardOne}>
+            <TouchableOpacity onPress={() => navigation.navigate('Ticket')}>
             <View style={styles.contentOne}>
                 <Text style={styles.leadText}>Tickets</Text>
                 <Text style={styles.descriptionText}>Buy your ticket and explore</Text>
-                <Image style={styles.ImageController} source={require('../../../assets/images/homeScreen/Car-hire.png')}/>
+                <Image style={styles.ImageController} source={require('../../../assets/images/homeScreen/Ticket.png')}/>
             </View>
+            </TouchableOpacity>
         </View>
         <View style={styles.cardTwo}>
             <View style={styles.contentOne}>

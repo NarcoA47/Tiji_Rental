@@ -6,11 +6,11 @@ const HomeScreen = () => {
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    navigation.navigate('Login'); // Navigate to Login screen
+    // navigation.navigate('Login'); // Navigate to Login screen
   };
 
   const handleRegister = () => {
-    navigation.navigate('Register'); // Navigate to Register screen
+    // navigation.navigate('Register'); // Navigate to Register screen
   };
 
   return (

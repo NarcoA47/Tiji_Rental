@@ -13,6 +13,7 @@ export default function Services() {
             <Text style={styles.serviceTitle}>Services</Text>
             <View style={styles.serviceContent}>
                 <View>
+                <Text>Company Name</Text>
                 <Text>About the Company</Text>
                 <Text>Location</Text>
                 </View>

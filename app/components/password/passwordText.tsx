@@ -2,19 +2,17 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
-export default function LoginText() {
+export default function PasswordText() {
 
 
     const navigation = useNavigation()
 
   return (
     <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate('ResetPassword')}>
-            <Text style={styles.passwordController}>Forget Password</Text>
-        </TouchableOpacity>
+        
         <View style={styles.textManager}> 
-        <Text style={styles.text}>I Don't have an account ?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Register')}><Text  style={styles.loginController}>Signin</Text></TouchableOpacity>
+        
+        <TouchableOpacity onPress={() => navigation.navigate('Successful')}><Text  style={styles.loginController}>Reset Password</Text></TouchableOpacity>
         </View>
     </View>
   )
@@ -42,6 +40,7 @@ const styles = StyleSheet.create({
     passwordController: {
         fontSize: 16,
         color: '#0034BF',
-        
+        marginLeft: 4,
+        paddingLeft: 4,
     },
 })

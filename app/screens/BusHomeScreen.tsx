@@ -42,7 +42,7 @@ const HomeScreen = () => {
         data={popularPlaces}
         renderItem={({ item }) => (
           <TouchableOpacity style={styles.placeCard}>
-            <Text style={styles.placeTitle}>{item.title}</Text>
+            {/* <Text style={styles.placeTitle}>{item.title}</Text> */}
             <Text>{item.description}</Text>
             <Text>{item.location}</Text>
           </TouchableOpacity>

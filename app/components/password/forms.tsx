@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TextInput } from 'react-native';
-import Checkbox from 'expo-checkbox';
 
-export default function SigninForms() {
+export default function PasswordForms() {
 
-    const [text, onChangeText] = React.useState('');
     const [number, onChangeNumber] = React.useState('');
-    const [isChecked, setChecked] = useState(false);
+
 
 
   return (
     <View style={styles.container}>
-        <Text style={styles.title}>Login</Text>
+        <Text style={styles.title}>Forgot Password</Text>
+        <Text style={styles.paragraph}>Enter your Phone Number</Text>
         <View style={styles.inputFormTwo}>
         <View >
             <Text style={styles.inputText}>Phone Number</Text>
@@ -22,24 +21,6 @@ export default function SigninForms() {
                 placeholder=""
                 keyboardType="number"/>
             </View>
-            <View >
-            <Text style={styles.inputText}>Password</Text>
-                <TextInput
-                style={styles.input}
-                onChangeText={text}
-                value={text}
-                placeholder=""
-                keyboardType="text"/>
-            </View>
-            
-        </View>
-        <View style={styles.checkboxManager}>
-            <Checkbox
-            value={isChecked}
-            onValueChange={setChecked}
-            style={styles.checkbox}
-            />
-            <Text style={styles.checkBoxText}>Remeber Me</Text>
         </View>
     </View>
   )
@@ -55,6 +36,10 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         margin: 18,
+    },
+    paragraph: {
+        fontSize: 12,
+        margin: 9,
     },
     inputFormOne: {
         flexDirection: 'row',

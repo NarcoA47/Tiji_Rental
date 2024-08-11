@@ -48,6 +48,31 @@ export function LoginButton() {
     )
   }
 
+  export function PasswordButton() {
+
+    const navigation = useNavigation()
+  
+    return (
+      <View>
+          <TouchableOpacity onPress={() => navigation.navigate('Successful')} style={styles.buttonManager}>
+              <Text style={styles.buttonText}>Reset Password</Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }
+
+  export function ResetPasswordButton() {
+
+    const navigation = useNavigation()
+  
+    return (
+      <View>
+          <TouchableOpacity onPress={() => navigation.navigate('Successful')} style={styles.buttonManager}>
+              <Text style={styles.buttonText}>Reset Password</Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }
 
 const styles = StyleSheet.create({
     buttonManager: {
