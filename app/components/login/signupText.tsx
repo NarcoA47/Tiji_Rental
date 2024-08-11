@@ -9,7 +9,7 @@ export default function LoginText() {
 
   return (
     <View style={styles.container}>
-        <TouchableOpacity onPress={() => navigation.navigate('ResetPassword')}>
+        <TouchableOpacity onPress={() => navigation.navigate('ForgetPassword')}>
             <Text style={styles.passwordController}>Forget Password</Text>
         </TouchableOpacity>
         <View style={styles.textManager}> 
