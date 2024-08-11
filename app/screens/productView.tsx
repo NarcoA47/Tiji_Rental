@@ -1,4 +1,4 @@
-import ProductCardNavigation from '@/components/navigation/topNavigation'
+import { HeaderMainNavigation } from '@/components/navigation/topNavigation'
 import React from 'react'
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import More from '../components/productview/more'
@@ -8,7 +8,7 @@ export default function ProductView() {
   return (
    <ScrollView>
         <View>
-            <ProductCardNavigation/>
+            <HeaderMainNavigation/>
             <More/>
             <MoreCards/>
         </View>

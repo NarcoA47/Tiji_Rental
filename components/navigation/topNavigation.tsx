@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
 import Slider from '@/app/components/home/slider';
+import Container from '@/app/components/productview/container';
 
 
 export default function Naviagtion() {
@@ -32,9 +33,10 @@ export function MainNavigation() {
 }
 
 
-export function ProductCardNavigation() {
-  <View style={styles.productConatiner}>
-    <View style={styles.adjucentContainer}>
+export function HeaderMainNavigation() {
+  return (
+    <View style={styles.productConatiner}>
+      <View style={styles.adjucentContainer}>
         <View>
           <Text style={styles.text}>TIJI</Text>
           <Text style={styles.subText}>Chintu RD, 6039</Text>
@@ -44,8 +46,12 @@ export function ProductCardNavigation() {
         <Text style={styles.subText}>Login</Text>
         </View>
       </View>
-  </View>
+      <Container/>
+    </View>
+  )
 }
+
+
 
 const styles = StyleSheet.create({
   conatiner:{
@@ -94,6 +100,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignContent: 'center',
     backgroundColor: '#0034BF',
+    borderBottomLeftRadius: 60,
+    borderBottomRightRadius: 60,
     height: 380,
   },
 
