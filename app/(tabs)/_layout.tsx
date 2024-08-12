@@ -15,6 +15,7 @@ import SignupScreen from '../screens/signupScreen';
 import ProductView from '../screens/productView';
 import ForgetPasswordScreen from '../screens/forgetPassword';
 import ResetPasswordScreen from '../screens/resetPasswordScreen';
+import MobilePayScreen from '../screens/MobileMoneyScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -35,6 +36,7 @@ export default function TabLayout() {
       <Stack.Screen name="Register" component={SignupScreen}/>
       <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen}/>
       <Stack.Screen name="ResetPassword" component={ResetPasswordScreen}/>
+      <Stack.Screen name="MobilePay" component={MobilePayScreen}/>
       <Stack.Screen name="ProductView" component={ProductView}/>
       </Stack.Navigator>
     </GestureHandlerRootView>

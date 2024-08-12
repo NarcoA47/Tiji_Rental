@@ -60,6 +60,18 @@ export function LoginButton() {
       </View>
     )
   }
+  export function PayButton() {
+
+    const navigation = useNavigation()
+  
+    return (
+      <View>
+          <TouchableOpacity onPress={() => navigation.navigate('Successful')} style={styles.buttonManager}>
+              <Text style={styles.buttonText}>Pay</Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }
 
   export function ResetPasswordButton() {
 

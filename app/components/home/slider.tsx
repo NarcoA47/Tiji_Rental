@@ -3,6 +3,7 @@ import { Image, StyleSheet, Text, Touchable, View } from 'react-native'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import { useNavigation } from '@react-navigation/native'
 
+
 function Slider() {
   
     const navigation = useNavigation()

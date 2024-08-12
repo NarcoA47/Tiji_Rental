@@ -38,8 +38,9 @@ const styles = StyleSheet.create({
         margin: 18,
     },
     paragraph: {
-        fontSize: 12,
-        margin: 9,
+        fontSize: 16,
+        fontWeight: 'bold',
+        margin: 18,
     },
     inputFormOne: {
         flexDirection: 'row',
