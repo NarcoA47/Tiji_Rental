@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { TextInput } from 'react-native-paper';
+import { View, Text, StyleSheet } from 'react-native';
 
 export default function ResetPasswordForms() {
 
-    const [text, onChangeText] = React.useState('');
+    const [newPassword, setNewPassword] = React.useState('');
+    const [verifyPassword, setVerifyPassword] = React.useState('');
 
 
 
@@ -15,22 +17,24 @@ export default function ResetPasswordForms() {
         <View >
             <Text style={styles.inputText}>New Password</Text>
                 <TextInput
+                mode='outlined'
                 style={styles.input}
-                onChangeText={text}
-                value={text}
-                placeholder=""
-                keyboardType="text"/>
+                onChangeText={setNewPassword}
+                value={newPassword}
+                
+                />
             </View>
         </View>
         <View style={styles.inputFormTwo}>
         <View >
             <Text style={styles.inputText}>Verify Password</Text>
                 <TextInput
+                mode='outlined'
                 style={styles.input}
-                onChangeText={text}
-                value={text}
-                placeholder=""
-                keyboardType="text"/>
+                onChangeText={setVerifyPassword}
+                value={verifyPassword}
+                
+                />
             </View>
         </View>
     </View>
