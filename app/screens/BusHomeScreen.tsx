@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
+import Bookings from '../components/home/bookings';
+import Popular from '../components/home/popular';
+import { ScrollView } from 'react-native-gesture-handler';
+import { MainBusHomeNavigation } from '@/components/navigation/topNavigation';
 
-const HomeScreen = () => {
+const BusHomeScreen = () => {
   const [location, setLocation] = useState('Lusaka');
   const [destination, setDestination] = useState('');
   const [date, setDate] = useState('Today');
@@ -22,48 +26,15 @@ const HomeScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>TIJI</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Where are you going?"
-        value={destination}
-        onChangeText={setDestination}
-      />
-      <View style={styles.dateContainer}>
-        <Button title="Today" onPress={() => setDate('Today')} />
-        <Button title="Tomorrow" onPress={() => setDate('Tomorrow')} />
-        <Button title="Select Date" onPress={() => {/* Implement date picker */}} />
+    <ScrollView>
+      <MainBusHomeNavigation/>
+      <View style={styles.container}>
+        
+        
+        <Popular/>
+        <Bookings/>
       </View>
-      <Button title="Search For A bus" onPress={handleSearch} />
-
-      <Text style={styles.subHeader}>Popular Places</Text>
-      <FlatList
-        data={popularPlaces}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.placeCard}>
-            {/* <Text style={styles.placeTitle}>{item.title}</Text> */}
-            <Text>{item.description}</Text>
-            <Text>{item.location}</Text>
-          </TouchableOpacity>
-        )}
-        keyExtractor={item => item.id}
-      />
-
-      <Text style={styles.subHeader}>Recent Bookings</Text>
-      <FlatList
-        data={recentBookings}
-        renderItem={({ item }) => (
-          <View style={styles.bookingCard}>
-            <Text>{item.title}</Text>
-            <Text>{item.price}</Text>
-            <Text>{item.from} - {item.to}</Text>
-            <Text>{item.time} ({item.duration})</Text>
-          </View>
-        )}
-        keyExtractor={item => item.id}
-      />
-    </View>
+    </ScrollView>
   );
 };
 
@@ -110,4 +81,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default BusHomeScreen;

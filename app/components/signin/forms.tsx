@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { TextInput } from 'react-native-paper';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Checkbox from 'expo-checkbox';
+import { ScrollView } from 'react-native-gesture-handler';
 
 export default function SigninForms() {
 
-    const [text, onChangeText] = React.useState('');
+    const [firstName, setFirstName] = React.useState('');
+    const [lastName, setLastName] = React.useState('');
+    const [username, setUsername] = React.useState('');
+    const [email, setEmail] = React.useState('');
     const [number, onChangeNumber] = React.useState('');
     const [isChecked, setChecked] = useState(false);
+    const [password, setPassword] = React.useState("");
+    const [newpassword, setNewPassword] = React.useState("");
+    const [passwordVisible, setPasswordVisible] = React.useState(false);
 
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+      };
 
   return (
+    <ScrollView>
+        
     <View style={styles.container}>
         <Text style={styles.title}>Register</Text>
         <View style={styles.inputFormOne}>
@@ -17,48 +30,78 @@ export default function SigninForms() {
             <Text style={styles.inputText}>First Name</Text>
                 <TextInput
                 style={styles.inputOne}
-                onChangeText={text}
-                value={text}
-                placeholder=""
-                keyboardType="text"/>
+                onChangeText={setFirstName}
+                mode='outlined'
+                value={firstName}
+                placeholder="First Name"
+                />
             </View>
             <View>
             <Text style={styles.inputText}>Last Name</Text>
                 <TextInput
                 style={styles.inputOne}
-                onChangeText={text}
-                value={text}
-                placeholder=""
-                keyboardType="text"/>
+                mode='outlined'
+                onChangeText={setLastName}
+                value={lastName}
+                placeholder="Last Name"
+                />
             </View>
         </View>
         <View style={styles.inputFormTwo}>
-        <View >
-            <Text style={styles.inputText}>Phone Number</Text>
-                <TextInput
-                style={styles.input}
-                onChangeText={onChangeNumber}
-                value={number}
-                placeholder=""
-                keyboardType="number"/>
+            <View >
+                <Text style={styles.inputText}>Username</Text>
+                    <TextInput
+                    style={styles.input}
+                    mode='outlined'
+                    onChangeText={setUsername}
+                    value={username}
+                    placeholder="e.g Wayne29"
+                    />
             </View>
             <View >
-            <Text style={styles.inputText}>New Password</Text>
-                <TextInput
-                style={styles.input}
-                onChangeText={text}
-                value={text}
-                placeholder=""
-                keyboardType="text"/>
+                <Text style={styles.inputText}>Email</Text>
+                    <TextInput
+                    style={styles.input}
+                    mode='outlined'
+                    onChangeText={setEmail}
+                    value={email}
+                    placeholder="e.g austin23@gmail.com"
+                    />
+            </View>
+            <View >
+                <Text style={styles.inputText}>Phone Number</Text>
+                    <TextInput
+                    style={styles.input}
+                    mode='outlined'
+                    onChangeText={onChangeNumber}
+                    value={number}
+                    placeholder="e.g +260 968"
+                    keyboardType="phone-pad"/>
             </View>
             <View>
-            <Text style={styles.inputText}>Verify Password</Text>
+                <Text style={styles.inputText}>New Password</Text>
                 <TextInput
                 style={styles.input}
-                onChangeText={text}
-                value={text}
-                placeholder=""
-                keyboardType="te"/>
+                mode='outlined'
+                onChangeText={text => setNewPassword(text)}
+                value={newpassword}
+                placeholder="New Password"
+                secureTextEntry={!passwordVisible}
+                />
+                {/* <TouchableOpacity onPress={togglePasswordVisibility} style={styles.visibilityToggle}>
+                    <Text>{passwordVisible ? 'Hide' : 'Show'}</Text>
+                </TouchableOpacity> */}
+            </View>
+            <View>
+                <Text style={styles.inputText}>Verify Password</Text>
+                <TextInput
+                style={styles.input}
+                mode='outlined'
+                onChangeText={setPassword}
+                value={password}
+                placeholder="Verify Password"
+                secureTextEntry={!passwordVisible} // Optional: Use the same visibility toggle for both fields
+                />
             </View>
         </View>
         <View style={styles.checkboxManager}>
@@ -70,6 +113,8 @@ export default function SigninForms() {
             <Text style={styles.checkBoxText}>Terms and Conditions</Text>
         </View>
     </View>
+    </ScrollView>
+    
   )
 }
 

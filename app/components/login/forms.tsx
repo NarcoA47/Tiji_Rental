@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native'
+import { TextInput } from 'react-native-paper'
 import Checkbox from 'expo-checkbox';
 
 export default function SigninForms() {
 
-    const [text, onChangeText] = React.useState('');
+    const [text, setText] = React.useState('');
     const [number, onChangeNumber] = React.useState('');
     const [isChecked, setChecked] = useState(false);
 
@@ -19,17 +20,19 @@ export default function SigninForms() {
                 style={styles.input}
                 onChangeText={onChangeNumber}
                 value={number}
-                placeholder=""
-                keyboardType="number"/>
+                placeholder="e.g +260 968"
+                mode='outlined'
+                keyboardType="phone-pad"/>
             </View>
             <View >
             <Text style={styles.inputText}>Password</Text>
                 <TextInput
                 style={styles.input}
-                onChangeText={text}
+                onChangeText={setText}
                 value={text}
-                placeholder=""
-                keyboardType="text"/>
+                mode='outlined'
+                
+                />
             </View>
             
         </View>

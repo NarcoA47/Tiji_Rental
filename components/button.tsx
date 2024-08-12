@@ -37,6 +37,15 @@ export function LoginButton() {
       </View>
     )
   }
+  export function Search() {
+    return (
+      <View>
+          <TouchableOpacity style={styles.searchbuttonManager}>
+              <Text style={styles.searchbuttonText}>Search For A bus</Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }
 
   export function Continue() {
     return (
@@ -96,12 +105,28 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    searchbuttonManager: {
+        backgroundColor: '#FFFFFF',
+        margin: 28,
+        height: 50,
+        textAlign: 'center',
+        borderRadius: 4,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
 
     buttonText: {
         fontWeight: 'bold',
         fontSize: 18,
         textAlign: 'center',
         color: 'white',
+         
+    },
+    searchbuttonText: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        textAlign: 'center',
+        color: '#0034BF',
          
     },
 })

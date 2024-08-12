@@ -11,7 +11,7 @@ function Slider() {
   return (
     <View style={styles.container}>
         <View style={styles.cardOne}>
-            <TouchableOpacity onPress={() => navigation.navigate('Ticket')}>
+            <TouchableOpacity onPress={() => navigation.navigate('BusHome')}>
             <View style={styles.contentOne}>
                 <Text style={styles.leadText}>Tickets</Text>
                 <Text style={styles.descriptionText}>Buy your ticket and explore</Text>
@@ -20,11 +20,13 @@ function Slider() {
             </TouchableOpacity>
         </View>
         <View style={styles.cardTwo}>
-            <View style={styles.contentOne}>
-                <Text style={styles.leadText}>Car Hire</Text>
-                <Text style={styles.descriptionText}>Rent Your Car at a cost</Text>
-                <Image style={styles.ImageControllerCardTwo} source={require('../../../assets/images/homeScreen/Car-hire.png')}/>
-            </View>
+            <TouchableOpacity onPress={() => navigation.navigate('ProductView')}>
+                <View style={styles.contentOne}>
+                    <Text style={styles.leadText}>Car Hire</Text>
+                    <Text style={styles.descriptionText}>Rent Your Car at a cost</Text>
+                    <Image style={styles.ImageControllerCardTwo} source={require('../../../assets/images/homeScreen/Car-hire.png')}/>
+                </View>
+            </TouchableOpacity>
         </View>
     </View>
   )

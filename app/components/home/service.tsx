@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
       },
       serviceTitle: {
-        fontSize: 18,
+        fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 10,
       },

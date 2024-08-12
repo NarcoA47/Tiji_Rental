@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 
-export default function LoginText() {
+export default function ForgetPasswordText() {
 
 
     const navigation = useNavigation()
@@ -10,8 +10,9 @@ export default function LoginText() {
   return (
     <View style={styles.container}>
         <View style={styles.textManager}> 
-        <Text style={styles.text}>I Don't have an account ?</Text>
-        <TouchableOpacity onPress={() => navigation.navigate('Register')}><Text  style={styles.loginController}>Signin</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('ForgetPassword')}>
+            <Text style={styles.passwordController}>Forget Password</Text>
+        </TouchableOpacity>
         </View>
     </View>
   )
@@ -20,16 +21,12 @@ export default function LoginText() {
 const styles = StyleSheet.create({
     container: {
         textAlign: 'right',
-        marginTop: 12,
-        paddingLeft: 27,
-        paddingTop: 12,
-        alignItems: 'flex-start',
-        justifyContent: 'flex-start',
+        alignItems: 'flex-end',
+        justifyContent: 'flex-end',
     },
     textManager: {
         marginRight: 16,
         flexDirection: 'row',
-        
     },
     text: {
         marginRight: 4,

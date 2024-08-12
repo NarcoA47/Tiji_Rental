@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
-import { Image,View, Text, StyleSheet, TextInput } from 'react-native';
+import { TextInput } from 'react-native-paper'; 
+import { Image,View, Text, StyleSheet } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import {Picker} from '@react-native-picker/picker';
+import RNPickerSelect from 'react-native-picker-select';
 
 export default function MobilePayForm() {
 
@@ -21,7 +23,7 @@ export default function MobilePayForm() {
 
   return (
     <View style={styles.container}>
-        <View style={styles.cardIcons}>
+        <View>
             <Image style={styles.ImageController} source={require('../../../assets/images/methods/pay.png')}/>
         </View>
         
@@ -32,7 +34,8 @@ export default function MobilePayForm() {
                 style={styles.input}
                 onChangeText={setPhoneNumber}
                 value={phoneNumber}
-                placeholder=""
+                mode="outlined"
+                placeholder="e.g +260 968 "
                 keyboardType="phone-pad"/>
             </View>
             <View >
@@ -41,12 +44,23 @@ export default function MobilePayForm() {
                 style={styles.input}
                 onChangeText={setAmount}
                 value={amount}
+                mode="outlined"
                 placeholder=""
                 keyboardType="numeric"/>
             </View>
             
         </View>
-        <Picker
+        <View>
+            <RNPickerSelect
+                        onValueChange={(value) => console.log(value)}
+                        items={[
+                            { label: 'MTN', value: 'MTN' },
+                            { label: 'Zamtel', value: 'Zamtel' },
+                            { label: 'Airtel', value: 'Airtel' },
+                        ]}
+                    />
+        </View>
+        {/* <Picker
         selectedValue={mobileProvider}
         style={styles.picker}
         onValueChange={(itemValue) => setMobileProvider(itemValue)}
@@ -54,7 +68,7 @@ export default function MobilePayForm() {
         <Picker.Item label="MTN" value="MTN" />
         <Picker.Item label="Zamtel" value="Zamtel" />
         <Picker.Item label="Airtel" value="Airtel" />
-      </Picker>
+      </Picker> */}
     </View>
   )
 }

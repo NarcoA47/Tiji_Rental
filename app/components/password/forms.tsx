@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TextInput } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
+import { TextInput } from 'react-native-paper'; 
 
 export default function PasswordForms() {
 
@@ -18,8 +19,9 @@ export default function PasswordForms() {
                 style={styles.input}
                 onChangeText={onChangeNumber}
                 value={number}
-                placeholder=""
-                keyboardType="number"/>
+                placeholder="e.g +260 968"
+                mode="outlined"
+                keyboardType="phone-pad"/>
             </View>
         </View>
     </View>

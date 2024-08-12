@@ -5,6 +5,9 @@ import EvilIcons from '@expo/vector-icons/EvilIcons';
 import Slider from '@/app/components/home/slider';
 import Container from '@/app/components/productview/container';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Changer from '@/app/components/home/changer';
+import { Search } from '../button';
+import DatePicker from '@/app/components/home/datepicker';
 
 
 export default function Naviagtion() {
@@ -48,6 +51,25 @@ export function MainNavigation() {
   )
 }
 
+export function MainBusHomeNavigation() {
+  return (
+    <View style={styles.BusContainer}>
+      <View style={styles.adjucentContainer}>
+        <View>
+          <Text style={styles.text}>TIJI</Text>
+          <Text style={styles.subText}>Chintu RD, 6039</Text>
+        </View>
+        <View>
+        <EvilIcons name="user" size={40} color="white" />
+        <Text style={styles.subText}>Login</Text>
+        </View>
+      </View>
+      <Changer/>
+      <DatePicker/>
+      <Search/>
+    </View>
+  )
+}
 export function MainPayNavigation() {
   return (
     <View style={styles.payContainer}>
@@ -116,12 +138,20 @@ const styles = StyleSheet.create({
     height: 380,
   },
   payContainer: { 
-    marginTop: 20,
+    marginTop: 40,
     flexDirection: 'column',
     justifyContent: 'center',
     alignContent: 'center',
     backgroundColor: '#0034BF',
     height: 160,
+  },
+  BusContainer: { 
+    marginTop: 40,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignContent: 'center',
+    backgroundColor: '#0034BF',
+    height: 417,
   },
 
   adjucentContainer: {

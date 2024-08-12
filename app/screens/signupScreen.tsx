@@ -4,16 +4,19 @@ import SigninForms from '../components/signin/forms';
 import Naviagtion from '@/components/navigation/topNavigation';
 import RegisterButton from '@/components/button';
 import LoginText from '../components/signin/loginText';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 function SignupScreen() {
   return (
-    <View>
-      <Naviagtion/>
-      <SigninForms/>
-      <RegisterButton/>
-      <LoginText/>
-    </View>
+    <ScrollView>
+      <View>
+        <Naviagtion/>
+        <SigninForms/>
+        <RegisterButton/>
+        <LoginText/>
+      </View>
+    </ScrollView>
   )
 }
 

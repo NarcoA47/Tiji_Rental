@@ -4,14 +4,16 @@ import { Text, View } from 'react-native'
 import LoginText from '../components/login/signupText'
 import SigninForms from '../components/login/forms'
 import { LoginButton } from '@/components/button'
+import ForgetPasswordText from '../components/login/forgotpasswordText'
 
 function LoginScreen() {
   return (
     <View>
         <Naviagtion/>
         <SigninForms/>
-        <LoginText/>
+        <ForgetPasswordText/>
         <LoginButton/>
+        <LoginText/>
     </View>
   )
 }
