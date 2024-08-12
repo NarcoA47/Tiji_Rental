@@ -1,7 +1,11 @@
+import { useNavigation } from '@react-navigation/native';
 import React from 'react'
 import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 export default function MoreCards() {
+
+  const navigation = useNavigation()
+
   return (
     <View style={styles.conatiner}>
         <View style={styles.cardLeadManager}>
@@ -15,7 +19,7 @@ export default function MoreCards() {
                 <Text style={styles.time}>Daily</Text>
                 <Text style={styles.price}>K250</Text>
               </View>
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
                 <Text style={styles.textColor}>Rent Now</Text>
               </TouchableOpacity>
             </View>
@@ -30,7 +34,7 @@ export default function MoreCards() {
                 <Text style={styles.time}>Daily</Text>
                 <Text style={styles.price}>K250</Text>
               </View>
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
                 <Text style={styles.textColor}>Rent Now</Text>
               </TouchableOpacity>
             </View>
@@ -45,7 +49,7 @@ export default function MoreCards() {
                 <Text style={styles.time}>Daily</Text>
                 <Text style={styles.price}>K250</Text>
               </View>
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
                 <Text style={styles.textColor}>Rent Now</Text>
               </TouchableOpacity>
             </View>
@@ -60,7 +64,7 @@ export default function MoreCards() {
                 <Text style={styles.time}>Daily</Text>
                 <Text style={styles.price}>K250</Text>
               </View>
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
                 <Text style={styles.textColor}>Rent Now</Text>
               </TouchableOpacity>
             </View>
@@ -75,7 +79,7 @@ export default function MoreCards() {
                 <Text style={styles.time}>Daily</Text>
                 <Text style={styles.price}>K250</Text>
               </View>
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
                 <Text style={styles.textColor}>Rent Now</Text>
               </TouchableOpacity>
             </View>
@@ -90,7 +94,7 @@ export default function MoreCards() {
                 <Text style={styles.time}>Daily</Text>
                 <Text style={styles.price}>K250</Text>
               </View>
-              <TouchableOpacity style={styles.buttonContainer}>
+              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
                 <Text style={styles.textColor}>Rent Now</Text>
               </TouchableOpacity>
             </View>

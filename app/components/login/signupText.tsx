@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
         color: '#0034BF'
     },
     passwordController: {
+        marginRight: 16,
         fontSize: 16,
         color: '#0034BF',
         
