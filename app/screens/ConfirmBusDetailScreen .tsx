@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Button } from 'react-native';
-import ConfirmDetailsModal from './../Modal/ConfirmDetailsModal';
+import ConfirmDetailsModal from '../Modal/ConfirmDetailsModal';
 
 const App = () => {
   const [modalVisible, setModalVisible] = useState(false);
