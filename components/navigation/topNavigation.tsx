@@ -143,8 +143,8 @@ const styles = StyleSheet.create({
   },
 
   productConatiner: {
-    marginTop: 40,
-    // paddingTop: 40,
+    marginTop: 20,
+    paddingBottom: 80,
     flexDirection: 'column',
     justifyContent: 'center',
     alignContent: 'center',

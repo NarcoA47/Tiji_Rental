@@ -6,7 +6,7 @@ export default function Container() {
     <View>
         <View style={styles.cardTwo}>
             <View style={styles.contentOne}>
-                <Image style={styles.ImageControllerCardTwo} source={require('../../../assets/images/homeScreen/Car-hire.png')}/>
+                <Image style={styles.ImageControllerCardTwo} source={require('../../../assets/images/homeScreen/Bmw.png')}/>
                 <View style={styles.textContainer}>
                     <Text style={styles.leadText}>Porshe Cayman</Text>
                     <Text style={styles.descriptionText}>M4 Competiton</Text>
