@@ -144,14 +144,14 @@ const styles = StyleSheet.create({
 
   productConatiner: {
     marginTop: 20,
-    paddingBottom: 80,
+    paddingBottom: 110,
     flexDirection: 'column',
     justifyContent: 'center',
     alignContent: 'center',
     backgroundColor: '#0034BF',
     borderBottomLeftRadius: 60,
     borderBottomRightRadius: 60,
-    height: 380,
+    height: 488,
   },
 
 })

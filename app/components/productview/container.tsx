@@ -6,12 +6,16 @@ export default function Container() {
     <View>
         <View style={styles.cardTwo}>
             <View style={styles.contentOne}>
+            <View style={styles.textContainer}>
+                    <Text style={styles.leadText}>Car hire services</Text>
+                    <Text style={styles.descriptionText1}>Explore Our Diverse Fleet</Text>
+                </View>
                 <Image style={styles.ImageControllerCardTwo} source={require('../../../assets/images/homeScreen/Bmw.png')}/>
                 <View style={styles.textContainer}>
-                    <Text style={styles.leadText}>Porshe Cayman</Text>
+                    <Text style={styles.leadText}>BMW</Text>
                     <Text style={styles.descriptionText}>M4 Competiton</Text>
                     <Text style={styles.descriptionText}>350/Day</Text>
-                    </View>
+                </View>
             </View>
         </View>
     </View>
@@ -47,6 +51,12 @@ const styles = StyleSheet.create({
         marginBottom: 2,
         fontWeight: 'bold',
         fontSize: 14,
+    },
+    descriptionText1: {
+        color: '#FFFFFF',
+        marginBottom: 2,
+        fontWeight: 'bold',
+        fontSize: 12,
     },
 
     cardTwo: {
