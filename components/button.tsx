@@ -95,6 +95,19 @@ export function LoginButton() {
     )
   }
 
+  export function BookNowButton() {
+    const navigation = useNavigation()
+  
+    return (
+      <View>
+          <TouchableOpacity onPress={() => navigation.navigate('Successful')} style={styles.buttonAltManager}>
+              <Text style={styles.buttonAltText}>Book Now</Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }
+
+
 const styles = StyleSheet.create({
     buttonManager: {
         backgroundColor: '#0034BF',
@@ -113,6 +126,25 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+
+    buttonAltManager: {
+        backgroundColor: '#FFFFFF',
+        marginRight: 20,
+        marginLeft: 20,
+        marginBottom: 20,
+        height: 50,
+        textAlign: 'center',
+        borderRadius: 4,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    buttonAltText: {
+      fontWeight: 'bold',
+        fontSize: 18,
+        textAlign: 'center',
+        color: '#000000',
     },
 
     buttonText: {

@@ -8,6 +8,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Changer from '@/app/components/home/changer';
 import { Search } from '../button';
 import DatePicker from '@/app/components/home/datepicker';
+import { useNavigation } from 'expo-router';
 
 
 export default function Naviagtion() {
@@ -103,6 +104,20 @@ export function HeaderMainNavigation() {
       </View>
       <Container/>
     </View>
+  )
+}
+
+export function ReturnNavigation() {
+
+  const navigation = useNavigation()
+
+  return (
+    // Create a function the give async back function based on the screen presented
+    <TouchableOpacity onPress={() => navigation.navigate('ProductView')}>
+      <View style={styles.conatiner}>
+          <Ionicons style={styles.icon} name="chevron-back-circle" size={50} color="#0034BF" />
+      </View>
+    </TouchableOpacity>
   )
 }
 

@@ -1,20 +1,24 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useState } from 'react'
+import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import HeadTextManager from '../components/checkout/headTextManager'
 import PickerSection from '../components/checkout/pickerSection'
 import ImageManager from '../components/checkout/imageManager'
 import FooterManager from '../components/checkout/footerManager'
-import { MainPayNavigation } from '@/components/navigation/topNavigation'
+import { MainPayNavigation, ReturnNavigation } from '@/components/navigation/topNavigation'
 
 export default function Checkout() {
+
   return (
-    <View>
+    <ScrollView>
+      <View>
         <MainPayNavigation/>
         <HeadTextManager/>
         <PickerSection/>
         <ImageManager/>
+        <ReturnNavigation/>
         <FooterManager/>
     </View>
+    </ScrollView>
   )
 }
 
