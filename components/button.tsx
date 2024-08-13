@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native'
 import React from 'react'
-import { Touchable, View, TouchableOpacity, StyleSheet, Text } from 'react-native'
+import { Touchable, View, Button, TouchableOpacity, StyleSheet, Text } from 'react-native';
+import ConfirmDetailsModal from '@/app/Modal/ConfirmDetailsModal';
 
 export default function RegisterButton() {
 
@@ -80,6 +81,34 @@ export function LoginButton() {
           </TouchableOpacity>
       </View>
     )
+  }
+  export function NextButton() {
+
+    const [modalVisible, setModalVisible] = React.useState(false);
+    
+    const passengerDetails = {
+      name: 'Tiza Mpata',
+      phone: '+260 961780810',
+      departureTime: '09:00hrs',
+      tickets: 1,
+      from: 'Lusaka',
+      to: 'Kabwe',
+    };
+    
+    const navigation = useNavigation()
+    
+    return (
+      <View>
+            <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.buttonManager}>
+                <Text style={styles.buttonText}>Next</Text>
+            </TouchableOpacity>
+            <ConfirmDetailsModal 
+              visible={modalVisible} 
+              onClose={() => setModalVisible(false)} 
+              passengerDetails={passengerDetails} 
+            />
+        </View>
+      )
   }
 
   export function ResetPasswordButton() {

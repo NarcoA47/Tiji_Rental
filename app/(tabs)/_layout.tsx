@@ -19,6 +19,7 @@ import MobilePayScreen from '../screens/MobileMoneyScreen';
 import BusHomeScreen from '../screens/BusHomeScreen';
 import Checkout from '../screens/checkout';
 import CardScreen from '../screens/CardScreen';
+import PassengerDetailsScreen from '../screens/PassengerDetailsScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -40,6 +41,7 @@ export default function TabLayout() {
       <Stack.Screen name="BusHome" component={BusHomeScreen}/>
       <Stack.Screen name="Card" component={CardScreen}/>
       <Stack.Screen name="Register" component={SignupScreen}/>
+      <Stack.Screen name="PassengerDetails" component={PassengerDetailsScreen}/>
       <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen}/>
       <Stack.Screen name="ResetPassword" component={ResetPasswordScreen}/>
       <Stack.Screen name="MobilePay" component={MobilePayScreen}/>

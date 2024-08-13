@@ -21,6 +21,16 @@ export default function Naviagtion() {
   )
 }
 
+export function Close({onClose}){
+  return(
+    <TouchableOpacity  onPress={onClose}>
+      <View style={styles.Closeconatiner}>
+          <Ionicons style={styles.closeicon} name="close" size={40} color="#0034BF" />
+      </View>
+    </TouchableOpacity>
+  )
+}
+
 export function PayNaviagtion() {
   return (
     // Create a function the give async back function based on the screen presented
@@ -123,9 +133,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     margin: 12,
   },
+  Closeconatiner:{
+    flexDirection: 'row',
+    justifyContent: 'flex-end',  
+    alignItems: 'center',
+  },
   icon: {
     marginTop: 12,
     paddingTop: 50,
+  },
+  closeicon: {
+    
   },
 
   mainContainer: { 

@@ -1,7 +1,15 @@
+import { Close } from '@/components/navigation/topNavigation';
 import React from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native';
 
 const ConfirmDetailsModal = ({ visible, onClose, passengerDetails }) => {
+  const [modalVisible, setModalVisible] = React.useState(false);
+
+  const handleClose = () => {
+    setModalVisible(false);
+  };
+  
+
   return (
     <Modal
       transparent={true}
@@ -11,13 +19,39 @@ const ConfirmDetailsModal = ({ visible, onClose, passengerDetails }) => {
     >
       <View style={styles.overlay}>
         <View style={styles.modalContainer}>
+        <Close onClose={handleClose} />
           <Text style={styles.title}>Confirm Details</Text>
-          <Text style={styles.label}>Name: {passengerDetails.name}</Text>
-          <Text style={styles.label}>Phone Number: {passengerDetails.phone}</Text>
-          <Text style={styles.label}>Departure Time: {passengerDetails.departureTime}</Text>
-          <Text style={styles.label}>Number Of Tickets: {passengerDetails.tickets}</Text>
-          <Text style={styles.label}>From: {passengerDetails.from}</Text>
-          <Text style={styles.label}>To: {passengerDetails.to}</Text>
+          <View style={styles.fieldContainer}>
+            <Text style={styles.label}>
+              <Text style={styles.bold}>Name: </Text>
+
+               {passengerDetails.name}
+            </Text>
+            <Text style={styles.label}>
+              <Text style={styles.bold}>Phone No: </Text>
+              {passengerDetails.phone}
+            </Text>
+            <Text style={styles.label}>
+              <Text style={styles.bold}>Departure Time: </Text>
+
+              {passengerDetails.departureTime}
+            </Text>
+
+            <Text style={styles.label}>
+            <Text style={styles.bold}>Number Of Tickets </Text>
+
+               {passengerDetails.tickets}</Text>
+            <View style={styles.row}>
+              <Text style={styles.label}>
+              <Text style={styles.bold}>From: </Text>
+
+                 {passengerDetails.from}</Text>
+              <Text style={styles.label}>
+              <Text style={styles.bold}>To: </Text>
+
+                 {passengerDetails.to}</Text>
+            </View>
+          </View>
 
           <TouchableOpacity style={styles.button} onPress={onClose}>
             <Text style={styles.buttonText}>Proceed to Payment</Text>
@@ -43,12 +77,32 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   title: {
-    fontSize: 20,
+    fontSize: 24,
+    color: '#0034BF',
     fontWeight: 'bold',
     marginBottom: 10,
   },
+  fieldContainer: {
+    marginVertical: 10,
+    padding: 10,
+    borderColor: 'rgba(0, 0, 0, 0.5)',
+    borderWidth: 2,
+    borderRadius: 10,
+    borderStyle: 'dotted', // Dotted border style around the entire container
+  },
   label: {
     fontSize: 16,
+    marginVertical: 5,
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(0, 0, 0, 0.5)', // Dotted border color for individual fields
+    borderStyle: 'dotted', // Dotted border style for individual fields
+  },
+  bold: {
+    fontWeight: 'bold',
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     marginVertical: 5,
   },
   button: {

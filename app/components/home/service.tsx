@@ -19,7 +19,7 @@ export default function Services() {
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('ProductView')}>
                     <View>
-                        <Image source={require('../../../assets/images/homeScreen/Car-hire.png')} style={styles.imageManager}/>
+                        <Image source={require('../../../assets/images/homeScreen/companycar.png')} style={styles.imageManager}/>
                     </View>
                 </TouchableOpacity>
                 
