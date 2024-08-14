@@ -3,6 +3,7 @@ import React from 'react'
 import { Touchable, View, Button, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import ConfirmDetailsModal from '@/app/Modal/ConfirmDetailsModal';
 import ConfirmedBookingTicketModal from '@/app/Modal/ConfirmedBookingTicket';
+import SuccessCarHireModal from '@/app/Modal/SuccessCarHireModal';
 
 export default function RegisterButton() {
 
@@ -188,7 +189,10 @@ export function LoginButton() {
           <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.buttonAltManager}>
               <Text style={styles.buttonAltText}>Book Now</Text>
           </TouchableOpacity>
-          
+          <SuccessCarHireModal
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)} 
+          />
       </View>
     )
   }
