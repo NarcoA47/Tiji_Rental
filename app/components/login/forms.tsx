@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native'
-import { TextInput } from 'react-native-paper'
-import Checkbox from 'expo-checkbox';
+import { View, StyleSheet } from 'react-native'
+import { Input } from "react-native-magnus";
+import {Checkbox, Text } from "react-native-magnus";
 
 export default function SigninForms() {
 
-    const [text, setText] = React.useState('');
+    const [password, getPassword] = React.useState('');
     const [number, onChangeNumber] = React.useState('');
     const [isChecked, setChecked] = useState(false);
+    const [passwordVisible, setPasswordVisible] = React.useState(false);
+
+    const togglePasswordVisibility = () => {
+        setPasswordVisible(!passwordVisible);
+      };
 
 
   return (
@@ -16,33 +21,39 @@ export default function SigninForms() {
         <View style={styles.inputFormTwo}>
         <View >
             <Text style={styles.inputText}>Phone Number</Text>
-                <TextInput
-                style={styles.input}
-                onChangeText={onChangeNumber}
-                value={number}
-                placeholder="e.g +260 968"
-                mode='outlined'
+                <Input
+                    
+                    placeholder="e.g +260 968"
+                    onChangeText={onChangeNumber}
+                    
+                    focusBorderColor="blue700"
+                    style={styles.input}
+                    value={number}
+                
                 keyboardType="phone-pad"/>
+                
             </View>
             <View >
             <Text style={styles.inputText}>Password</Text>
-                <TextInput
+                <Input
+                onChangeText={getPassword}
+                p={10}
+                focusBorderColor="blue700"
                 style={styles.input}
-                onChangeText={setText}
-                value={text}
-                mode='outlined'
+                value={password}
+                secureTextEntry={!passwordVisible}
                 
                 />
             </View>
             
         </View>
         <View style={styles.checkboxManager}>
-            <Checkbox
+            <Checkbox prefix={<Text flex={0} style={styles.checkBoxText}>Remeber Me</Text>} value={1}/>
+            {/* <Checkbox
             value={isChecked}
             onValueChange={setChecked}
             style={styles.checkbox}
-            />
-            <Text style={styles.checkBoxText}>Remeber Me</Text>
+            /> */}
         </View>
     </View>
   )
@@ -86,7 +97,6 @@ const styles = StyleSheet.create({
 
     },
     input: {
-        borderColor: '#00000044',
         borderWidth: 1,
         marginLeft: 14,
         marginRight: 14,

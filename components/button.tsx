@@ -9,7 +9,7 @@ export default function RegisterButton() {
 
   return (
     <View>
-        <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.buttonManager}>
+        <TouchableOpacity onPress={() => navigation.navigate('OTP')} style={styles.buttonManager}>
             <Text style={styles.buttonText}>Register</Text>
         </TouchableOpacity>
     </View>
@@ -22,7 +22,7 @@ export function LoginButton() {
 
     return (
       <View>
-          <TouchableOpacity onPress={() => navigation.navigate('Home')} style={styles.buttonManager}>
+          <TouchableOpacity onPress={() => navigation.navigate('OTP')} style={styles.buttonManager}>
               <Text style={styles.buttonText}>Login</Text>
           </TouchableOpacity>
       </View>
@@ -39,19 +39,46 @@ export function LoginButton() {
     )
   }
   export function Search() {
+
+    const navigation = useNavigation()
+
     return (
       <View>
-          <TouchableOpacity style={styles.searchbuttonManager}>
+          <TouchableOpacity onPress={() => navigation.navigate('ViewBuses')} style={styles.searchbuttonManager}>
               <Text style={styles.searchbuttonText}>Search For A bus</Text>
           </TouchableOpacity>
       </View>
     )
   }
 
-  export function Continue() {
+  export function EditProfile() {
+
+    const navigation = useNavigation()
+
     return (
       <View>
-          <TouchableOpacity style={styles.buttonManager}>
+          <TouchableOpacity onPress={() => navigation.navigate('ViewBuses')} style={styles.EditButton}>
+              <Text style={styles.buttonText}>Edit</Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }
+
+  export function Continue() {
+    const navigation = useNavigation()
+    return (
+      <View>
+          <TouchableOpacity style={styles.buttonManager} onPress={() => navigation.navigate('Success')}>
+              <Text style={styles.buttonText}>Continue</Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }
+  export function HomeContinue() {
+    const navigation = useNavigation()
+    return (
+      <View>
+          <TouchableOpacity style={styles.buttonManager} onPress={() => navigation.navigate('Home')}>
               <Text style={styles.buttonText}>Continue</Text>
           </TouchableOpacity>
       </View>
@@ -149,6 +176,15 @@ const styles = StyleSheet.create({
     },
     searchbuttonManager: {
         backgroundColor: '#FFFFFF',
+        margin: 28,
+        height: 50,
+        textAlign: 'center',
+        borderRadius: 4,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    EditButton: {
+        backgroundColor: '#0034BF',
         margin: 28,
         height: 50,
         textAlign: 'center',

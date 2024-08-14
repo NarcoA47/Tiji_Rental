@@ -15,11 +15,16 @@ import SignupScreen from '../screens/signupScreen';
 import ProductView from '../screens/productView';
 import ForgetPasswordScreen from '../screens/forgetPassword';
 import ResetPasswordScreen from '../screens/resetPasswordScreen';
-import MobilePayScreen from '../screens/MobileMoneyScreen';
 import BusHomeScreen from '../screens/BusHomeScreen';
 import Checkout from '../screens/checkout';
-import CardScreen from '../screens/CardScreen';
 import PassengerDetailsScreen from '../screens/PassengerDetailsScreen';
+import ViewBusScreen from '../screens/ViewBusScreen';
+import ProfileScreen from '../screens/ProfileScreen';
+import AuthOptionScreen from '../screens/AuthScreen';
+import ConfirmHire from '../screens/confirmHire';
+import PaymentScreen from '../screens/PaymentScreen';
+import OTP from '../screens/otpScreen';
+import Success from '../screens/successfulScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -37,16 +42,21 @@ export default function TabLayout() {
       <Stack.Screen name="Login" component={LoginScreen}/>
       <Stack.Screen name="Product" component={ProductScreen}/>
       <Stack.Screen name="Ticket" component={BusTicketApp}/>
+      <Stack.Screen name="ConfirmHire" component={ConfirmHire}/>
       <Stack.Screen name="Home" component={HomeScreenMain}/>
       <Stack.Screen name="BusHome" component={BusHomeScreen}/>
-      <Stack.Screen name="Card" component={CardScreen}/>
       <Stack.Screen name="Register" component={SignupScreen}/>
+      <Stack.Screen name="AuthOption" component={AuthOptionScreen}/>
+      <Stack.Screen name="ViewBuses" component={ViewBusScreen}/>
+      <Stack.Screen name="Success" component={Success}/>
+      <Stack.Screen name="OTP" component={OTP}/>
       <Stack.Screen name="PassengerDetails" component={PassengerDetailsScreen}/>
       <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen}/>
       <Stack.Screen name="ResetPassword" component={ResetPasswordScreen}/>
-      <Stack.Screen name="MobilePay" component={MobilePayScreen}/>
+      <Stack.Screen name="Payment" component={PaymentScreen}/>
       <Stack.Screen name="ProductView" component={ProductView}/>
       <Stack.Screen name="Checkout" component={Checkout}/>
+      <Stack.Screen name="Profile" component={ProfileScreen}/>
 
       </Stack.Navigator>
     </GestureHandlerRootView>

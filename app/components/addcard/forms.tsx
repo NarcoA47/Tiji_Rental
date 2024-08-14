@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { TextInput } from 'react-native-paper'; 
 import { Image,View, Text, StyleSheet, ScrollView } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import {Picker} from '@react-native-picker/picker';
 import RNPickerSelect from 'react-native-picker-select';
+import { Input } from 'react-native-magnus';
 
 export default function CardForm() {
 
@@ -30,30 +30,30 @@ export default function CardForm() {
         
         <View style={styles.inputFormTwo}>
             <View >
-                <TextInput
-                mode='outlined'
+                <Input
+                focusBorderColor="blue700"
                 style={styles.input}
                 placeholder="Name On Card"
                 value={nameOnCard}
                 onChangeText={setNameOnCard}
                 />
-                <TextInput
-                    mode='outlined'
+                <Input
+                    focusBorderColor="blue700"
                     style={styles.input}
                     placeholder="Card Number"
                     keyboardType="numeric"
                     value={cardNumber}
                     onChangeText={setCardNumber}
                 />
-                <TextInput
-                mode='outlined'
+                <Input
+                focusBorderColor="blue700"
                 style={styles.input}
                 placeholder="MM/YY"
                 value={expiryDate}
                 onChangeText={setExpiryDate}
                 />
-                <TextInput
-                mode='outlined'
+                <Input
+                focusBorderColor="blue700"
                 style={styles.input}
                 placeholder="CVV"
                 keyboardType="numeric"
@@ -100,11 +100,11 @@ const styles = StyleSheet.create({
         width: 180,
         
     },
+    
     inputFormTwo: {
 
     },
     input: {
-        borderColor: '#00000044',
         borderWidth: 1,
         marginLeft: 14,
         marginRight: 14,

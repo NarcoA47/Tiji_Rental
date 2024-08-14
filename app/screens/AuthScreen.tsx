@@ -2,15 +2,15 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const HomeScreen = () => {
+const AuthOptionScreen = () => {
   const navigation = useNavigation();
 
   const handleLogin = () => {
-    // navigation.navigate('Login'); // Navigate to Login screen
+    navigation.navigate('Login'); // Navigate to Login screen
   };
 
   const handleRegister = () => {
-    // navigation.navigate('Register'); // Navigate to Register screen
+    navigation.navigate('Register'); // Navigate to Register screen
   };
 
   return (
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     color: '#000000',
   },
   button: {
-    backgroundColor: '#007BFF',
+    backgroundColor: '#0034BF',
     padding: 15,
     borderRadius: 5,
     width: '100%',
@@ -67,4 +67,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default AuthOptionScreen;

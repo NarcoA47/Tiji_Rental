@@ -9,6 +9,7 @@ import Changer from '@/app/components/home/changer';
 import { Search } from '../button';
 import DatePicker from '@/app/components/home/datepicker';
 import { useNavigation } from 'expo-router';
+import ProfileContainer from '@/app/components/profile/container';
 
 
 export default function Naviagtion() {
@@ -45,6 +46,7 @@ export function PayNaviagtion() {
 }
 
 export function MainNavigation() {
+  const navigation = useNavigation()
   return (
     <View style={styles.mainContainer}>
       <View style={styles.adjucentContainer}>
@@ -53,7 +55,7 @@ export function MainNavigation() {
           <Text style={styles.subText}>Chintu RD, 6039</Text>
         </View>
         <View>
-        <EvilIcons name="user" size={40} color="white" />
+        <EvilIcons name="user" size={40} onPress={() => navigation.navigate('Profile')}  color="white" />
         <Text style={styles.subText}>Login</Text>
         </View>
       </View>
@@ -62,7 +64,10 @@ export function MainNavigation() {
   )
 }
 
+
+
 export function MainBusHomeNavigation() {
+  const navigation = useNavigation()
   return (
     <View style={styles.BusContainer}>
       <View style={styles.adjucentContainer}>
@@ -71,7 +76,7 @@ export function MainBusHomeNavigation() {
           <Text style={styles.subText}>Chintu RD, 6039</Text>
         </View>
         <View>
-        <EvilIcons name="user" size={40} color="white" />
+        <EvilIcons name="user" size={40} onPress={() => navigation.navigate('Profile')} color="white" />
         <Text style={styles.subText}>Login</Text>
         </View>
       </View>
@@ -82,6 +87,8 @@ export function MainBusHomeNavigation() {
   )
 }
 export function MainPayNavigation() {
+  const navigation = useNavigation()
+
   return (
     <View style={styles.payContainer}>
       <View style={styles.adjucentContainer}>
@@ -90,7 +97,7 @@ export function MainPayNavigation() {
           <Text style={styles.subText}>Chintu RD, 6039</Text>
         </View>
         <View>
-        <EvilIcons name="user" size={40} color="white" />
+        <EvilIcons name="user" onPress={() => navigation.navigate('Profile')} size={40} color="white" />
         <Text style={styles.subText}>Login</Text>
         </View>
       </View>
@@ -100,6 +107,9 @@ export function MainPayNavigation() {
 
 
 export function HeaderMainNavigation() {
+
+  const navigation = useNavigation()
+
   return (
     <View style={styles.productConatiner}>
       <View style={styles.adjucentContainer}>
@@ -108,11 +118,22 @@ export function HeaderMainNavigation() {
           <Text style={styles.subText}>Chintu RD, 6039</Text>
         </View>
         <View>
-        <EvilIcons name="user" size={40} color="white" />
+        <EvilIcons name="user"  onPress={() => navigation.navigate('Profile')} size={40} color="white" />
         <Text style={styles.subText}>Login</Text>
         </View>
       </View>
       <Container/>
+    </View>
+  )
+}
+export function ProfileMainNavigation() {
+  return (
+    <View style={styles.profileConatiner}>
+      <View style={styles.adjucentContainer}>
+        // chevron-back-circle
+      </View>
+      <ProfileContainer/>
+      
     </View>
   )
 }
@@ -124,6 +145,20 @@ export function ReturnNavigation() {
   return (
     // Create a function the give async back function based on the screen presented
     <TouchableOpacity onPress={() => navigation.navigate('ProductView')}>
+      <View style={styles.conatiner}>
+          <Ionicons style={styles.icon} name="chevron-back-circle" size={50} color="#0034BF" />
+      </View>
+    </TouchableOpacity>
+  )
+}
+
+export function ProfileReturnNavigation() {
+
+  const navigation = useNavigation()
+
+  return (
+    // Create a function the give async back function based on the screen presented
+    <TouchableOpacity onPress={() => navigation.navigate('')}>
       <View style={styles.conatiner}>
           <Ionicons style={styles.icon} name="chevron-back-circle" size={50} color="#0034BF" />
       </View>
@@ -156,6 +191,7 @@ const styles = StyleSheet.create({
   icon: {
     marginTop: 12,
     paddingTop: 50,
+    
   },
   closeicon: {
     
@@ -207,6 +243,16 @@ const styles = StyleSheet.create({
 
   productConatiner: {
     marginTop: 20,
+    paddingBottom: 110,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignContent: 'center',
+    backgroundColor: '#0034BF',
+    borderBottomLeftRadius: 60,
+    borderBottomRightRadius: 60,
+    height: 488,
+  },
+  profileConatiner: {
     paddingBottom: 110,
     flexDirection: 'column',
     justifyContent: 'center',

@@ -1,5 +1,6 @@
+import { MainPayNavigation } from '@/components/navigation/topNavigation';
 import React, { useState } from 'react';
-import { View, Text, FlatList, Button, StyleSheet } from 'react-native';
+import { View, Text, FlatList, Button, StyleSheet, ScrollView } from 'react-native';
 
 const busData = [
   { id: '1', name: 'Euro Bus Services', price: 250, seatsAvailable: 3, time: '08:45 AM' },
@@ -9,7 +10,7 @@ const busData = [
   { id: '5', name: 'Euro Bus Services', price: 250, seatsAvailable: 3, time: '08:45 AM' },
 ];
 
-const BusTicketApp = () => {
+const ViewBusScreen = () => {
   const [ticketCounts, setTicketCounts] = useState({});
 
   const handleIncrement = (id) => {
@@ -51,15 +52,23 @@ const BusTicketApp = () => {
   );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>TIJI</Text>
-      <Text style={styles.subHeader}>Bus Ticket</Text>
-      <FlatList
-        data={busData}
-        renderItem={renderBusItem}
-        keyExtractor={(item) => item.id}
-      />
-    </View>
+    <ScrollView>
+
+      <View>
+        <MainPayNavigation/>
+      </View>
+      <View style={styles.container}>
+        
+        <View style={styles.container}>
+
+          <FlatList
+            data={busData}
+            renderItem={renderBusItem}
+            keyExtractor={(item) => item.id}
+          />
+        </View>
+      </View>
+    </ScrollView>
   );
 };
 
@@ -99,4 +108,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BusTicketApp;
+export default ViewBusScreen;

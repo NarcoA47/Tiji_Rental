@@ -3,6 +3,7 @@ import { TextInput } from 'react-native-paper';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { ScrollView } from 'react-native-gesture-handler';
+import { Input } from 'react-native-magnus';
 
 export default function SigninForms() {
 
@@ -28,19 +29,19 @@ export default function SigninForms() {
         <View style={styles.inputFormOne}>
             <View >
             <Text style={styles.inputText}>First Name</Text>
-                <TextInput
+                <Input
                 style={styles.inputOne}
+                focusBorderColor="blue700"
                 onChangeText={setFirstName}
-                mode='outlined'
                 value={firstName}
                 placeholder="First Name"
                 />
             </View>
             <View>
             <Text style={styles.inputText}>Last Name</Text>
-                <TextInput
+                <Input
+                focusBorderColor="blue700"
                 style={styles.inputOne}
-                mode='outlined'
                 onChangeText={setLastName}
                 value={lastName}
                 placeholder="Last Name"
@@ -50,9 +51,9 @@ export default function SigninForms() {
         <View style={styles.inputFormTwo}>
             <View >
                 <Text style={styles.inputText}>Username</Text>
-                    <TextInput
+                    <Input
                     style={styles.input}
-                    mode='outlined'
+                    focusBorderColor="blue700"
                     onChangeText={setUsername}
                     value={username}
                     placeholder="e.g Wayne29"
@@ -60,9 +61,9 @@ export default function SigninForms() {
             </View>
             <View >
                 <Text style={styles.inputText}>Email</Text>
-                    <TextInput
+                    <Input
                     style={styles.input}
-                    mode='outlined'
+                    focusBorderColor="blue700"
                     onChangeText={setEmail}
                     value={email}
                     placeholder="e.g austin23@gmail.com"
@@ -70,9 +71,9 @@ export default function SigninForms() {
             </View>
             <View >
                 <Text style={styles.inputText}>Phone Number</Text>
-                    <TextInput
+                    <Input
                     style={styles.input}
-                    mode='outlined'
+                    focusBorderColor="blue700"
                     onChangeText={onChangeNumber}
                     value={number}
                     placeholder="e.g +260 968"
@@ -80,9 +81,9 @@ export default function SigninForms() {
             </View>
             <View>
                 <Text style={styles.inputText}>New Password</Text>
-                <TextInput
+                <Input
                 style={styles.input}
-                mode='outlined'
+                focusBorderColor="blue700"
                 onChangeText={text => setNewPassword(text)}
                 value={newpassword}
                 placeholder="New Password"
@@ -94,9 +95,9 @@ export default function SigninForms() {
             </View>
             <View>
                 <Text style={styles.inputText}>Verify Password</Text>
-                <TextInput
+                <Input
                 style={styles.input}
-                mode='outlined'
+                focusBorderColor="blue700"
                 onChangeText={setPassword}
                 value={password}
                 placeholder="Verify Password"
@@ -156,7 +157,6 @@ const styles = StyleSheet.create({
 
     },
     input: {
-        borderColor: '#00000044',
         borderWidth: 1,
         marginLeft: 14,
         marginRight: 14,

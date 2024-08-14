@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { Input } from 'react-native-magnus';
 import { TextInput } from 'react-native-paper'; 
 
 export default function PasswordForms() {
@@ -15,12 +16,12 @@ export default function PasswordForms() {
         <View style={styles.inputFormTwo}>
         <View >
             <Text style={styles.inputText}>Phone Number</Text>
-                <TextInput
+                <Input
                 style={styles.input}
                 onChangeText={onChangeNumber}
+                focusBorderColor="blue700"
                 value={number}
                 placeholder="e.g +260 968"
-                mode="outlined"
                 keyboardType="phone-pad"/>
             </View>
         </View>
@@ -71,7 +72,6 @@ const styles = StyleSheet.create({
 
     },
     input: {
-        borderColor: '#00000044',
         borderWidth: 1,
         marginLeft: 14,
         marginRight: 14,

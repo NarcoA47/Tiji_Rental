@@ -4,6 +4,7 @@ import { TextInput } from 'react-native-paper';
 import { TextInput as RNTextInput } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler';
 import RNPickerSelect from 'react-native-picker-select';
+import { Searchbar } from 'react-native-paper';
 
 export default function Changer() {
 
@@ -19,19 +20,20 @@ export default function Changer() {
     { label: 'Team B', value: 'teamB' },
     { label: 'Team C', value: 'teamC' },
     ];
-
+    const [searchQuery, setSearchQuery] = React.useState('');
   return (
     <ScrollView>
 
-        {/* <View>
-            <TextInput
-            label="Email"
-            value={text}
-            mode="outlined"
-            onChangeText={text => setText(text)}
-            />
-        </View> */}
+        
         <View style={styles.container}>
+            <Searchbar
+            placeholder="Search"
+            onChangeText={setSearchQuery}
+            value={searchQuery}
+            />
+        </View>
+        <View style={styles.container}>
+            
             <View>
                 <RNPickerSelect
                     onValueChange={(value) => console.log(value)}

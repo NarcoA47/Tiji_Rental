@@ -1,18 +1,12 @@
-import React, { useState } from 'react';
-import { TextInput } from 'react-native-paper'; 
-import { Image,View, Text, StyleSheet } from 'react-native';
-import Checkbox from 'expo-checkbox';
-import {Picker} from '@react-native-picker/picker';
-import RNPickerSelect from 'react-native-picker-select';
+import React, { useState, useRef } from 'react';
+import { Image, View, Text, StyleSheet } from 'react-native';
+import { Input, Dropdown } from 'react-native-magnus';
 
 export default function MobilePayForm() {
-
-    const [text, onChangeText] = React.useState('');
-    const [isChecked, setChecked] = useState(false);
-
-    const [phoneNumber, setPhoneNumber] = React.useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [amount, setAmount] = useState('');
-    const [mobileProvider, setMobileProvider] = useState('MTN');
+    const [mobileProvider, setMobileProvider] = useState('Select Mobile Money Payment');
+    const [dropdownVisible, setDropdownVisible] = useState(false);
 
     const handlePayment = () => {
         // Perform payment logic here
@@ -20,73 +14,86 @@ export default function MobilePayForm() {
         // Add your API call for payment processing here
     };
 
+    const handleDropdownSelect = (value) => {
+        setMobileProvider(value);
+        setDropdownVisible(false);
+    };
 
-  return (
-    <View style={styles.container}>
-        <View>
-            <Image style={styles.ImageController} source={require('../../../assets/images/methods/pay.png')}/>
-        </View>
-        
-        <View style={styles.inputFormTwo}>
-        <View >
-            <Text style={styles.inputText}>Phone Number</Text>
-                <TextInput
-                style={styles.input}
-                onChangeText={setPhoneNumber}
-                value={phoneNumber}
-                mode="outlined"
-                placeholder="e.g +260 968 "
-                keyboardType="phone-pad"/>
-            </View>
-            <View >
-            <Text style={styles.inputText}>Amount</Text>
-                <TextInput
-                style={styles.input}
-                onChangeText={setAmount}
-                value={amount}
-                mode="outlined"
-                placeholder=""
-                keyboardType="numeric"/>
+    return (
+        <View style={styles.container}>
+            <View>
+                <Image style={styles.ImageController} source={require('../../../assets/images/methods/pay.png')} />
             </View>
             
-        </View>
-        <View>
-            <RNPickerSelect
-                        onValueChange={(value) => console.log(value)}
-                        items={[
-                            { label: 'MTN', value: 'MTN' },
-                            { label: 'Zamtel', value: 'Zamtel' },
-                            { label: 'Airtel', value: 'Airtel' },
-                        ]}
+            <View style={styles.inputFormTwo}>
+                <View>
+                    <Text style={styles.inputText}>Phone Number</Text>
+                    <Input
+                        style={styles.input}
+                        onChangeText={setPhoneNumber}
+                        focusBorderColor="blue700"
+                        value={phoneNumber}
+                        placeholder="e.g +260 968"
+                        keyboardType="phone-pad"
                     />
+                </View>
+                <View>
+                    <Text style={styles.inputText}>Amount</Text>
+                    <Input
+                        placeholder="11000"
+                        onChangeText={setAmount}
+                        p={10}
+                        focusBorderColor="blue700"
+                        style={styles.input}
+                        value={amount}
+                        keyboardType="numeric"
+                    />
+                </View>
+            </View>
+
+            <View>
+                <Text style={styles.inputText}>Mobile Provider</Text>
+                <Input
+                    placeholder={mobileProvider}
+                    onPress={() => setDropdownVisible(!dropdownVisible)}
+                    p={10}
+                    focusBorderColor="blue700"
+                    style={styles.input}
+                    value={mobileProvider}
+                    editable={false}
+                />
+                <Dropdown
+                    visible={dropdownVisible}
+                    onClose={() => setDropdownVisible(false)}
+                    title={
+                        <Text mx="xl" color="gray500" pb="md" style={styles.inputText}>
+                            Please Select your network Provider
+                        </Text>
+                    }
+                    mt="md"
+                    pb="2xl"
+                    showSwipeIndicator={true}
+                    roundedTop="xl"
+                >
+                    <Dropdown.Option py="md" px="xl" block onPress={() => handleDropdownSelect('MTN')}>
+                        MTN
+                    </Dropdown.Option>
+                    <Dropdown.Option py="md" px="xl" block onPress={() => handleDropdownSelect('Airtel')}>
+                        Airtel
+                    </Dropdown.Option>
+                    <Dropdown.Option py="md" px="xl" block onPress={() => handleDropdownSelect('Zamtel')}>
+                        Zamtel
+                    </Dropdown.Option>
+                </Dropdown>
+            </View>
         </View>
-        {/* <Picker
-        selectedValue={mobileProvider}
-        style={styles.picker}
-        onValueChange={(itemValue) => setMobileProvider(itemValue)}
-      >
-        <Picker.Item label="MTN" value="MTN" />
-        <Picker.Item label="Zamtel" value="Zamtel" />
-        <Picker.Item label="Airtel" value="Airtel" />
-      </Picker> */}
-    </View>
-  )
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
-        justifyContent: 'center'
-    },
-
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        margin: 18,
-    },
-    inputFormOne: {
-        flexDirection: 'row',
-        width: 100
+        justifyContent: 'center',
     },
     inputText: {
         marginLeft: 12,
@@ -95,23 +102,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         fontSize: 18,
     },
-    inputOne: {
-        borderColor: '#00000044',
-        borderWidth: 1,
-        marginLeft: 14,
-        marginRight: 10,
-        marginTop: 4,
-        marginBottom: 4,
-        padding: 4,
-        borderRadius: 4,
-        width: 180,
-        
-    },
-    inputFormTwo: {
-
-    },
     input: {
-        borderColor: '#00000044',
         borderWidth: 1,
         marginLeft: 14,
         marginRight: 14,
@@ -120,34 +111,10 @@ const styles = StyleSheet.create({
         padding: 4,
         borderRadius: 4,
     },
-
-    checkboxManager: {
-        flexDirection: 'row',
-        marginTop: 8,
-    },
-
-    checkbox: {
-        marginLeft: 14,
-        marginTop: 2,
-        marginRight: 4,
-        width: 12,
-        height: 12,
-        borderColor: 'black',
-    },
     ImageController: {
         width: 410,
         height: 80,
         margin: 12,
         padding: 10,
-        
-        
     },
-    picker: {
-        height: 50,
-        marginBottom: 20,
-    },
-    checkBoxText: {
-        fontSize: 14,
-        fontWeight: 'bold'
-    },
-})
+});

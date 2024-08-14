@@ -9,9 +9,8 @@ export default function PasswordText() {
 
   return (
     <View style={styles.container}>
-        
         <View style={styles.textManager}> 
-        <TouchableOpacity onPress={() => navigation.navigate('PassengerDetails')}><Text  style={styles.loginController}>Reset Password</Text></TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Payment')}><Text  style={styles.loginController}>Reset Password</Text></TouchableOpacity>
         </View>
     </View>
   )
