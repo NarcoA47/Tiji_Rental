@@ -10,7 +10,7 @@ const ConfirmedBookingTicketModal = ({ visible, onClose }) => {
 
   const handleProceedToPayment = () => {
     onClose(); // Close the modal
-    navigation.navigate('ViewTicket'); // Navigate to Payment screen
+    navigation.navigate('ViewTicket'); // Navigate to Ticket Screen
   };
 
   return (

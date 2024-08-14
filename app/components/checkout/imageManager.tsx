@@ -4,7 +4,7 @@ import { Image, StyleSheet, Text, View } from 'react-native'
 export default function ImageManager() {
   return (
     <View style={styles.container}>
-        <Image source={require('../../../assets/images/homeScreen/Car-hire.png')} style={styles.imageManager}/>
+        <Image source={require('../../../assets/images/Cars/MercedesAMG.png')} style={styles.imageManager}/>
     </View>
   )
 }
