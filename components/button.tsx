@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native'
 import React from 'react'
 import { Touchable, View, Button, TouchableOpacity, StyleSheet, Text } from 'react-native';
 import ConfirmDetailsModal from '@/app/Modal/ConfirmDetailsModal';
+import ConfirmedBookingTicketModal from '@/app/Modal/ConfirmedBookingTicket';
 
 export default function RegisterButton() {
 
@@ -57,8 +58,20 @@ export function LoginButton() {
 
     return (
       <View>
-          <TouchableOpacity onPress={() => navigation.navigate('ViewBuses')} style={styles.EditButton}>
+          <TouchableOpacity onPress={() => navigation.navigate('EditProfile')} style={styles.EditButton}>
               <Text style={styles.buttonText}>Edit</Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }
+  export function SaveProfileButton() {
+    // Should Give a pop up notification
+    const navigation = useNavigation()
+
+    return (
+      <View>
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')} style={styles.EditButton}>
+              <Text style={styles.buttonText}>Save</Text>
           </TouchableOpacity>
       </View>
     )
@@ -98,14 +111,17 @@ export function LoginButton() {
     )
   }
   export function PayButton() {
-
+    const [modalVisible, setModalVisible] = React.useState(false);
     const navigation = useNavigation()
   
     return (
       <View>
-          <TouchableOpacity onPress={() => navigation.navigate('Successful')} style={styles.buttonManager}>
+          <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.buttonManager}>
               <Text style={styles.buttonText}>Pay</Text>
           </TouchableOpacity>
+          <ConfirmedBookingTicketModal
+          visible={modalVisible}
+          onClose={() => setModalVisible(false)}         />
       </View>
     )
   }
@@ -150,15 +166,29 @@ export function LoginButton() {
       </View>
     )
   }
+  export function BackToHomeButton() {
 
-  export function BookNowButton() {
     const navigation = useNavigation()
   
     return (
       <View>
-          <TouchableOpacity onPress={() => navigation.navigate('Successful')} style={styles.buttonAltManager}>
+          <TouchableOpacity onPress={() => navigation.navigate('home')} style={styles.back2homebuttonManager}>
+              <Text style={styles.buttonText}>Back To Home</Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }
+
+  export function BookNowButton() {
+    const [modalVisible, setModalVisible] = React.useState(false);
+    const navigation = useNavigation()
+  
+    return (
+      <View>
+          <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.buttonAltManager}>
               <Text style={styles.buttonAltText}>Book Now</Text>
           </TouchableOpacity>
+          
       </View>
     )
   }
@@ -173,6 +203,13 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    back2homebuttonManager: {
+        backgroundColor: '#0034BF',
+        marginTop: 20,
+        padding: 15,
+        borderRadius: 5,
+        alignItems: 'center',
     },
     searchbuttonManager: {
         backgroundColor: '#FFFFFF',

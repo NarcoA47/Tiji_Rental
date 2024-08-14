@@ -36,6 +36,7 @@ const styles = StyleSheet.create({
   ImageControllerCardTwo: {
     margin: 40,
     alignSelf: 'center',
+    top: 37,
   },
   contentOne: {
     margin: 80,

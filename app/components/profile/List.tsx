@@ -13,23 +13,27 @@ export default function ListContainer() {
             <List.Section>
                 <List.Item
                     title="Settings"
-                    left={() => <Ionicons name="settings-outline" size={24} color={MD3Colors.tertiary70} />}
+                    left={() => <Ionicons name="settings-outline" size={24} color={MD3Colors.primary100} />}
                 />
                 <List.Item
                     title="History"
-                    left={() => <Ionicons name="time-outline" size={24} color={MD3Colors.tertiary70} />}
+                    left={() => <Ionicons name="time-outline" size={24} color={MD3Colors.primary100} />}
                 />
                 <List.Item
                     title="Add Card"
-                    left={() => <MaterialIcons name="credit-card" size={24} color={MD3Colors.tertiary70} />}
+                    left={() => <MaterialIcons name="credit-card" size={24} color={MD3Colors.primary100} />}
                 />
                 <List.Item
                     title="Support"
-                    left={() => <Ionicons name="help-circle-outline" size={24} color={MD3Colors.tertiary70} />}
+                    left={() => <Ionicons name="help-circle-outline" size={24} color={MD3Colors.primary100} />}
+                />
+                <List.Item
+                    title="Share"
+                    left={() => <Ionicons name="share-social-outline" size={24} color={MD3Colors.primary100} />}
                 />
                 <List.Item
                     title="About Us"
-                    left={() => <Ionicons name="information-circle-outline" size={24} color={MD3Colors.tertiary70} />}
+                    left={() => <Ionicons name="information-circle-outline" size={24} color={MD3Colors.primary100} />}
                 />
             </List.Section>
         </View>

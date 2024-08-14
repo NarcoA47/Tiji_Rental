@@ -21,10 +21,10 @@ import PassengerDetailsScreen from '../screens/PassengerDetailsScreen';
 import ViewBusScreen from '../screens/ViewBusScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import AuthOptionScreen from '../screens/AuthScreen';
-import ConfirmHire from '../screens/confirmHire';
 import PaymentScreen from '../screens/PaymentScreen';
 import OTP from '../screens/otpScreen';
 import Success from '../screens/successfulScreen';
+import EditProfileScreen from '../screens/EditProfileScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -42,7 +42,6 @@ export default function TabLayout() {
       <Stack.Screen name="Login" component={LoginScreen}/>
       <Stack.Screen name="Product" component={ProductScreen}/>
       <Stack.Screen name="Ticket" component={BusTicketApp}/>
-      <Stack.Screen name="ConfirmHire" component={ConfirmHire}/>
       <Stack.Screen name="Home" component={HomeScreenMain}/>
       <Stack.Screen name="BusHome" component={BusHomeScreen}/>
       <Stack.Screen name="Register" component={SignupScreen}/>
@@ -57,6 +56,7 @@ export default function TabLayout() {
       <Stack.Screen name="ProductView" component={ProductView}/>
       <Stack.Screen name="Checkout" component={Checkout}/>
       <Stack.Screen name="Profile" component={ProfileScreen}/>
+      <Stack.Screen name="EditProfile" component={EditProfileScreen}/>
 
       </Stack.Navigator>
     </GestureHandlerRootView>

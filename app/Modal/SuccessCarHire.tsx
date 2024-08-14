@@ -2,13 +2,15 @@ import React from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Close } from '@/components/navigation/topNavigation';
+import { BackToHomeButton } from '@/components/button';
+import ConfirmImagebanner from './confirmImageBanner';
 
-const ConfirmDetailsModal = ({ visible, onClose, passengerDetails }) => {
+const SuccessCarHireModal = ({ visible, onClose }) => {
   const navigation = useNavigation();
 
   const handleProceedToPayment = () => {
     onClose(); // Close the modal
-    navigation.navigate('Payment'); // Navigate to Payment screen
+    navigation.navigate('ViewTicket'); // Navigate to Payment screen
   };
 
   return (
@@ -20,39 +22,18 @@ const ConfirmDetailsModal = ({ visible, onClose, passengerDetails }) => {
     >
       <View style={styles.overlay}>
         <View style={styles.modalContainer}>
-          <Close onClose={onClose} />
-          <Text style={styles.title}>Confirm Details</Text>
-          <View style={styles.fieldContainer}>
-            <Text style={styles.label}>
-              <Text style={styles.bold}>Name: </Text>
-              {passengerDetails.name}
+          <ConfirmImagebanner/>
+          <Text style={styles.title}>Booking Confirmed!</Text>
+          <View>
+            <Text style={styles.bodyText}>Congratulations! Your bus ticket is
+            confirmed. For more details check your
+            email.
             </Text>
-            <Text style={styles.label}>
-              <Text style={styles.bold}>Phone No: </Text>
-              {passengerDetails.phone}
-            </Text>
-            <Text style={styles.label}>
-              <Text style={styles.bold}>Departure Time: </Text>
-              {passengerDetails.departureTime}
-            </Text>
-            <Text style={styles.label}>
-              <Text style={styles.bold}>Number Of Tickets: </Text>
-              {passengerDetails.tickets}
-            </Text>
-            <View style={styles.row}>
-              <Text style={styles.label}>
-                <Text style={styles.bold}>From: </Text>
-                {passengerDetails.from}
-              </Text>
-              <Text style={styles.label}>
-                <Text style={styles.bold}>To: </Text>
-                {passengerDetails.to}
-              </Text>
             </View>
-          </View>
           <TouchableOpacity style={styles.button} onPress={handleProceedToPayment}>
-            <Text style={styles.buttonText}>Proceed to Payment</Text>
+            <Text style={styles.buttonText}>View Your Ticket</Text>
           </TouchableOpacity>
+          <BackToHomeButton/>
         </View>
       </View>
     </Modal>
@@ -67,18 +48,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
   modalContainer: {
-    width: '80%',
-    padding: 20,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    elevation: 5,
-  },
-  title: {
-    fontSize: 24,
-    color: '#0034BF',
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
+      width: '80%',
+      padding: 20,
+      backgroundColor: 'white',
+      borderRadius: 10,
+      elevation: 5,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    title: {
+        fontSize: 24,
+        color: '#0034BF',
+        fontWeight: 'bold',
+        marginBottom: 10,
+    },
+  bodyText: {
+    fontSize: 16,
+    margin: 12,
+    textAlign: 'center',
+    },
   fieldContainer: {
     marginVertical: 10,
     padding: 10,
@@ -110,9 +98,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   buttonText: {
+    fontWeight: 'bold',
     color: 'white',
     fontSize: 16,
   },
 });
 
-export default ConfirmDetailsModal;
+SuccessCarHireModal;
