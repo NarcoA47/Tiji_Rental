@@ -47,14 +47,7 @@ export default function SigninForms() {
             </View>
             
         </View>
-        <View style={styles.checkboxManager}>
-            <Checkbox prefix={<Text flex={0} style={styles.checkBoxText}>Remeber Me</Text>} value={1}/>
-            {/* <Checkbox
-            value={isChecked}
-            onValueChange={setChecked}
-            style={styles.checkbox}
-            /> */}
-        </View>
+        
     </View>
   )
 }
@@ -104,24 +97,5 @@ const styles = StyleSheet.create({
         marginBottom: 4,
         padding: 4,
         borderRadius: 4,
-    },
-
-    checkboxManager: {
-        flexDirection: 'row',
-        marginTop: 8,
-    },
-
-    checkbox: {
-        marginLeft: 14,
-        marginTop: 2,
-        marginRight: 4,
-        width: 12,
-        height: 12,
-        borderColor: 'black',
-    },
-
-    checkBoxText: {
-        fontSize: 14,
-        fontWeight: 'bold'
     },
 })
