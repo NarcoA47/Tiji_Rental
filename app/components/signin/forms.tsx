@@ -175,8 +175,10 @@ const styles = StyleSheet.create({
         marginLeft: 14,
         marginTop: 2,
         marginRight: 4,
-        width: 12,
-        height: 12,
+        fontSize: 24,
+        // top: 2,
+        width: 18,
+        height: 18,
         borderColor: 'black',
     },
 

@@ -20,9 +20,8 @@ export default function LoginText() {
 const styles = StyleSheet.create({
     container: {
         textAlign: 'right',
-        marginTop: 5,
-        
-        paddingTop: 12,
+        paddingLeft: 18,
+        margin: 10,
         alignItems: 'flex-start',
         justifyContent: 'flex-start',
     },

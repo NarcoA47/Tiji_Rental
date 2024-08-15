@@ -36,8 +36,8 @@ const styles = StyleSheet.create({
     },
 
     textManager: {
-        marginRight: 16,
-        marginBottom: 10,
+        marginTop: 8,
+        marginLeft: 14,
         flexDirection: 'row',
     },
 

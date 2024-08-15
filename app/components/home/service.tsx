@@ -9,13 +9,13 @@ export default function Services() {
 
     return (
         <View style={styles.scrollContainer}>
-            <View style={styles.services}>
             <Text style={styles.serviceTitle}>Services</Text>
+            <View style={styles.services}>
             <View style={styles.serviceContent}>
-                <View>
-                <Text>Company Name</Text>
-                <Text>About the Company</Text>
-                <Text>Location</Text>
+                <View >
+                    <Text style={styles.bodyTitle}>Company Name</Text>
+                    <Text style={styles.bodyText}>About the Company</Text>
+                    <Text style={styles.bodyText}>Location</Text>
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('ProductView')}>
                     <View>
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
         margin: 10,
     },
     services: {
-        backgroundColor: '#ffffff',
+        backgroundColor: '#0034BF',
         borderRadius: 10,
         padding: 15,
         marginBottom: 20,
@@ -44,18 +44,32 @@ const styles = StyleSheet.create({
       },
       serviceContent: { 
         flexDirection: 'row',
+        
+      },
+      bodyTitle: {
+        color: '#FFFFFF',
+        fontSize: 24,
+        marginBottom: 40,
+        fontWeight: 'bold',
+      },
+      bodyText: {
+        color: '#FFFFFF',
       },
       serviceTitle: {
-        fontSize: 24,
+        color: '#000000',
+        fontSize: 20,
         fontWeight: 'bold',
         marginBottom: 10,
       },
       companyInfo: {
+        
         marginTop: 10,
       },
       imageManager: {
-        width: 180,
-        height: 150,
+        width: 143,
+        height: 125,
+        paddingLeft: 30,
+        
     },
       
 })
