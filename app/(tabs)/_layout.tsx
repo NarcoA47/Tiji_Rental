@@ -25,6 +25,7 @@ import PaymentScreen from '../screens/PaymentScreen';
 import OTP from '../screens/otpScreen';
 import Success from '../screens/successfulScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
+import TicketDetails from '../screens/TicketDetailsScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -47,6 +48,7 @@ export default function TabLayout() {
       <Stack.Screen name="Register" component={SignupScreen}/>
       <Stack.Screen name="AuthOption" component={AuthOptionScreen}/>
       <Stack.Screen name="ViewBuses" component={ViewBusScreen}/>
+      <Stack.Screen name="TicketDetails" component={TicketDetails}/>
       <Stack.Screen name="Success" component={Success}/>
       <Stack.Screen name="OTP" component={OTP}/>
       <Stack.Screen name="PassengerDetails" component={PassengerDetailsScreen}/>
