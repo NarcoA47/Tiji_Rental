@@ -3,6 +3,7 @@ import { View, Text, Dimensions, StyleSheet, Image, TouchableOpacity, ScrollView
 import Barcode from '@kichiyaki/react-native-barcode-generator';
 import { MD3Colors } from 'react-native-paper';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'; //
+import { CardBackToHomeButton } from '@/components/button';
 
 export default function CardDetailsContainer() {
     const ticketInfo = {
@@ -86,10 +87,8 @@ export default function CardDetailsContainer() {
         </TouchableOpacity>
       </View>
 
-
-      <TouchableOpacity style={styles.backButton}>
-        <Text style={styles.buttonText}>Back To Home</Text>
-      </TouchableOpacity>
+      <CardBackToHomeButton/>
+     
     </ScrollView>
   );
 }
