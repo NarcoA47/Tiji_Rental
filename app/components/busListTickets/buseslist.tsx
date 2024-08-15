@@ -36,11 +36,11 @@ export default function BusListContainer() {
     };
   
     const [route, setRoute] = React.useState({ from: 'Lusaka', to: 'Kabwe', date: '8th July 2024' });
-    const buses = [
-      { id: '1', name: 'Bus A', time: '08:00 AM', price: 'ZMW 100' },
-      { id: '2', name: 'Bus B', time: '10:00 AM', price: 'ZMW 120' },
-      { id: '3', name: 'Bus C', time: '01:00 PM', price: 'ZMW 110' },
-    ];
+    // const buses = [
+    //   { id: '1', name: 'Bus A', time: '08:00 AM', price: 'ZMW 100' },
+    //   { id: '2', name: 'Bus B', time: '10:00 AM', price: 'ZMW 120' },
+    //   { id: '3', name: 'Bus C', time: '01:00 PM', price: 'ZMW 110' },
+    // ];
   
     const changeRoute = () => {
       // Logic to change route (mocked for example)
@@ -65,9 +65,9 @@ export default function BusListContainer() {
           </View>
           <TouchableOpacity
             style={styles.buyButton}
-            onPress={() => handleBuy(item.name, count)}
+            // onPress={() => handleBuy(item.name, count)}
           >
-            <Text style={styles.buyButtonText}>BUY</Text>
+            <Text style={styles.buyButtonText} onPress={() => navigation.navigate('TicketDetails')} >BUY</Text>
           </TouchableOpacity>
         </View>
       );
