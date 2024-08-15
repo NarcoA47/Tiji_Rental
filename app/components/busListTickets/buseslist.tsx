@@ -66,6 +66,7 @@ export default function BusListContainer() {
           </View>
           <TouchableOpacity
             style={styles.buyButton}
+            
           >
             <Text style={styles.buyButtonText} onPress={() => navigation.navigate('TicketDetails')} >BUY</Text>
           </TouchableOpacity>
