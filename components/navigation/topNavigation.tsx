@@ -191,8 +191,9 @@ const styles = StyleSheet.create({
   },
 
   mainContainer: { 
-    marginTop: 40,
-    // paddingTop: 40,
+    // marginTop: 40,
+    paddingBottom: 10,
+    paddingTop: 40,
     flexDirection: 'column',
     justifyContent: 'center',
     alignContent: 'center',

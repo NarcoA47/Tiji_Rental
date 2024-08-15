@@ -33,7 +33,9 @@ export default function ListContainer() {
                 />
                 <List.Item
                     title="About Us"
-                    left={() => <Ionicons name="information-circle-outline" size={24} color={MD3Colors.primary100} />}
+                    left={() => <Ionicons name="information-circle-outline" size={24} color={MD3Colors.primary100} 
+                    
+                    />}
                 />
             </List.Section>
         </View>

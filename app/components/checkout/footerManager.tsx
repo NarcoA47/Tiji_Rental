@@ -18,7 +18,7 @@ export default function FooterManager() {
           </View>
           <View style={styles.secondaryTextContainer}>
             <Text style={styles.secondLeadText}>Description</Text>
-            <Text style={styles.secondText}>Wanna ride the coolesr sports car in the world</Text>
+            <Text style={styles.secondText}>Wanna ride the coolest sports car in the world</Text>
           </View>
           <View style={styles.finalTextContainer}>
             <Text style={styles.finalTextLead}>Company Info</Text>
