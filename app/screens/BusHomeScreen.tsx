@@ -29,8 +29,6 @@ const BusHomeScreen = () => {
     <ScrollView>
       <MainBusHomeNavigation/>
       <View style={styles.container}>
-        
-        
         <Popular/>
         <Bookings/>
       </View>

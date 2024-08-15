@@ -5,6 +5,7 @@ import { useNavigation } from 'expo-router';
 export default function BusListContainer() {
     const dropdownRef = React.createRef();
     const navigation = useNavigation()
+
     const busesData = [
         { id: '1', name: 'Euro Bus Services', price: 250, seatsAvailable: 3, time: '08:45 AM' },
         { id: '2', name: 'Power Tools Bus Services', price: 250, seatsAvailable: 3, time: '08:45 AM' },
@@ -65,7 +66,7 @@ export default function BusListContainer() {
           </View>
           <TouchableOpacity
             style={styles.buyButton}
-            onPress={() => handleBuy(item.name, count)}
+            onPress={() => navigation.navigate('PassengerDetails')}
           >
             <Text style={styles.buyButtonText}>BUY</Text>
           </TouchableOpacity>
