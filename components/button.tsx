@@ -4,6 +4,7 @@ import { Touchable, View, Button, TouchableOpacity, StyleSheet, Text } from 'rea
 import ConfirmDetailsModal from '@/app/Modal/ConfirmDetailsModal';
 import ConfirmedBookingTicketModal from '@/app/Modal/ConfirmedBookingTicket';
 import SuccessCarHireModal from '@/app/Modal/SuccessCarHireModal';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function RegisterButton() {
 
@@ -179,6 +180,23 @@ export function LoginButton() {
       </View>
     )
   }
+  export function CardBackToHomeButton() {
+
+    const navigation = useNavigation()
+  
+    return (
+      <View>
+          <TouchableOpacity onPress={() => navigation.navigate('home')} style={styles.Cardback2homebuttonManager}>
+              {/* <Ionicons name="chevron-back-circle" size={24} color="#0034BF" /> */}
+              <Text 
+              style={styles.CardbuttonText}
+              >Back To Home
+
+              </Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }
 
   export function BookNowButton() {
     const [modalVisible, setModalVisible] = React.useState(false);
@@ -215,6 +233,15 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         alignItems: 'center',
     },
+    Cardback2homebuttonManager: {
+        backgroundColor: '#0034BF',
+        margin: 20,
+        padding: 15,
+        height: 50,
+        width: 330,
+        borderRadius: 5,
+        // alignItems: 'left',
+    },
     searchbuttonManager: {
         backgroundColor: '#FFFFFF',
         margin: 28,
@@ -245,7 +272,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-
+    icon: {
+      marginTop: 12,
+      paddingTop: 50,
+    },
+    
     buttonAltText: {
       fontWeight: 'bold',
         fontSize: 18,
@@ -257,6 +288,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 18,
         textAlign: 'center',
+        color: 'white',
+         
+    },
+    CardbuttonText: {
+        fontWeight: 'bold',
+        fontSize: 18,
+        textAlign: 'left',
         color: 'white',
          
     },
