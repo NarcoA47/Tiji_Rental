@@ -44,6 +44,7 @@ const styles = StyleSheet.create({
     text: {
         marginRight: 4,
         fontSize: 18,
+        fontFamily: '',
     },
 
     loginController: {
