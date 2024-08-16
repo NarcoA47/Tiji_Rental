@@ -41,7 +41,7 @@ export default function TabLayout() {
       headerShown: false,
       }}
       >
-        <Stack.Screen name="OnBoardingScreen" component={OnBoardingScreen}/>
+        {/* <Stack.Screen name="OnBoardingScreen" component={OnBoardingScreen}/> */}
       <Stack.Screen name="Login" component={LoginScreen}/>
       <Stack.Screen name="Product" component={ProductScreen}/>
       <Stack.Screen name="Ticket" component={BusTicketApp}/>

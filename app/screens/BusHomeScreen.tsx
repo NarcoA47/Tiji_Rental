@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import Bookings from '../components/home/bookings';
-import Popular from '../components/home/popular';
 import { ScrollView } from 'react-native-gesture-handler';
 import { MainBusHomeNavigation } from '@/components/navigation/topNavigation';
+import PopularText from '../components/home/popularText';
+import BookingText from '../components/home/bookingText';
+import Popular from '../components/busHomeContainer/popular';
 
 const BusHomeScreen = () => {
   const [location, setLocation] = useState('Lusaka');
@@ -29,7 +31,9 @@ const BusHomeScreen = () => {
     <ScrollView>
       <MainBusHomeNavigation/>
       <View style={styles.container}>
+        <PopularText/>
         <Popular/>
+        <BookingText/>
         <Bookings/>
       </View>
     </ScrollView>

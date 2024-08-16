@@ -4,6 +4,8 @@ import { View, Text, Image, TouchableOpacity, ScrollView, StyleSheet } from 'rea
 import Services from '../components/home/service';
 import Popular from '../components/home/popular';
 import Bookings from '../components/home/bookings';
+import BookingText from '../components/home/bookingText';
+import PopularText from '../components/home/popularText';
 
 const HomeScreenMain = () => {
   return (
@@ -11,7 +13,9 @@ const HomeScreenMain = () => {
        <View style={styles.container}>
       <MainNavigation/>
       <Services/>
+      <PopularText/>
       <Popular/>
+      <BookingText/>
       <Bookings/>
     </View>
     </ScrollView>

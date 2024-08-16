@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleSheet, Text, View, Dimensions, Image } from 'react-native';
+import React from 'react'
+import { Image, StyleSheet, Text, Dimensions, View } from 'react-native'
 import Carousel from 'react-native-reanimated-carousel';
 
 const { width: screenWidth } = Dimensions.get('window');
@@ -20,11 +20,10 @@ export default function Popular() {
         { name: 'South Luangwa', description: 'A wildlife-rich national park in Zambia.' },
     ];
 
-    return (
-        <View style={styles.container}>
-            
+  return (
+    <View style={styles.container}>
             <Carousel
-                width={screenWidth - 60}
+                width={screenWidth - 70}
                 height={250}
                 data={places}
                 renderItem={({ item, index }) => {
@@ -41,30 +40,32 @@ export default function Popular() {
                 }}
             />
         </View>
-    )
+  )
 }
+
 
 const styles = StyleSheet.create({
     container: {
         margin: 20,
         backgroundColor: '#ffffff',
         borderRadius: 10,
-        padding: 15,
+        // padding:10,
         marginBottom: 20,
         elevation: 3,
+        overflow: 'hidden',
     },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginBottom: 15,
     },
     cardContainer: {
         alignItems: 'center',
         justifyContent: 'center',
         borderRadius: 10,
+        
         overflow: 'hidden',
         height: 250,
-        width: screenWidth - 60,
+        width: screenWidth - 70,
     },
     imageContainer: {
         height: '100%',
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         padding: 10,
-        margin: 4,
+        margin: 10,
         borderRadius: 10,
     },
     placeText: {
@@ -95,4 +96,4 @@ const styles = StyleSheet.create({
         color: 'white',
         textAlign: 'center',
     },
-});
+})
