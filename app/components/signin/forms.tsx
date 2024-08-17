@@ -1,33 +1,61 @@
 import React, { useState } from 'react';
 import { TextInput } from 'react-native-paper';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Checkbox from 'expo-checkbox';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Input } from 'react-native-magnus';
+import axios from 'axios';
+import RegisterButton from '@/components/button';
 
 export default function SigninForms() {
 
-    const [firstName, setFirstName] = React.useState('');
-    const [lastName, setLastName] = React.useState('');
+    const navigation = useNavigation(); 
+
+    // const [firstName, setFirstName] = React.useState('');
+    // const [lastName, setLastName] = React.useState('');
     const [username, setUsername] = React.useState('');
     const [email, setEmail] = React.useState('');
-    const [number, onChangeNumber] = React.useState('');
+    const [phone_number, setPhone_Number] = React.useState('');
     const [isChecked, setChecked] = useState(false);
     const [password, setPassword] = React.useState("");
-    const [newpassword, setNewPassword] = React.useState("");
+    // const [newpassword, setNewPassword] = React.useState("");
     const [passwordVisible, setPasswordVisible] = React.useState(false);
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
       };
 
+      const handleSignup = async () => {
+        try {
+            const response = await axios.post('https://tiji-dev.herokuapp.com/api/v1/users/signup/', {
+                // firstName: username,
+                // lastName: password,
+                username: username,
+                email: email,
+                phone_number: phone_number,
+                password: password,
+                
+            });
+
+                if (response.status === 200) {
+                    navigation.navigate('OTP');
+                } else {
+                    console.error('Failed to send verification code');
+                }
+            
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
   return (
     <ScrollView>
         
     <View style={styles.container}>
         <Text style={styles.title}>Register</Text>
-        <View style={styles.inputFormOne}>
-            <View >
+        {/* <View style={styles.inputFormOne}> */}
+            {/* <View >
             <Text style={styles.inputText}>First Name</Text>
                 <Input
                 style={styles.inputOne}
@@ -36,8 +64,8 @@ export default function SigninForms() {
                 value={firstName}
                 placeholder="First Name"
                 />
-            </View>
-            <View>
+            </View> */}
+            {/* <View>
             <Text style={styles.inputText}>Last Name</Text>
                 <Input
                 focusBorderColor="blue700"
@@ -47,7 +75,7 @@ export default function SigninForms() {
                 placeholder="Last Name"
                 />
             </View>
-        </View>
+        </View> */}
         <View style={styles.inputFormTwo}>
             <View >
                 <Text style={styles.inputText}>Username</Text>
@@ -74,8 +102,8 @@ export default function SigninForms() {
                     <Input
                     style={styles.input}
                     focusBorderColor="blue700"
-                    onChangeText={onChangeNumber}
-                    value={number}
+                    onChangeText={setPhone_Number}
+                    value={phone_number}
                     placeholder="e.g +260 968"
                     keyboardType="phone-pad"/>
             </View>
@@ -84,8 +112,8 @@ export default function SigninForms() {
                 <Input
                 style={styles.input}
                 focusBorderColor="blue700"
-                onChangeText={text => setNewPassword(text)}
-                value={newpassword}
+                onChangeText={text => setPassword(text)}
+                value={password}
                 placeholder="New Password"
                 secureTextEntry={!passwordVisible}
                 />
@@ -93,7 +121,7 @@ export default function SigninForms() {
                     <Text>{passwordVisible ? 'Hide' : 'Show'}</Text>
                 </TouchableOpacity> */}
             </View>
-            <View>
+            {/* <View>
                 <Text style={styles.inputText}>Verify Password</Text>
                 <Input
                 style={styles.input}
@@ -103,7 +131,7 @@ export default function SigninForms() {
                 placeholder="Verify Password"
                 secureTextEntry={!passwordVisible} // Optional: Use the same visibility toggle for both fields
                 />
-            </View>
+            </View> */}
         </View>
         <View style={styles.checkboxManager}>
             <Checkbox
@@ -113,7 +141,9 @@ export default function SigninForms() {
             />
             <Text style={styles.checkBoxText}>Terms and Conditions</Text>
         </View>
+        <RegisterButton onPress={handleSignup} />
     </View>
+    
     </ScrollView>
     
   )

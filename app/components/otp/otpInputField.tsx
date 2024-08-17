@@ -3,6 +3,7 @@ import { StyleSheet, TextInput, View, Text } from 'react-native';
 import axios from 'axios';
 
 const BlockInput = ({ length, onComplete }) => {
+    
     const [code, setCode] = useState(new Array(length).fill(''));
     const inputs = useRef([]);
 
