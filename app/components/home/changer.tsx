@@ -5,37 +5,21 @@ import { TextInput as RNTextInput } from 'react-native'
 import { ScrollView } from 'react-native-gesture-handler';
 import RNPickerSelect from 'react-native-picker-select';
 import { Searchbar } from 'react-native-paper';
-import LocationSearch from '../busHomeContainer/location';
-// import { routes } from 'routes/routes';
 
-export default function Changer() {
-
+const Changer = ({navigation, route}) => {
+    // const { search } = route.params;
     const [text, setText] = React.useState("");
     
-    // const { search } = route.params;
-
-    const handleSetLocation = () => {
-        // if (search === 'to') {
-        // navigation.navigate(routes.home, {
-        //     ...route.params,
-        //     to: data,
-        // });
-        // } else {
-        // navigation.navigate(routes.home, {
-        //     ...route.params,
-        //     from: data,
-        // });
-        // }
-    };
+    const [searchQuery, setSearchQuery] = React.useState('');
   return (
     <ScrollView>
 
         
-        <View style={{ flex: 1 }}>
-            <LocationSearch
-                onPress={handleSetLocation}
-                // placeholder={search === 'from' ? 'Current Location' : 'Destination'}
-
+        <View style={styles.container}>
+            <Searchbar
+            placeholder="Search"
+            onChangeText={setSearchQuery}
+            value={searchQuery}
             />
         </View>
         <View style={styles.container}>
@@ -75,3 +59,5 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
 })
+
+export default Changer;
