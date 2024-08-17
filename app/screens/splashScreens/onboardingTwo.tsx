@@ -1,10 +1,11 @@
+import OnBoardingTwo from '@/app/onboarding/onBoardingScreenTwo'
 import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 
-export default function OnBoardingScreenThree() {
+export default function OnBoardingScreenTwo() {
   return (
     <View>
-        <Text>Splash Two</Text>
+        <OnBoardingTwo/>
     </View>
   )
 }
