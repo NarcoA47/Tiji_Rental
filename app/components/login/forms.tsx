@@ -8,28 +8,29 @@ import axios from 'axios';
 
 export default function SigninForms() {
     const navigation = useNavigation(); // Removed the navigation prop
-    const [password, getPassword] = useState('');
-    const [number, setNumber] = useState('');
+    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
 
-    // const handleLogin = async () => {
-    //     try {
-    //         const response = await axios.post('http://172.20.10.3:8000/api/v1/users/login/', {
-    //             phone_number: number,
-    //         });
-    //         if (response.status === 200) {
-    //             navigation.navigate('OTP');
-    //         } else {
-    //             console.error('Failed to send verification code');
-    //         }
-    //     } catch (error) {
-    //         console.error(error);
-    //     }
-    // };
+    const handleLogin = async () => {
+        try {
+            const response = await axios.post('https://tiji-dev.herokuapp.com/api/v1/users/login/', {
+                username: username,
+                password: password
+            });
+            if (response.status === 200) {
+                navigation.navigate('OTP');
+            } else {
+                console.error('Failed to send verification code');
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -39,17 +40,17 @@ export default function SigninForms() {
                     <Text style={styles.inputText}>Phone Number</Text>
                     <Input
                         placeholder="e.g +260 968"
-                        onChangeText={setNumber}
+                        onChangeText={setUsername}
                         focusBorderColor="blue700"
                         style={styles.input}
-                        value={number}
+                        value={username}
                         keyboardType="phone-pad"
                     />
                 </View>
                 <View>
                     <Text style={styles.inputText}>Password</Text>
                     <Input
-                        onChangeText={getPassword}
+                        onChangeText={setPassword}
                         p={10}
                         focusBorderColor="blue700"
                         style={styles.input}
@@ -58,7 +59,7 @@ export default function SigninForms() {
                     />
                 </View>
                 <ForgetPasswordText />
-                <LoginButton onPress={() => navigation.navigate('OTP')} />
+                <LoginButton onPress={handleLogin} />
             </View>
         </View>
     );

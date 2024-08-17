@@ -13,7 +13,6 @@ function SignupScreen() {
       <View>
         <Naviagtion/>
         <SigninForms/>
-        <RegisterButton/>
         <LoginText/>
       </View>
     </ScrollView>
