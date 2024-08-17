@@ -105,7 +105,7 @@ export const LoginButton: React.FC<LoginButtonProps> = ({ onPress }) => {
     // };
     return (
       <View>
-          <TouchableOpacity style={styles.buttonManager} onPress={handleVerify}>
+          <TouchableOpacity style={styles.buttonManager} onPress={() => navigation.navigate('Success')}>
               <Text style={styles.buttonText}>Continue</Text>
           </TouchableOpacity>
       </View>

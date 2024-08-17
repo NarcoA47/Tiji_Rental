@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     container: {
         paddingLeft: 10,
         marginLeft: 10,
+        top: 30,
     },
 
     title: {

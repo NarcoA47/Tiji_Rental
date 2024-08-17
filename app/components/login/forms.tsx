@@ -16,20 +16,20 @@ export default function SigninForms() {
         setPasswordVisible(!passwordVisible);
     };
 
-    const handleLogin = async () => {
-        try {
-            const response = await axios.post('http://172.20.10.3:8000/api/v1/users/login/', {
-                phone_number: number,
-            });
-            if (response.status === 200) {
-                navigation.navigate('OTP');
-            } else {
-                console.error('Failed to send verification code');
-            }
-        } catch (error) {
-            console.error(error);
-        }
-    };
+    // const handleLogin = async () => {
+    //     try {
+    //         const response = await axios.post('http://172.20.10.3:8000/api/v1/users/login/', {
+    //             phone_number: number,
+    //         });
+    //         if (response.status === 200) {
+    //             navigation.navigate('OTP');
+    //         } else {
+    //             console.error('Failed to send verification code');
+    //         }
+    //     } catch (error) {
+    //         console.error(error);
+    //     }
+    // };
 
     return (
         <View style={styles.container}>
@@ -58,7 +58,7 @@ export default function SigninForms() {
                     />
                 </View>
                 <ForgetPasswordText />
-                <LoginButton onPress={handleLogin} />
+                <LoginButton onPress={() => navigation.navigate('OTP')} />
             </View>
         </View>
     );
