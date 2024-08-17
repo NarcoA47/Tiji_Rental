@@ -1,32 +1,43 @@
-import React from 'react'
-import { useNavigation } from '@react-navigation/native'
-import { Image, StyleSheet, Text, View } from 'react-native'
-import { TouchableOpacity } from 'react-native-gesture-handler'
+import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { Image, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import axios from 'axios'; 
 
 export default function Services() {
 
-    const navigation = useNavigation()
+  const [company, setCompany] = useState(null); // State to hold company data
+  const navigation = useNavigation();
 
+  useEffect(() => {
+      // Fetch company data from your API
+      axios.get('http://172.20.10.3:8000/api/v1/company/1/') // Adjust URL as needed
+          .then(response => setCompany(response.data))
+          .catch(error => console.error('Error fetching company data:', error));
+  }, []);
+
+  // if (!company) {
+  //     // Show a loading indicator or message while data is being fetched
+  //     return <Text>Loading...</Text>;
+  // }
     return (
-        <View style={styles.scrollContainer}>
-            <Text style={styles.serviceTitle}>Services</Text>
-            <View style={styles.services}>
+      <View style={styles.scrollContainer}>
+        <Text style={styles.serviceTitle}>Services</Text>
+        <View style={styles.services}>
             <View style={styles.serviceContent}>
-                <View >
-                    <Text style={styles.bodyTitle}>Company Name</Text>
-                    <Text style={styles.bodyText}>About the Company</Text>
-                    <Text style={styles.bodyText}>Location</Text>
+                <View>
+                    {/* <Text style={styles.bodyTitle}>{company.name}</Text> */}
+                    {/* <Text style={styles.bodyText}>{company.about}</Text> */}
+                    {/* <Text style={styles.bodyText}>{company.address}</Text> */}
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('ProductView')}>
                     <View>
-                        <Image source={require('../../../assets/images/homeScreen/companycar.png')} style={styles.imageManager}/>
+                        <Image source={require('../../../assets/images/homeScreen/companycar.png')} style={styles.imageManager} />
                     </View>
                 </TouchableOpacity>
-                
             </View>
-            
-            </View>
-        </View>
+      </View>
+  </View>
     )
 }
 
