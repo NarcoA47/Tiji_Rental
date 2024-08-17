@@ -123,7 +123,7 @@ export default function BusListContainer() {
             <Text>{route.date}</Text>
           </View>
           <TouchableOpacity style={styles.routeChangeBtn} onPress={changeRoute}>
-            <Text style={styles.routeChangetxt}>Change Route</Text>
+            <Text style={styles.routeChangetxt}>Change</Text>
           </TouchableOpacity>
         </View>
         <Text style={styles.subtitle}>Available Buses</Text>
@@ -174,12 +174,12 @@ const styles = StyleSheet.create({
       // },
 
       busPriceHeader: {
-        fontSize: 18,
+        fontSize: 12,
         fontWeight: 'bold',
       },
 
       busName: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
       },
       busDetails: {
@@ -268,7 +268,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
       },
       location: {
-        fontSize: 16,
+        fontSize: 12,
         color: '#333',
         fontWeight: 'bold',
         marginBottom: 10,
@@ -302,9 +302,11 @@ const styles = StyleSheet.create({
       },
 
       routeChangeBtn: {
-        backgroundColor: '#0056b3',
+        backgroundColor: 'White',
         padding: 10,
-        borderRadius: 5,
+        borderRadius: 27,
+        borderWidth:2,
+        borderColor: '#0056b3',
         alignItems: 'center',
         marginBottom: 10,
         width: 100,
@@ -312,7 +314,7 @@ const styles = StyleSheet.create({
       },
 
       routeChangetxt: {
-        color: '#ffffff'
+        color: '#0056b3'
       },
       routingText: {
         fontSize: 20,
