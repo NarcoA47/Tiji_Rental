@@ -8,9 +8,9 @@ import ConfirmImagebanner from './confirmImageBanner';
 const ConfirmedBookingTicketModal = ({ visible, onClose }) => {
   const navigation = useNavigation();
 
-  const handleProceedToPayment = () => {
+  const handleTicketDEtails = () => {
     onClose(); // Close the modal
-    navigation.navigate('ViewTicket'); // Navigate to Ticket Screen
+    navigation.navigate('TicketDetails'); // Navigate to Ticket Screen
   };
 
   return (
@@ -30,7 +30,7 @@ const ConfirmedBookingTicketModal = ({ visible, onClose }) => {
             email.
             </Text>
             </View>
-          <TouchableOpacity style={styles.button} onPress={handleProceedToPayment}>
+          <TouchableOpacity style={styles.button} onPress={handleTicketDEtails}>
             <Text style={styles.buttonText}>View Your Ticket</Text>
           </TouchableOpacity>
           <BackToHomeButton/>

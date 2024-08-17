@@ -31,11 +31,19 @@ export default function CardDetailsContainer() {
           <Text style={styles.route}>{ `${ticketInfo.from}` }</Text>
           <Text style={styles.journeySubValue}>InterCity</Text>
         </View>
+        <View style={styles.dots}/>
+        <View style={styles.dots}/>
+        <View style={styles.dots}/>
+        
         <View style={styles.journeyItem}>
           <Text style={styles.departureTime}>{ticketInfo.departureTime}</Text>
           <Ionicons name="bus-outline" size={24} color="#000" />
           <Text style={styles.journeyValue}>{ticketInfo.busCompany}</Text>
         </View>
+        <View style={styles.dots}/>
+        <View style={styles.dots}/>
+        <View style={styles.dots}/>
+        
         <View style={styles.journeyItem}>
           <Text style={styles.journeyLabel}>To:</Text>
           <Text style={styles.route}>{`${ticketInfo.to}`}</Text>
@@ -134,6 +142,15 @@ const styles = StyleSheet.create({
       label: {
         fontWeight: 'bold',
         fontSize: 16,
+      },
+      dots: {
+        position: 'relative',
+        top: 4,
+        width:3,
+        height: 1,
+        backgroundColor: '#800080',
+        borderRadius: 10,
+        margin: 2.5,
       },
       value: {
         fontSize: 16,

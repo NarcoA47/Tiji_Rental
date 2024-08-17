@@ -209,13 +209,14 @@ export const LoginButton: React.FC<LoginButtonProps> = ({ onPress }) => {
     return (
       <View>
           <TouchableOpacity onPress={() => navigation.navigate('home')} style={styles.Cardback2homebuttonManager}>
-              {/* <Ionicons name="chevron-back-circle" size={24} color="#0034BF" /> */}
-              <Text 
-              style={styles.CardbuttonText}
-              >Back To Home
-
-              </Text>
-          </TouchableOpacity>
+            <View style={styles.iconTextContainer}>
+                <Text style={styles.CardbuttonText}>Back To Home</Text>
+                <Ionicons 
+                name="chevron-forward-outline" 
+                style={styles.icon}
+                size={24} color="#fff" />
+            </View>
+        </TouchableOpacity>
       </View>
     )
   }
@@ -256,12 +257,19 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     Cardback2homebuttonManager: {
-        backgroundColor: '#0034BF',
-        margin: 20,
-        padding: 15,
-        height: 50,
-        width: 330,
-        borderRadius: 5,
+      backgroundColor: '#0034BF',
+      margin: 20,
+      padding: 10,
+      height: 50,
+      width: 330,
+      flexDirection: 'row',
+      alignItems: 'center',
+      borderRadius: 10,
+      elevation: 3,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.3,
+      shadowRadius: 4,
         // alignItems: 'left',
     },
     searchbuttonManager: {
@@ -281,6 +289,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'row',
     },
 
     buttonAltManager: {
@@ -295,8 +304,9 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     icon: {
-      marginTop: 12,
-      paddingTop: 50,
+      paddingLeft: 137,
+      alignItems: 'flex-end',
+      justifyContent: 'flex-end',
     },
     
     buttonAltText: {
@@ -313,13 +323,17 @@ const styles = StyleSheet.create({
         color: 'white',
          
     },
-    CardbuttonText: {
-        fontWeight: 'bold',
-        fontSize: 18,
-        textAlign: 'left',
-        color: 'white',
-         
-    },
+    
+  iconTextContainer: {
+      flexDirection: 'row',
+      alignItems: 'center',
+  },
+  CardbuttonText: {
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: 'bold',
+      marginLeft: 8, // Add space between icon and text
+  },
     searchbuttonText: {
         fontWeight: 'bold',
         fontSize: 18,
