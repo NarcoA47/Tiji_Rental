@@ -10,7 +10,7 @@ function ForgetPasswordScreen() {
         <View>
             <Naviagtion/>
             <PasswordForms/>
-            <PasswordText/>
+            {/* <PasswordText/> */}
             <PasswordButton/>
         </View>
     )

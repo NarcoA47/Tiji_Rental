@@ -6,20 +6,10 @@ import { ScrollView } from 'react-native-gesture-handler';
 import RNPickerSelect from 'react-native-picker-select';
 import { Searchbar } from 'react-native-paper';
 
-export default function Changer() {
-
+const Changer = ({navigation, route}) => {
+    // const { search } = route.params;
     const [text, setText] = React.useState("");
-    const sportItems = [
-        { label: 'Football', value: 'football' },
-        { label: 'Baseball', value: 'baseball' },
-        { label: 'Hockey', value: 'hockey' },
-      ];
     
-    const teamItems = [
-    { label: 'Team A', value: 'teamA' },
-    { label: 'Team B', value: 'teamB' },
-    { label: 'Team C', value: 'teamC' },
-    ];
     const [searchQuery, setSearchQuery] = React.useState('');
   return (
     <ScrollView>
@@ -69,3 +59,5 @@ const styles = StyleSheet.create({
         marginBottom: 15,
     },
 })
+
+export default Changer;
