@@ -202,6 +202,7 @@ const styles = StyleSheet.create({
   },
   payContainer: { 
     marginTop: 40,
+    // top: 20,
     flexDirection: 'column',
     justifyContent: 'center',
     alignContent: 'center',
@@ -220,6 +221,7 @@ const styles = StyleSheet.create({
   adjucentContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',  
+    margin: 9,
   },
 
   text: {
