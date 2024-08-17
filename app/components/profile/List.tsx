@@ -26,24 +26,28 @@ export default function ListContainer() {
                 <List.Item
                     style={styles.container}
                     title="History"
+                    onPress={() => navigation.navigate('')}
                     left={() => <Ionicons name="time-outline" size={24} color={MD3Colors.primary100} />}
                 />
                 <Divider />
                 <List.Item
                     style={styles.container}
                     title="Add Card"
+                    onPress={() => navigation.navigate('')}
                     left={() => <MaterialIcons name="credit-card" size={24} color={MD3Colors.primary100} />}
                 />
                 <Divider />
                 <List.Item
                     style={styles.container}
                     title="Support"
+                    onPress={() => navigation.navigate('')}
                     left={() => <Ionicons name="help-circle-outline" size={24} color={MD3Colors.primary100} />}
                 />
                 <Divider />
                 <List.Item
                     style={styles.container}
                     title="Share"
+                    onPress={() => navigation.navigate('')}
                     left={() => <Ionicons name="share-social-outline" size={24} color={MD3Colors.primary100} />}
                 />
                 <Divider />
@@ -51,6 +55,7 @@ export default function ListContainer() {
                   <List.Item
                       style={styles.container}
                       title="About Us"
+                      onPress={() => navigation.navigate('')}
                       left={() => <Ionicons name="information-circle-outline" size={24} color={MD3Colors.primary100} 
                       
                       />}

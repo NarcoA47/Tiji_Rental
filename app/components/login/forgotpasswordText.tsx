@@ -12,11 +12,7 @@ export default function ForgetPasswordText() {
     <View style={styles.container}>
         <View style={styles.checkboxManager}>
             <Checkbox prefix={<Text flex={0} style={styles.checkBoxText}>Remeber Me</Text>} value={1}/>
-            {/* <Checkbox
-            value={isChecked}
-            onValueChange={setChecked}
-            style={styles.checkbox}
-            /> */}
+            
         </View>
         <View style={styles.textManager}> 
         <TouchableOpacity onPress={() => navigation.navigate('ForgetPassword')}>
