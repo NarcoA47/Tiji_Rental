@@ -43,7 +43,7 @@ export default function CardDetailsContainer() {
         <View style={styles.dots}/>
         <View style={styles.dots}/>
         <View style={styles.dots}/>
-        
+        <Ionicons name="chevron-forward-outline" style={styles.icon} size={24} color="#000" />
         <View style={styles.journeyItem}>
           <Text style={styles.journeyLabel}>To:</Text>
           <Text style={styles.route}>{`${ticketInfo.to}`}</Text>
@@ -143,12 +143,15 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
       },
+      icon: {
+        top: 4,
+      },
       dots: {
         position: 'relative',
         top: 4,
         width:3,
-        height: 1,
-        backgroundColor: '#800080',
+        height: 3,
+        backgroundColor: '#000',
         borderRadius: 10,
         margin: 2.5,
       },
