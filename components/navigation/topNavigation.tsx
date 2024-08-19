@@ -23,6 +23,34 @@ export default function Naviagtion() {
     </TouchableOpacity>
   )
 }
+export function WhiteNaviagtion() {
+  const navigation = useNavigation()
+  return (
+    // Create a function the give async back function based on the screen presented
+    <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+      <View style={styles.conatiner}>
+        <View style={styles.row}>
+          <Ionicons style={styles.icon} name="chevron-back-circle" size={50} color="#FFFFFF" />
+          <Text style={styles.title}>Add Card</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  )
+}
+export function HistoryNaviagtion() {
+  const navigation = useNavigation()
+  return (
+    // Create a function the give async back function based on the screen presented
+    <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+      <View style={styles.conatiner}>
+        <View style={styles.row}>
+          <Ionicons style={styles.icon} name="chevron-back-circle" size={50} color="#FFFFFF" />
+          <Text style={styles.title}>History</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
+  )
+}
 
 export function Close({onClose}){
   return(
@@ -135,6 +163,26 @@ export function ProfileMainNavigation() {
     </View>
   )
 }
+export function HeaderSettingMainNavigation() {
+  return (
+    <View style={styles.SettingConatiner}>
+      
+      <WhiteNaviagtion/>
+      <View style={styles.adjucentContainer}>
+      </View>
+    </View>
+  )
+}
+export function HistorySettingMainNavigation() {
+  return (
+    <View style={styles.SettingConatiner}>
+      
+      <HistoryNaviagtion/>
+      <View style={styles.adjucentContainer}>
+      </View>
+    </View>
+  )
+}
 export function EditProfileMainNavigation() {
   return (
     <View style={styles.profileConatiner}>
@@ -189,7 +237,15 @@ const styles = StyleSheet.create({
   closeicon: {
     
   },
-
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    margin: 18,
+    top: 56, 
+    textAlign: 'center',
+    paddingLeft: 75,
+    color: 'white'
+  },
   mainContainer: { 
     // marginTop: 40,
     paddingBottom: 10,
@@ -208,6 +264,12 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     backgroundColor: '#0034BF',
     height: 160,
+  },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 5,
+    top: 35,
   },
   BusContainer: { 
     marginTop: 40,
@@ -257,6 +319,14 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 60,
     borderBottomRightRadius: 60,
     height: 488,
+  },
+  SettingConatiner: {
+    paddingBottom: 90,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignContent: 'center',
+    backgroundColor: '#0034BF',
+    height: 240,
   },
 
 })

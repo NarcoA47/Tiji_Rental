@@ -27,6 +27,9 @@ import Success from '../screens/successfulScreen';
 import EditProfileScreen from '../screens/EditProfileScreen';
 import TicketDetails from '../screens/TicketDetailsScreen';
 import OnBoardingScreen from '../screens/onboardingScreen';
+import AddCardScreen from '../screens/AddCardScreen';
+import HistoryScreen from '../screens/History';
+import SupportScreen from '../screens/SupportScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -61,6 +64,9 @@ export default function TabLayout() {
       <Stack.Screen name="Checkout" component={Checkout}/>
       <Stack.Screen name="Profile" component={ProfileScreen}/>
       <Stack.Screen name="EditProfile" component={EditProfileScreen}/>
+      <Stack.Screen name="AddCardSetting" component={AddCardScreen}/>
+      <Stack.Screen name="History" component={HistoryScreen}/>
+      <Stack.Screen name="Support" component={SupportScreen}/>
 
       </Stack.Navigator>
     </GestureHandlerRootView>

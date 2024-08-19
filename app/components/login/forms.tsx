@@ -23,7 +23,8 @@ export default function SigninForms() {
                 password: password
             });
             if (response.status === 200) {
-                navigation.navigate('OTP');
+                // navigation.navigate('OTP');
+                navigation.navigate('Success');
             } else {
                 console.error('Failed to send verification code');
             }

@@ -97,11 +97,11 @@ const styles = StyleSheet.create({
   bold: {
     fontWeight: 'bold',
   },
-  row: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginVertical: 5,
-  },
+    row: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      marginVertical: 5,
+    },
   button: {
     marginTop: 20,
     padding: 15,

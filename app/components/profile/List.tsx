@@ -19,28 +19,28 @@ export default function ListContainer() {
                 <List.Item
                     style={styles.container}
                     title="Settings"
-                    onPress={() => navigation.navigate('ProductView')}
+                    onPress={() => navigation.navigate('')}
                     left={() => <Ionicons name="settings-outline" size={24} color={MD3Colors.primary100} />}
                 />
                 <Divider />
                 <List.Item
                     style={styles.container}
                     title="History"
-                    onPress={() => navigation.navigate('')}
+                    onPress={() => navigation.navigate('History')}
                     left={() => <Ionicons name="time-outline" size={24} color={MD3Colors.primary100} />}
                 />
                 <Divider />
                 <List.Item
                     style={styles.container}
                     title="Add Card"
-                    onPress={() => navigation.navigate('')}
+                    onPress={() => navigation.navigate('AddCardSetting')}
                     left={() => <MaterialIcons name="credit-card" size={24} color={MD3Colors.primary100} />}
                 />
                 <Divider />
                 <List.Item
                     style={styles.container}
                     title="Support"
-                    onPress={() => navigation.navigate('')}
+                    onPress={() => navigation.navigate('Support')}
                     left={() => <Ionicons name="help-circle-outline" size={24} color={MD3Colors.primary100} />}
                 />
                 <Divider />

@@ -122,6 +122,17 @@ export const LoginButton: React.FC<LoginButtonProps> = ({ onPress }) => {
     )
   }
 
+  export function SaveButton() {
+    const navigation = useNavigation()
+    return (
+      <View>
+          <TouchableOpacity style={styles.buttonManager} onPress={() => navigation.navigate('Home')}>
+              <Text style={styles.buttonText}>Save</Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }
+
   export function PasswordButton() {
 
     const navigation = useNavigation()

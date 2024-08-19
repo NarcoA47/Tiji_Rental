@@ -3,7 +3,7 @@
 
 // let BASE_URL = 'https://tiji-dev.herokuapp.com'; //'https://tiji-dev.herokuapp.com';
 // // let BASE_URL = 'http://45.215.255.114:8000'; //'https://tiji-dev.herokuapp.com';
-
+// // 
 // if (__DEV__) {
 //   BASE_URL = 'https://tiji-dev.herokuapp.com'; //'https://tiji-dev.herokuapp.com'; //'https://tiji-dev.herokuapp.com';
 //   // BASE_URL = 'http://10.0.2.2:8000';
