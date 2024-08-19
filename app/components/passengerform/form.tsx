@@ -10,8 +10,6 @@ export default function PassengerForm() {
     const [lastName, setLastName] = React.useState('');
     const [number, onChangeNumber] = React.useState('');
     
-
-   
   return (
     <ScrollView>
         

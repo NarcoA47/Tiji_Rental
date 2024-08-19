@@ -28,7 +28,6 @@ function PaymentScreen() {
             {selectedIndex === 0 && <MobilePayForm />}
             {selectedIndex === 1 && <CardForm/> }
 
-            <PayButton />
             <PayNaviagtion />
         </View>
     );

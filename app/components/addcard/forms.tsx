@@ -4,6 +4,8 @@ import Checkbox from 'expo-checkbox';
 import {Picker} from '@react-native-picker/picker';
 import RNPickerSelect from 'react-native-picker-select';
 import { Input } from 'react-native-magnus';
+import axios from 'axios';
+import { PayButton } from '@/components/button';
 
 export default function CardForm() {
 
@@ -15,10 +17,36 @@ export default function CardForm() {
     const [cardNumber, setCardNumber] = React.useState('');
     const [expiryDate, setExpiryDate] = React.useState('');
     const [securityCode, setSecurityCode] = React.useState('');
+    const [totalPrice, setTotalPrice] = React.useState('')
 
-    const handlePay = () => {
-        // Validate inputs and handle payment logic here
-        console.log('Payment details:', { cardType, nameOnCard, cardNumber, expiryDate, securityCode });
+    const handlePay = async () => {
+        try {
+            const response = await axios.post('https://tiji-dev.herokuapp.com/api/v1/payments/webhook/', {
+                card_type: cardType,
+                name_on_card: nameOnCard,
+                card_number: cardNumber,
+                expiry_date: expiryDate,
+                security_code: securityCode,
+                amount: totalPrice, 
+            });
+    
+            if (response.status === 200) {
+                // Handle successful payment
+                console.log('Payment successful:', response.data);
+            } else {
+                // Handle unexpected status codes
+                console.error('Unexpected status code:', response.status);
+            }
+        } catch (error) {
+            // Handle error responses
+            if (error.response) {
+                console.error('Error response:', error.response.data);
+            } else if (error.request) {
+                console.error('No response received:', error.request);
+            } else {
+                console.error('Error setting up request:', error.message);
+            }
+        }
     };
 
 
@@ -61,6 +89,7 @@ export default function CardForm() {
                 onChangeText={setSecurityCode}
                 />
             </View>
+            <PayButton onPress={handlePay}/>
         </View>        
     </View>
   )

@@ -1,15 +1,54 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, Modal, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+// import { useDispatch, useSelector } from 'react-redux';
 import { Close } from '@/components/navigation/topNavigation';
+import { paymentSelector, initiatePayment, resetInitiatePaymentState } from '@/redux/slices/paymentSlice'; // Adjust the import path according to your project structure
+// import Spinner from '@/components/Spinner'; // Assuming you have a Spinner component
 
 const ConfirmDetailsModal = ({ visible, onClose, passengerDetails }) => {
   const navigation = useNavigation();
+  // const dispatch = useDispatch();
 
-  const handleProceedToPayment = () => {
+  // const {
+  //   isLoading: initiatingPayment,
+  //   paymentInitiated,
+  //   paymentInitiatedError,
+  // } = useSelector(paymentSelector);
+
+  const totalPrice = passengerDetails.ticketPrice * passengerDetails.tickets;
+
+  useEffect(() => {
+    // if (paymentInitiated) {
+    //   navigation.replace('', {
+    //     url: paymentInitiated?.payment_url,
+    //   });
+    // }
+
+    // return () => {
+    //   dispatch(resetInitiatePaymentState());
+    // };
+  },
+  //  [dispatch, navigation, paymentInitiated, paymentInitiatedError]
+  );
+
+  const handleConfirmDetails = () => {
     onClose(); // Close the modal
-    navigation.navigate('Payment'); // Navigate to Payment screen
+    // dispatch(initiatePayment({
+    //   amount: totalPrice,
+    //   busId: passengerDetails.busId,
+    //   ticketPrice: passengerDetails.ticketPrice,
+    //   from: passengerDetails.from,
+    //   to: passengerDetails.to,
+    //   departureDate: passengerDetails.departureDate,
+    //   departureTime: passengerDetails.departureTime,
+    //   ticketCount: passengerDetails.tickets,
+    // }));
   };
+
+  // if (initiatingPayment) {
+  //   return <Spinner fullPage />;
+  // }
 
   return (
     <Modal
@@ -50,7 +89,7 @@ const ConfirmDetailsModal = ({ visible, onClose, passengerDetails }) => {
               </Text>
             </View>
           </View>
-          <TouchableOpacity style={styles.button} onPress={handleProceedToPayment}>
+          <TouchableOpacity style={styles.button} onPress={handleConfirmDetails}>
             <Text style={styles.buttonText}>Proceed to Payment</Text>
           </TouchableOpacity>
         </View>
@@ -97,11 +136,11 @@ const styles = StyleSheet.create({
   bold: {
     fontWeight: 'bold',
   },
-    row: {
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      marginVertical: 5,
-    },
+  row: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginVertical: 5,
+  },
   button: {
     marginTop: 20,
     padding: 15,

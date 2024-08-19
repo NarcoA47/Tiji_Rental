@@ -145,13 +145,18 @@ export const LoginButton: React.FC<LoginButtonProps> = ({ onPress }) => {
       </View>
     )
   }
-  export function PayButton() {
+
+  
+  type PayButtonProps = {
+    onPress: (event: GestureResponderEvent) => void;
+  };
+  export const PayButton: React.FC<PayButtonProps> = ({ onPress }) => {
     const [modalVisible, setModalVisible] = React.useState(false);
     const navigation = useNavigation()
   
     return (
       <View>
-          <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.buttonManager}>
+          <TouchableOpacity onPress={onPress} style={styles.buttonManager}>
               <Text style={styles.buttonText}>Pay</Text>
           </TouchableOpacity>
           <ConfirmedBookingTicketModal

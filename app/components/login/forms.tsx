@@ -20,18 +20,30 @@ export default function SigninForms() {
         try {
             const response = await axios.post('https://tiji-dev.herokuapp.com/api/v1/users/login/', {
                 username: username,
-                password: password
+                password: password,
             });
+    
             if (response.status === 200) {
-                // navigation.navigate('OTP');
+                // Navigate to the success screen
                 navigation.navigate('Success');
             } else {
-                console.error('Failed to send verification code');
+                // Handle cases where the response status is not 200 (though unlikely with axios)
+                console.error('Login failed with status:', response.status);
+                alert('Failed to log in. Please check your username and password.');
             }
         } catch (error) {
-            console.error(error);
+            
+            if (error.response && error.response.status === 401) {
+                
+                alert('Incorrect username or password. Please try again.');
+            } else {
+                
+                console.error('An error occurred during login:', error);
+                alert('An error occurred. Please try again later.');
+            }
         }
     };
+    
 
     return (
         <View style={styles.container}>
