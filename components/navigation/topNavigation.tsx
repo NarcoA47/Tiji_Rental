@@ -9,6 +9,7 @@ import Changer from '@/app/components/home/changer';
 import { Search } from '../button';
 import DatePicker from '@/app/components/home/datepicker';
 import { useNavigation } from 'expo-router';
+// import { useDispatch, useSelector } from 'react-redux';
 import ProfileContainer from '@/app/components/profile/container';
 import EditProfileContainer from '@/app/components/profile/edit';
 
@@ -75,6 +76,11 @@ export function PayNaviagtion() {
 }
 
 export function MainNavigation() {
+  // const dispatch = useDispatch();
+
+  // const handleLogout = () => {
+  //   dispatch(userLogout());
+  // };
   return (
     <View style={styles.mainContainer}>
       <View style={styles.adjucentContainer}>
@@ -84,7 +90,7 @@ export function MainNavigation() {
         </View>
         <View>
         <EvilIcons name="user" size={40} color="white" />
-        <Text style={styles.subText}>Login</Text>
+         <Text style={styles.subText}>Login</Text>
         </View>
       </View>
       <Slider/>
