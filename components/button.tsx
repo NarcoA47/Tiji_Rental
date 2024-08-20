@@ -7,19 +7,28 @@ import SuccessCarHireModal from '@/app/Modal/SuccessCarHireModal';
 import { Ionicons } from '@expo/vector-icons';
 import axios from 'axios';
 
-export default function RegisterButton() {
 
-  const navigation = useNavigation()
+// Register Button 
 
+type RegisterButtonProps = {
+  onPress: (event: GestureResponderEvent) => void;
+};
+
+const RegisterButton: React.FC<RegisterButtonProps> = ({ onPress }) => {
   return (
     <View>
-        <TouchableOpacity onPress={() => navigation.navigate('OTP')} style={styles.buttonManager}>
-            <Text style={styles.buttonText}>Register</Text>
-        </TouchableOpacity>
+      <TouchableOpacity onPress={onPress} style={styles.buttonManager}>
+        <Text style={styles.buttonText}>Register</Text>
+      </TouchableOpacity>
     </View>
-  )
-}
+  );
+};
 
+export default RegisterButton;
+
+// ** Register Button End ** //
+
+// Login Button 
 type LoginButtonProps = {
   onPress: (event: GestureResponderEvent) => void;
 };
@@ -35,11 +44,28 @@ export const LoginButton: React.FC<LoginButtonProps> = ({ onPress }) => {
     </View>
   );
 }
+// ** Login Button End ** //
+
+type PasswordButtonProps = {
+  onPress: (event: GestureResponderEvent) => void;
+};
+export const PasswordButton: React.FC<PasswordButtonProps> = ({ onPress }) => {
+
+  return (
+    <View>
+        <TouchableOpacity onPress={onPress} style={styles.buttonManager}>
+            <Text style={styles.buttonText}>Reset Password</Text>
+        </TouchableOpacity>
+    </View>
+  )
+}
+
+// Confirm Button 
   export function Confirm() {
     return (
       <View>
           <TouchableOpacity style={styles.buttonManager}>
-              <Text style={styles.buttonText}>Register</Text>
+              <Text style={styles.buttonText}>Confirm</Text>
           </TouchableOpacity>
       </View>
     )
@@ -133,18 +159,6 @@ export const LoginButton: React.FC<LoginButtonProps> = ({ onPress }) => {
     )
   }
 
-  export function PasswordButton() {
-
-    const navigation = useNavigation()
-  
-    return (
-      <View>
-          <TouchableOpacity onPress={() => navigation.navigate('Successful')} style={styles.buttonManager}>
-              <Text style={styles.buttonText}>Reset Password</Text>
-          </TouchableOpacity>
-      </View>
-    )
-  }
 
   
   type PayButtonProps = {

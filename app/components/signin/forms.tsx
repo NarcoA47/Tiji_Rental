@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { TextInput } from 'react-native-paper';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Checkbox from 'expo-checkbox';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -8,6 +8,7 @@ import { Input } from 'react-native-magnus';
 import axios from 'axios';
 import RegisterButton from '@/components/button';
 import { Ionicons } from '@expo/vector-icons'; // Importing the icon library
+import { signup } from '@/app/services/auth';
 
 export default function SigninForms() {
 
@@ -17,9 +18,9 @@ export default function SigninForms() {
     // const [lastName, setLastName] = React.useState('');
     const [username, setUsername] = React.useState('');
     const [email, setEmail] = React.useState('');
-    const [phone_number, setPhone_Number] = React.useState('');
-    const [isChecked, setChecked] = useState(false);
+    const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = React.useState("");
+    const [isChecked, setChecked] = useState(false);
     // const [newpassword, setNewPassword] = React.useState("");
     const [passwordVisible, setPasswordVisible] = React.useState(false);
 
@@ -27,26 +28,13 @@ export default function SigninForms() {
         setPasswordVisible(!passwordVisible);
       };
 
-      const handleSignup = async () => {
+    const onSignup = async () => {
         try {
-            const response = await axios.post('https://tiji-dev.herokuapp.com/api/v1/users/signup/', {
-                // firstName: username,
-                // lastName: password,
-                username: username,
-                email: email,
-                phone_number: phone_number,
-                password: password,
-                
-            });
-
-                if (response.status === 200) {
-                    navigation.navigate('OTP');
-                } else {
-                    console.error('Failed to send verification code');
-                }
-            
+            const response = await signup(username, phoneNumber, email, password);
+            Alert.alert('Success', 'Registration successful');
+            navigation.navigate('OTP');
         } catch (error) {
-            console.error(error);
+            Alert.alert('Error', 'Registration Failed. Please try again.');
         }
     };
 
@@ -85,6 +73,7 @@ export default function SigninForms() {
                     focusBorderColor="blue700"
                     onChangeText={setUsername}
                     value={username}
+                    keyboardType='default'
                     placeholder="e.g Wayne29"
                     />
             </View>
@@ -95,6 +84,7 @@ export default function SigninForms() {
                     focusBorderColor="blue700"
                     onChangeText={setEmail}
                     value={email}
+                    keyboardType='email-address'
                     placeholder="e.g austin23@gmail.com"
                     />
             </View>
@@ -103,8 +93,8 @@ export default function SigninForms() {
                     <Input
                     style={styles.input}
                     focusBorderColor="blue700"
-                    onChangeText={setPhone_Number}
-                    value={phone_number}
+                    onChangeText={setPhoneNumber}
+                    value={phoneNumber}
                     placeholder="e.g +260 968"
                     keyboardType="phone-pad"/>
             </View>
@@ -115,6 +105,7 @@ export default function SigninForms() {
                 focusBorderColor="blue700"
                 onChangeText={text => setPassword(text)}
                 value={password}
+                keyboardType="visible-password"
                 placeholder="New Password"
                 secureTextEntry={!passwordVisible}
                 suffix={
@@ -150,7 +141,8 @@ export default function SigninForms() {
             />
             <Text style={styles.checkBoxText}>Terms and Conditions</Text>
         </View>
-        <RegisterButton onPress={handleSignup} />
+        <RegisterButton onPress={onSignup}/>
+        
     </View>
     
     </ScrollView>

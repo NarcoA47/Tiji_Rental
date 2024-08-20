@@ -1,29 +1,41 @@
+import { passwordReset } from '@/app/services/auth';
+import { PasswordButton } from '@/components/button';
 import React, { useState } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Alert } from 'react-native';
 import { Input } from 'react-native-magnus';
 import { TextInput } from 'react-native-paper'; 
 
 export default function PasswordForms() {
 
-    const [number, onChangeNumber] = React.useState('');
+    const [email, setEmail] = React.useState('');
 
-
+    const handlePasswordReset = async () => {
+        try {
+            const response = await passwordReset(email);
+            if (response) {
+                Alert.alert('Success', 'Password reset code sent to your phone number.');
+            }
+        } catch (error) {
+            Alert.alert('Error', 'Failed to send password reset code. Please try again.');
+        }
+    };
 
   return (
     <View style={styles.container}>
         <Text style={styles.title}>Forgot Password</Text>
-        <Text style={styles.paragraph}>Enter your Phone Number</Text>
+        <Text style={styles.paragraph}>Enter your Email</Text>
         <View style={styles.inputFormTwo}>
         <View >
-            <Text style={styles.inputText}>Phone Number</Text>
+            <Text style={styles.inputText}>Email</Text>
                 <Input
                 style={styles.input}
-                onChangeText={onChangeNumber}
+                onChangeText={setEmail}
                 focusBorderColor="blue700"
-                value={number}
-                placeholder="e.g +260 968"
-                keyboardType="phone-pad"/>
+                value={email}
+                placeholder="austin@gmail.com"
+                keyboardType="email-address"/>
             </View>
+            <PasswordButton onPress={handlePasswordReset}/>
         </View>
     </View>
   )

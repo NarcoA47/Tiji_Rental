@@ -23,8 +23,8 @@ export default function SigninForms() {
         try {
             const response = await login(username, password);
             if (response.status === 200) {
-                await AsyncStorage.setItem('authToken', response.data.token);
-                navigation.navigate('HomeScreen');
+                // await AsyncStorage.setItem('authToken', response.data.token);
+                navigation.navigate('Success');
             } else {
                 alert('Failed to log in. Please check your username and password.');
             }
@@ -62,6 +62,7 @@ export default function SigninForms() {
                         style={styles.input}
                         value={password}
                         secureTextEntry={!passwordVisible}
+                        keyboardType="visible-password"
                         suffix={
                             <Ionicons
                                 name={passwordVisible ? 'eye' : 'eye-off'}

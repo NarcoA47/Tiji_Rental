@@ -6,14 +6,14 @@ const apiClient = axios.create({
     timeout: 10000,
 });
 
-apiClient.interceptors.request.use(async (config) => {
-    const token = await AsyncStorage.getItem('authToken');
-    if (token) {
-        config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-}, (error) => {
-    return Promise.reject(error);
-});
+// apiClient.interceptors.request.use(async (config) => {
+//     const token = await AsyncStorage.getItem('authToken');
+//     if (token) {
+//         config.headers.Authorization = `Bearer ${token}`;
+//     }
+//     return config;
+// }, (error) => {
+//     return Promise.reject(error);
+// });
 
 export default apiClient;

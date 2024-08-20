@@ -20,7 +20,7 @@ const Changer = ({ navigation, route }) => {
         (async () => {
             let { status } = await Location.requestForegroundPermissionsAsync();
             if (status !== 'granted') {
-                setCurrentLocation('Permission to access location was denied');
+            setCurrentLocation('Permission to access location was denied');
                 return;
             }
 
