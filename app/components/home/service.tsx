@@ -11,7 +11,7 @@ export default function Services() {
 
   useEffect(() => {
       // Fetch company data from your API
-      axios.get('http://172.20.10.3:8000/api/v1/company/1/') // Adjust URL as needed
+      axios.get('http:///api/v1/company/1/') // Adjust URL as needed
           .then(response => setCompany(response.data))
           .catch(error => console.error('Error fetching company data:', error));
   }, []);
@@ -30,7 +30,7 @@ export default function Services() {
                     {/* <Text style={styles.bodyText}>{company.about}</Text> */}
                     {/* <Text style={styles.bodyText}>{company.address}</Text> */}
                 </View>
-                <TouchableOpacity onPress={() => navigation.navigate('ProductView')}>
+                <TouchableOpacity onPress={() => navigation.navigate('AuthOption')}>
                     <View>
                         <Image source={require('../../../assets/images/homeScreen/companycar.png')} style={styles.imageManager} />
                     </View>

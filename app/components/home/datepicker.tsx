@@ -24,6 +24,7 @@ export default function DatePicker() {
 const styles = StyleSheet.create({
     conatiner: {
         margin: 20,
+        top: 40
     },
 
     headingText: {

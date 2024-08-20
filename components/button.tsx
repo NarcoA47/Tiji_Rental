@@ -296,6 +296,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         alignItems: 'center',
         justifyContent: 'center',
+        top: 10
     },
     EditButton: {
         backgroundColor: '#0034BF',

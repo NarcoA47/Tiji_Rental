@@ -76,6 +76,7 @@ export function PayNaviagtion() {
 }
 
 export function MainNavigation() {
+  const navigation = useNavigation()
   // const dispatch = useDispatch();
 
   // const handleLogout = () => {
@@ -89,7 +90,7 @@ export function MainNavigation() {
           <Text style={styles.subText}>Chintu RD, 6039</Text>
         </View>
         <View>
-        <EvilIcons name="user" size={40} color="white" />
+        <EvilIcons name="user" size={40} onPress={() => navigation.navigate('Profile')}  color="white" />
          <Text style={styles.subText}>Login</Text>
         </View>
       </View>
@@ -101,6 +102,7 @@ export function MainNavigation() {
 
 
 export function MainBusHomeNavigation() {
+  const navigation = useNavigation()
   return (
     <View style={styles.BusContainer}>
       <View style={styles.adjucentContainer}>
@@ -109,7 +111,7 @@ export function MainBusHomeNavigation() {
           <Text style={styles.subText}>Chintu RD, 6039</Text>
         </View>
         <View>
-        <EvilIcons name="user" size={40} color="white" />
+        <EvilIcons name="user" size={40} onPress={() => navigation.navigate('Profile')}  color="white" />
         <Text style={styles.subText}>Login</Text>
         </View>
       </View>
@@ -278,12 +280,13 @@ const styles = StyleSheet.create({
     top: 35,
   },
   BusContainer: { 
-    marginTop: 40,
+    // marginTop: 40,
     flexDirection: 'column',
     justifyContent: 'center',
     alignContent: 'center',
     backgroundColor: '#0034BF',
-    height: 417,
+    height: 447,
+    paddingTop: 60
   },
 
   adjucentContainer: {

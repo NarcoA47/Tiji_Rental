@@ -1,63 +1,140 @@
-import React from 'react'
-import { StyleSheet, View,  } from 'react-native'
-import { TextInput } from 'react-native-paper';
-import { TextInput as RNTextInput } from 'react-native'
-import { ScrollView } from 'react-native-gesture-handler';
-import RNPickerSelect from 'react-native-picker-select';
-import { Searchbar } from 'react-native-paper';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
+import { Input, Dropdown } from 'react-native-magnus';
+import * as Location from 'expo-location';
+import { Ionicons } from '@expo/vector-icons'; // Importing the icon library
 
-const Changer = ({navigation, route}) => {
-    // const { search } = route.params;
-    const [text, setText] = React.useState("");
-    
-    const [searchQuery, setSearchQuery] = React.useState('');
-  return (
-    <ScrollView>
+const Changer = ({ navigation, route }) => {
+    const [currentLocation, setCurrentLocation] = useState('');
+    const [selectedLocation, setSelectedLocation] = useState('Where are you going?');
+    const [dropdownVisible, setDropdownVisible] = useState(false);
+    const [locations, setLocations] = useState([
+        { label: 'Lusaka', value: 'Lusaka' },
+        { label: 'London', value: 'London' },
+        { label: 'New York', value: 'New York' },
+        { label: 'Tokyo', value: 'Tokyo' },
+        { label: 'Sydney', value: 'Sydney' }
+    ]);
 
-        
+    useEffect(() => {
+        (async () => {
+            let { status } = await Location.requestForegroundPermissionsAsync();
+            if (status !== 'granted') {
+                setCurrentLocation('Permission to access location was denied');
+                return;
+            }
+
+            let location = await Location.getCurrentPositionAsync({});
+            const { coords } = location;
+            const reverseGeocode = await Location.reverseGeocodeAsync({
+                latitude: coords.latitude,
+                longitude: coords.longitude
+            });
+
+            if (reverseGeocode.length > 0) {
+                const { city, country } = reverseGeocode[0];
+                setCurrentLocation(`${city}, ${country}`);
+            } else {
+                setCurrentLocation(`Latitude: ${coords.latitude}, Longitude: ${coords.longitude}`);
+            }
+        })();
+    }, []);
+
+    const handleDropdownSelect = (value) => {
+        setSelectedLocation(value);
+        setDropdownVisible(false);
+    };
+
+    return (
         <View style={styles.container}>
-            <Searchbar
-            placeholder="Search"
-            onChangeText={setSearchQuery}
-            value={searchQuery}
-            />
-        </View>
-        <View style={styles.container}>
-            
             <View>
-                <RNPickerSelect
-                    onValueChange={(value) => console.log(value)}
-                    items={[
-                        { label: 'Football', value: 'football' },
-                        { label: 'Baseball', value: 'baseball' },
-                        { label: 'Hockey', value: 'hockey' },
-                    ]}
+                <Input
+                    placeholder={currentLocation}
+                    p={10}
+                    onPress={() => setDropdownVisible(!dropdownVisible)} 
+                    focusBorderColor="blue700"
+                    style={styles.input}
+                    value={currentLocation}
+                    editable={false}
+                    color="#FFFFFF" // Set text color to white
                 />
             </View>
+            <View>
+                <Input
+                    placeholder={selectedLocation}
+                    onPress={() => setDropdownVisible(!dropdownVisible)}
+                    p={10}
+                    focusBorderColor="blue700"
+                    style={styles.input}
+                    value={selectedLocation}
+                    editable={false}
+                    color="#FFFFFF" // Set text color to white
+                    // rightElement={() => <Ionicons name="help-circle-outline" size={24} color={MD3Colors.primary40} />}
+                />
+                <Dropdown
+                    isVisible={dropdownVisible}
+                    onClose={() => setDropdownVisible(false)}
+                    title={<Text mx="xl" color="gray500" pb="md" style={styles.inputText}>Select a location</Text>}
+                    mt="md"
+                    pb="2xl"
+                    showSwipeIndicator
+                    roundedTop="xl"
+                >
+                    {locations.map((location) => (
+                        <Dropdown.Option
+                            key={location.value}
+                            py="md"
+                            px="xl"
+                            onPress={() => handleDropdownSelect(location.value)}
+                        >
+                            {location.label}
+                        </Dropdown.Option>
+                    ))}
+                </Dropdown>
+            </View>
         </View>
-    </ScrollView>
-
-        
-    
-    
-  )
-}
+    );
+};
 
 const styles = StyleSheet.create({
     container: {
-        margin: 20,
-        backgroundColor: '#ffffff',
-        borderRadius: 10,
-        padding: 15,
-        marginBottom: 20,
-        elevation: 3,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 500,
+        top: 25
     },
-
-    textTitle: {
+    input: {
+        borderWidth: 1,
+        marginLeft: 14,
+        marginRight: 14,
+        marginTop: 4,
+        marginBottom: 4,
+        width: 360,
+        height: 60,
+        backgroundColor: '#2857D3',
+        padding: 4,
+        borderRadius: 4,
+        borderBlockEndColor: '#2857D3',
+        borderBlockColor: '#2857D3',
+        justifyContent: 'center',
+        alignItems: 'center'
+    },
+    inputText: {
+        marginLeft: 12,
+        marginBottom: 4,
+        padding: 4,
+        borderRadius: 4,
         fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 15,
+        textAlign: 'center'
     },
-})
+    dropdown: {
+        width: 360,
+        backgroundColor: '#2857D3',
+        borderRadius: 4,
+        borderColor: '#2857D3',
+        borderWidth: 1
+    },
+});
 
 export default Changer;

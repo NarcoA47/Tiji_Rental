@@ -30,6 +30,7 @@ import OnBoardingScreen from '../screens/onboardingScreen';
 import AddCardScreen from '../screens/AddCardScreen';
 import HistoryScreen from '../screens/History';
 import SupportScreen from '../screens/SupportScreen';
+import TiJiAnimateOpenningScreen from '../screens/TiJiAnimatedScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -44,7 +45,8 @@ export default function TabLayout() {
       headerShown: false,
       }}
       >
-        <Stack.Screen name="OnBoardingScreen" component={OnBoardingScreen}/>
+      <Stack.Screen name="TiJi" component={TiJiAnimateOpenningScreen}/>
+      <Stack.Screen name="OnBoardingScreen" component={OnBoardingScreen}/>
       <Stack.Screen name="Login" component={LoginScreen}/>
       <Stack.Screen name="Product" component={ProductScreen}/>
       <Stack.Screen name="Ticket" component={BusTicketApp}/>

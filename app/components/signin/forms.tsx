@@ -7,6 +7,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Input } from 'react-native-magnus';
 import axios from 'axios';
 import RegisterButton from '@/components/button';
+import { Ionicons } from '@expo/vector-icons'; // Importing the icon library
 
 export default function SigninForms() {
 
@@ -116,6 +117,14 @@ export default function SigninForms() {
                 value={password}
                 placeholder="New Password"
                 secureTextEntry={!passwordVisible}
+                suffix={
+                    <Ionicons
+                        name={passwordVisible ? 'eye' : 'eye-off'}
+                        size={24}
+                        color="gray"
+                        onPress={togglePasswordVisibility}
+                    />
+                }
                 />
                 {/* <TouchableOpacity onPress={togglePasswordVisibility} style={styles.visibilityToggle}>
                     <Text>{passwordVisible ? 'Hide' : 'Show'}</Text>

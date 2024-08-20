@@ -31,34 +31,68 @@ export default function OnBoardingTwo() {
       <Text style={styles.subtitle}>An Easy way of Car booking.</Text>
       <TouchableOpacity 
         style={styles.button} 
-        onPress={() => navigation.navigate('NextScreen')}
+        onPress={() => navigation.navigate('Home')}
       >
         <Text style={styles.buttonText}>GET STARTED</Text>
       </TouchableOpacity>
       <TouchableOpacity 
-        onPress={() => navigation.navigate('SkipScreen')} 
+        onPress={() => navigation.navigate('onBoardingThree')} 
         style={styles.skip}
       >
-        <Text style={styles.skipText}>Skip</Text>
+        <View style={styles.row}>
+            <View style={styles.dotsContainer}>
+                <View style={styles.dots}/>
+                <View style={styles.dot1}/>
+                <View style={styles.dots}/>
+            </View>
+            <Text style={styles.skipText}>Next</Text>
+        </View>
       </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    // flex: 1,
-    backgroundColor: '#003DA5',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 16,
-    height: 900,
-  },
-  image: {
-    width: '100%',
-    height: '40%', // Adjusted for better responsiveness
-    resizeMode: 'contain',
-  },
+    container: {
+        // flex: 1,
+        backgroundColor: '#003DA5',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 16,
+        height: 900,
+    },
+    image: {
+        width: '100%',
+        height: '40%', // Adjusted for better responsiveness
+        resizeMode: 'contain',
+    },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        width: '100%',
+        padding: 10,
+    },
+
+    dotsContainer: {
+        flexDirection: 'row',
+        bottom: 160,
+    },
+
+    dots: {
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        backgroundColor: '#D9D9D9', // Change this to your desired color
+        marginRight: 5,
+    },
+    dot1: {
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        backgroundColor: '#C9A96D', // Change this to your desired color
+        marginRight: 5,
+    },
   slide: {
     justifyContent: 'center',
     alignItems: 'center',

@@ -1,18 +1,67 @@
-import React from 'react'
-import { Text, View } from 'react-native'
-import OnBoardingScreenOne from './splashScreens/onboardingOne'
-import OnBoardingScreenTwo from './splashScreens/onboardingTwo'
-import OnBoardingScreenThree from './splashScreens/onboardingThree'
+import React from 'react';
+import { View, Dimensions, StyleSheet, Text } from 'react-native';
+import Carousel from 'react-native-reanimated-carousel';
+import OnBoardingOne from '../onboarding/onBoardingScreenOne';
+import OnBoardingTwo from '../onboarding/onBoardingScreenTwo';
+import OnBoardingThree from '../onboarding/onBoardingScreenThree';
 
-export default function OnBoardingScreen() {
+const { width : screenWidth } = Dimensions.get('window');
+
+const OnBoardingScreenOne = () => {
   return (
-    
-    <View>
-       <OnBoardingScreenOne/>
-       <OnBoardingScreenTwo/>
-       <OnBoardingScreenThree/>
-
-
+    <View >
+      <OnBoardingOne/>
     </View>
-  )
-}
+  );
+};
+
+const OnBoardingScreenTwo = () => {
+  return (
+    <View>
+      <OnBoardingTwo/>
+    </View>
+  );
+};
+
+const OnBoardingScreenThree = () => {
+  return (
+    <View>
+      <OnBoardingThree/>
+    </View>
+  );
+};
+
+const App = () => {
+  const [activeSlide, setActiveSlide] = React.useState(0);
+
+  const slides = [
+    <OnBoardingScreenOne key="1" />,
+    <OnBoardingScreenTwo key="2" />,
+    <OnBoardingScreenThree key="3" />,
+  ];
+
+  const renderItem = ({ item }) => {
+    return item;
+  };
+
+  return (
+    <View style={styles.container}>
+      <Carousel
+        data={slides}
+        renderItem={renderItem}
+        width={screenWidth}
+        
+        onSnapToItem={(index) => setActiveSlide(index)}
+      />
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
+
+});
+
+export default App;
