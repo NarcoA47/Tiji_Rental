@@ -31,6 +31,8 @@ import AddCardScreen from '../screens/AddCardScreen';
 import HistoryScreen from '../screens/History';
 import SupportScreen from '../screens/SupportScreen';
 import TiJiAnimateOpenningScreen from '../screens/TiJiAnimatedScreen';
+import LoginSuccess from '../screens/successfulLoginScreen';
+import OTPResetPassword from '../screens/otpResetPasswordScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -57,7 +59,9 @@ export default function TabLayout() {
       <Stack.Screen name="ViewBuses" component={ViewBusScreen}/>
       <Stack.Screen name="TicketDetails" component={TicketDetails}/>
       <Stack.Screen name="Success" component={Success}/>
+      <Stack.Screen name="LoginSuccess" component={LoginSuccess}/>
       <Stack.Screen name="OTP" component={OTP}/>
+      <Stack.Screen name="OTPResetPassword" component={OTPResetPassword}/>
       <Stack.Screen name="PassengerDetails" component={PassengerDetailsScreen}/>
       <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen}/>
       <Stack.Screen name="ResetPassword" component={ResetPasswordScreen}/>
