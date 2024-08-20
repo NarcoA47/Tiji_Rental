@@ -23,7 +23,7 @@ export const signup = async (username, phoneNumber, email, password) => {
             await AsyncStorage.setItem('refreshToken', refresh_token);
 
             // You can navigate to the next screen or return the response data
-            return response.data;
+            navigation.navigate('OTP');
         } else {
             throw new Error('Failed to register. Please check your details.');
         }
@@ -39,7 +39,7 @@ export const signup = async (username, phoneNumber, email, password) => {
 
 export const passwordReset = async (email) => {
     try {
-        const response = await axios.post('obtain-password-code/', {
+        const response = await apiClient.post('obtain-password-code/', {
             email: email,
         });
 
@@ -53,6 +53,15 @@ export const passwordReset = async (email) => {
     } catch (error) {
         console.error('Error sending password reset code:', error);
         throw error;
+    }
+};
+
+export const verifyPasswordResetCode = async (code) => {
+    try {
+        const response = await apiClient.post('password-code-verify/', { code });
+        return response.data;
+    } catch (error) {
+        throw error.response ? error.response.data : new Error('Network Error');
     }
 };
 

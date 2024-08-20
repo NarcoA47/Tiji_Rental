@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { TextInput } from 'react-native-paper';
 import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Checkbox from 'expo-checkbox';
 import { ScrollView } from 'react-native-gesture-handler';
 import { Input } from 'react-native-magnus';
-import axios from 'axios';
 import RegisterButton from '@/components/button';
 import { Ionicons } from '@expo/vector-icons'; // Importing the icon library
 import { signup } from '@/app/services/auth';

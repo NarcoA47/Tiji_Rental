@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
-import { StyleSheet, TextInput, View, Text } from 'react-native';
+import { StyleSheet, TextInput, View, Text, Alert } from 'react-native';
 import axios from 'axios';
+import { verifyPasswordResetCode } from '@/app/services/auth';
+
 
 const BlockInput = ({ length, onComplete }) => {
     
@@ -46,29 +48,23 @@ const BlockInput = ({ length, onComplete }) => {
 };
 
 export default function OtpInputFieldResetPassword() {
-    const handleComplete = async (code) => {
+    const handleResetCode = async (code) => {
         console.log('Code entered:', code);
-
-        // try {
-           
-
-        //     if (response.status === 200) {
-        //         // Code verified successfully
-        //         console.log('Verification successful');
-        //         // You can navigate to the next screen or perform other actions here
-        //     } else {
-        //         // Handle error response
-        //         console.log('Verification failed');
-        //     }
-        // } catch (error) {
-        //     console.error('Error verifying code:', error);
-        // }
+        try {
+            const response = await verifyPasswordResetCode(code);
+            console.log('Verification successful:', response);
+            Alert.alert('Success', 'Code verified successfully!');
+            // Perform any navigation or state updates here
+        } catch (error) {
+            console.error('Verification failed:', error);
+            Alert.alert('Error', 'Invalid or expired code. Please try again.');
+        }
     };
 
     return (
         <View style={styles.appContainer}>
             <Text style={styles.label}>Enter Verification Code:</Text>
-            <BlockInput length={4} onComplete={handleComplete} />
+            <BlockInput length={4} onComplete={handleResetCode} />
         </View>
     );
 }
