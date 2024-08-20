@@ -1,5 +1,6 @@
 import { passwordReset } from '@/app/services/auth';
 import { PasswordButton } from '@/components/button';
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, Alert } from 'react-native';
 import { Input } from 'react-native-magnus';
@@ -8,12 +9,12 @@ import { TextInput } from 'react-native-paper';
 export default function PasswordForms() {
 
     const [email, setEmail] = React.useState('');
-
+    const navigation = useNavigation();
     const handlePasswordReset = async () => {
         try {
             const response = await passwordReset(email);
-            if (response) {
-                Alert.alert('Success', 'Password reset code sent to your phone number.');
+            if (response.status === 200) {
+                navigation.navigate('OTPResetPassword');
             }
         } catch (error) {
             Alert.alert('Error', 'Failed to send password reset code. Please try again.');
