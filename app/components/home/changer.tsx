@@ -4,7 +4,7 @@ import { Input, Dropdown } from 'react-native-magnus';
 import * as Location from 'expo-location';
 import { Ionicons } from '@expo/vector-icons'; // Importing the icon library
 
-const Changer = ({ navigation, route }) => {
+const Changer = () => {
     const [currentLocation, setCurrentLocation] = useState('');
     const [selectedLocation, setSelectedLocation] = useState('Where are you going?');
     const [dropdownVisible, setDropdownVisible] = useState(false);

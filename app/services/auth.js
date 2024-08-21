@@ -1,4 +1,5 @@
 import apiClient from "./apiClient";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export const login = async (username, password) => {
@@ -6,40 +7,40 @@ export const login = async (username, password) => {
 };
 
 export const signup = async (username, phoneNumber, email, password) => {
-    try {
-        const response = await apiClient.post('users/register/', {
-            username: username,
-            phone_number: phoneNumber,
-            email: email,
-            password: password,
-            // verification_code: verificationCode
-        });
+    // try {
+    //     const response = await apiClient.post('users/signup/', {
+    //         username: username,
+    //         phone_number: phoneNumber,
+    //         email: email,
+    //         password: password,
+    //         // verification_code: verificationCode
+    //     });
 
-        if (response.status === 201) {
-            const { access_token, refresh_token } = response.data;
+    //     if (response.status === 201) {
+    //         const { access_token, refresh_token } = response.data;
 
-            // Store tokens in AsyncStorage
-            await AsyncStorage.setItem('accessToken', access_token);
-            await AsyncStorage.setItem('refreshToken', refresh_token);
+    //         // Store tokens in AsyncStorage
+    //         await AsyncStorage.setItem('accessToken', access_token);
+    //         await AsyncStorage.setItem('refreshToken', refresh_token);
 
-            // You can navigate to the next screen or return the response data
-            navigation.navigate('OTP');
-        } else {
-            throw new Error('Failed to register. Please check your details.');
-        }
-    } catch (error) {
-        if (error.response && error.response.data) {
-            const errorData = error.response.data;
-            throw new Error(errorData.detail || 'Failed to register.');
-        } else {
-            throw new Error('An error occurred. Please try again later.');
-        }
-    }
+    //         // You can navigate to the next screen or return the response data
+    //         navigation.navigate('OTP');
+    //     } else {
+    //         throw new Error('Failed to register. Please check your details.');
+    //     }
+    // } catch (error) {
+    //     if (error.response && error.response.data) {
+    //         const errorData = error.response.data;
+    //         throw new Error(errorData.detail || 'Failed to register.');
+    //     } else {
+    //         throw new Error('An error occurred. Please try again later.');
+    //     }
+    // }
 };
 
 export const passwordReset = async (email) => {
     try {
-        const response = await apiClient.post('obtain-password-code/', {
+        const response = await axios.post('obtain-password-code/', {
             email: email,
         });
 

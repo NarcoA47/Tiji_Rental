@@ -9,7 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { login  } from "../../services/auth";
 
 
-export default function SigninForms() {
+export default function SigninForms1() {
     const navigation = useNavigation(); // Use the navigation hook
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
@@ -24,10 +24,10 @@ export default function SigninForms() {
             const response = await login(username, password);
             if (response.status === 200) {
                 // await AsyncStorage.setItem('authToken', response.data.token);
-                navigation.navigate('LoginSuccess');
+                navigation.navigate('Success');
 
                 setTimeout(() => {
-                    navigation.navigate('BusHome');
+                    navigation.navigate('ProductView');
                 }, 1000); 
             } else {
                 alert('Failed to log in. Please check your username and password.');

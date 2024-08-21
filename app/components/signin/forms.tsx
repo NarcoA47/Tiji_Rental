@@ -26,15 +26,19 @@ export default function SigninForms() {
         setPasswordVisible(!passwordVisible);
       };
 
-    const onSignup = async () => {
+      const handleSignup = async () => {
         try {
-            const response = await signup(username, phoneNumber, email, password);
-            Alert.alert('Success', 'Registration successful');
-            navigation.navigate('OTP');
+            const result = await signup(username, phoneNumber, email, password);
+            if (result.success) {
+                // Navigate to the OTP screen
+                Alert.alert('Success', 'Registration successful');
+                navigation.navigate('OTP');
+            }
         } catch (error) {
             Alert.alert('Error', 'Registration Failed. Please try again.');
         }
     };
+
 
   return (
     <ScrollView>
@@ -139,7 +143,7 @@ export default function SigninForms() {
             />
             <Text style={styles.checkBoxText}>Terms and Conditions</Text>
         </View>
-        <RegisterButton onPress={onSignup}/>
+        <RegisterButton onPress={handleSignup}/>
         
     </View>
     

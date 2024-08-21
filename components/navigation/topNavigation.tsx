@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
@@ -12,6 +12,7 @@ import { useNavigation } from 'expo-router';
 // import { useDispatch, useSelector } from 'react-redux';
 import ProfileContainer from '@/app/components/profile/container';
 import EditProfileContainer from '@/app/components/profile/edit';
+import { getToken, USER_TOKEN } from '@/app/services/apiTokens';
 
 
 export default function Naviagtion() {
@@ -76,12 +77,25 @@ export function PayNaviagtion() {
 }
 
 export function MainNavigation() {
-  const navigation = useNavigation()
-  // const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const [userName, setUserName] = React.useState('');
 
-  // const handleLogout = () => {
-  //   dispatch(userLogout());
-  // };
+  useEffect(() => {
+    const fetchUserName = async () => {
+      try {
+        const userToken = await getToken(USER_TOKEN); // Assuming USER_TOKEN stores user information including username
+        if (userToken) {
+          const user = JSON.parse(userToken);
+          setUserName(user.name); // Adjust according to how your user data is structured
+        }
+      } catch (error) {
+        console.error('Failed to fetch user name', error);
+      }
+    };
+
+    fetchUserName();
+  }, []);
+
   return (
     <View style={styles.mainContainer}>
       <View style={styles.adjucentContainer}>
@@ -90,15 +104,19 @@ export function MainNavigation() {
           <Text style={styles.subText}>Chintu RD, 6039</Text>
         </View>
         <View>
-        <EvilIcons name="user" size={40} onPress={() => navigation.navigate('Profile')}  color="white" />
-         <Text style={styles.subText}>Login</Text>
+          <EvilIcons
+            name="user"
+            size={40}
+            onPress={() => navigation.navigate(userName ? 'Profile' : 'Login')}
+            color="white"
+          />
+          <Text style={styles.subText}>{userName || 'Login'}</Text>
         </View>
       </View>
-      <Slider/>
+      <Slider />
     </View>
-  )
+  );
 }
-
 
 
 export function MainBusHomeNavigation() {
