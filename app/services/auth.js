@@ -66,7 +66,7 @@ export const verifyPasswordResetCode = async (code) => {
     }
 };
 
-export const logout = async () => {
+export const logout = async (navigation: unknown) => {
     return apiClient.post('users/logout/');
 };
 
