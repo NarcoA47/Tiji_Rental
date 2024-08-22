@@ -1,15 +1,55 @@
 import { useNavigation } from '@react-navigation/native';
-import React from 'react'
-import { Text, View, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import React, {useState, useEffect} from 'react'
+import { Text, View, TouchableOpacity, StyleSheet, Image, ActivityIndicator, FlatList } from 'react-native';
 
 export default function MoreCards() {
 
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const navigation = useNavigation()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://your-api-url.com/endpoint');
+        setData(response.data);
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  if (loading) {
+    return <ActivityIndicator size="large" color="#0000ff" />;
+  }
 
   return (
     <View style={styles.conatiner}>
         <View style={styles.cardLeadManager}>
+          <FlatList data={data} keyExtractor={(item, index) => index.toString()} 
+            renderItem={({ item }) => (
           <View style={styles.cardManager}>
+            <Text>Porsche Cayman </Text>
+            <View>
+            <Image source={require('../../../assets/images/homeScreen/Car-hire.png')} style={styles.imageContainer}/>
+            </View>
+            <View  style={styles.footerContainer}>
+              <View>
+                <Text style={styles.time}>Daily</Text>
+                <Text style={styles.price}>K250</Text>
+              </View>
+              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
+                <Text style={styles.textColor}>Rent Now</Text>
+              </TouchableOpacity>
+            </View>
+          </View>)}
+          />
+          {/* <View style={styles.cardManager}>
             <Text>Porsche Cayman </Text>
             <View>
             <Image source={require('../../../assets/images/homeScreen/Car-hire.png')} style={styles.imageContainer}/>
@@ -83,22 +123,7 @@ export default function MoreCards() {
                 <Text style={styles.textColor}>Rent Now</Text>
               </TouchableOpacity>
             </View>
-          </View>
-          <View style={styles.cardManager}>
-            <Text>Porsche Cayman </Text>
-            <View>
-            <Image source={require('../../../assets/images/homeScreen/Car-hire.png')} style={styles.imageContainer}/>
-            </View>
-            <View  style={styles.footerContainer}>
-              <View>
-                <Text style={styles.time}>Daily</Text>
-                <Text style={styles.price}>K250</Text>
-              </View>
-              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
-                <Text style={styles.textColor}>Rent Now</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          </View> */}
         </View>
     </View>
   )

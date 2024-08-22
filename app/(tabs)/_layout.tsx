@@ -1,12 +1,9 @@
 import 'react-native-gesture-handler'; // Ensure this is at the top
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { Tabs } from 'expo-router';
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-import { NavigationContainer } from '@react-navigation/native';
+
+
 import HomeScreenMain from '../screens/homeScreen';
 import ProductScreen from '../screens/productScreen';
 import BusTicketApp from '../screens/ViewBusScreen';
