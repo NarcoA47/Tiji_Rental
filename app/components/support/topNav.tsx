@@ -12,7 +12,7 @@ export default function SupportTopBar() {
         <View style={styles.conatiner}>
           <View style={styles.row}>
             <Ionicons style={styles.icon} name="chevron-back-circle" size={50} color="#FFFFFF" />
-            <Text style={styles.title}>Get In Touch</Text>
+            <Text style={styles.title}>ABOUT US</Text>
           </View>
         </View>
       </TouchableOpacity>
