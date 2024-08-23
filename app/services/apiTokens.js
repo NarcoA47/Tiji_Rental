@@ -14,17 +14,24 @@ export const saveToken = async (key, value) => {
   }
 };
 
-// Retrieve a token from AsyncStorage
 export const getToken = async (key) => {
   try {
     const token = await AsyncStorage.getItem(key);
-    return token ? JSON.parse(token) : null;
+    return token;
   } catch (error) {
-    console.error('Error retrieving token:', error);
+    console.error('Error getting token:', error);
+    return null;
   }
 };
 
-// Remove a token from AsyncStorage
+export const setToken = async (key, value) => {
+  try {
+    await AsyncStorage.setItem(key, value);
+  } catch (error) {
+    console.error('Error setting token:', error);
+  }
+};
+
 export const removeToken = async (key) => {
   try {
     await AsyncStorage.removeItem(key);

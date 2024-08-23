@@ -9,8 +9,9 @@ export default function MobilePayForm() {
     const [amount, setAmount] = useState('');
     const [mobileProvider, setMobileProvider] = useState('Select Mobile Money Payment');
     const [dropdownVisible, setDropdownVisible] = useState(false);
+    const [paymentUrl, setPaymentUrl] = React.useState('');
 
-    const handlePay = async () => {
+    const initiatePayment = async () => {
         try {
             const response = await axios.post('https://tiji-dev.herokuapp.com/api/v1/payments/webhook/', {
                 phone_number: phoneNumber,
@@ -113,7 +114,7 @@ export default function MobilePayForm() {
                         </Dropdown.Option>
                     </Dropdown>
                 </View>
-                <PayButton onPress={handlePay}/>
+                <PayButton onPress={initiatePayment}/>
             </View>
         </ScrollView>
     );

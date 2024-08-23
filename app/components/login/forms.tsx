@@ -7,6 +7,7 @@ import { LoginButton } from '@/components/button';
 import ForgetPasswordText from './forgotpasswordText';
 import { Ionicons } from '@expo/vector-icons'; 
 import { login  } from "../../services/auth";
+import { setToken } from '@/app/services/apiTokens';
 
 
 export default function SigninForms() {
@@ -23,9 +24,13 @@ export default function SigninForms() {
         try {
             const response = await login(username, password);
             if (response.status === 200) {
-                // await AsyncStorage.setItem('authToken', response.data.token);
+                // Store the auth token (if provided in the response)
+                const { access_token } = response.data;
+                if (access_token) {
+                    await setToken(USER_TOKEN, access_token);
+                }
                 navigation.navigate('LoginSuccess');
-
+    
                 setTimeout(() => {
                     navigation.navigate('BusHome');
                 }, 1000); 
@@ -53,7 +58,7 @@ export default function SigninForms() {
                         focusBorderColor="blue700"
                         style={styles.input}
                         value={username}
-                        keyboardType="phone-pad"
+                        keyboardType="default"
                     />
                 </View>
                 <View>

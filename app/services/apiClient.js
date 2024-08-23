@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { getToken } from '../services/apiTokens'
-import { USER_TOKEN } from '../services/apiTokens'
+import { getToken, USER_TOKEN } from '../services/apiTokens';
 
 const apiClient = axios.create({
   baseURL: 'https://tiji-dev.herokuapp.com/api/v1/', 

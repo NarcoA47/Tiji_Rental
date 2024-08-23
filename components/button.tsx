@@ -59,6 +59,22 @@ export const PasswordButton: React.FC<PasswordButtonProps> = ({ onPress }) => {
     </View>
   )
 }
+type ResetPasswordButtonProps = {
+  onPress: (event: GestureResponderEvent) => void;
+};
+export const ResetPasswordButton: React.FC<ResetPasswordButtonProps> = ({ onPress }) => {
+
+
+  const navigation = useNavigation()
+
+  return (
+    <View>
+        <TouchableOpacity onPress={onPress} style={styles.buttonManager}>
+            <Text style={styles.buttonText}>Reset Password</Text>
+        </TouchableOpacity>
+    </View>
+  )
+}
 
 // Confirm Button 
   export function Confirm() {
@@ -208,18 +224,6 @@ export const PasswordButton: React.FC<PasswordButtonProps> = ({ onPress }) => {
       )
   }
 
-  export function ResetPasswordButton() {
-
-    const navigation = useNavigation()
-  
-    return (
-      <View>
-          <TouchableOpacity onPress={() => navigation.navigate('Successful')} style={styles.buttonManager}>
-              <Text style={styles.buttonText}>Reset Password</Text>
-          </TouchableOpacity>
-      </View>
-    )
-  }
   export function BackToHomeButton() {
 
     const navigation = useNavigation()

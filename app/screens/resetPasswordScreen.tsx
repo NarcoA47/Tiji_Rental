@@ -9,7 +9,7 @@ function ResetPasswordScreen() {
         <View>
             <Naviagtion/>
             <ResetPasswordForms/>
-            <ResetPasswordButton/>
+            {/* <ResetPasswordButton/> */}
         </View>
     )
 }
