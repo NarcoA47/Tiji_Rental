@@ -1,33 +1,59 @@
 import apiClient from './apiClient';
+import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { USER_TOKEN, setToken, removeToken } from '../services/apiTokens'; // Assuming you've created apiTokens.js
 
 export const login = async (username, password) => {
   try {
-    const response = await apiClient.post('users/login/', { username, password });
+    // const response = await axios.post('https://tiji-dev.herokuapp.com/api/v1/users/login/', { username, password });
 
-    if (response.status === 200) {
-      const { access_token, refresh_token } = response.data;
 
-      // Store tokens in AsyncStorage
-      await setToken(USER_TOKEN, access_token);
-      await setToken('refreshToken', refresh_token);
+    const accessToken = await AsyncStorage.getItem(USER_TOKEN);
+    if (accessToken) {
 
-      return response.data;
-    } else {
-      throw new Error('Login failed. Please check your credentials.');
-    }
+      const response = await axios.post('https://tiji-dev.herokuapp.com/api/v1/users/login/', {
+        username, 
+        password,
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+
+        console.log('User credentials:', response.data);
+        return response.data;
+      } else {
+        console.error('Access token not found');
+      }
+  //   if (response.status === 200) {
+  //     const { access_token, refresh_token } = response.data;
+
+  //     // Store tokens in AsyncStorage
+  //     await setToken(USER_TOKEN, access_token);
+  //     await setToken(REFRESH_TOKEN, refresh_token);
+
+  //     return response.data;
+
+  //   } else {
+  //     throw new Error('Login failed. Please check your credentials.');
+  //   }
   } catch (error) {
     console.error('Error logging in:', error);
-    throw error.response ? error.response.data : new Error('Network Error');
+    if (error.response) {
+      console.error('Error response data:', error.response.data);
+      throw error.response.data;
+    } else {
+      throw new Error('Network Error');
+    }
   }
 };
 
-export const signup = async (username, phoneNumber, email, password, navigation) => {
+
+
+export const signup = async (username, phonNumber, email, password, navigation) => {
   try {
     const response = await apiClient.post('users/signup/', {
       username,
-      phone_number: phoneNumber,
+      phone_number: phonNumber,
       email,
       password,
     });
@@ -45,6 +71,10 @@ export const signup = async (username, phoneNumber, email, password, navigation)
       throw new Error('Failed to register. Please check your details.');
     }
   } catch (error) {
+
+    console.error('Signup Error:', error);
+
+
     if (error.response && error.response.data) {
       throw new Error(error.response.data.detail || 'Failed to register.');
     } else {

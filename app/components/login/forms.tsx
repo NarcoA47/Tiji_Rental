@@ -1,48 +1,57 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
-import { Input, Text } from "react-native-magnus";
+import { View, StyleSheet, Alert, ActivityIndicator } from 'react-native';
+import { Input, Text } from 'react-native-magnus';
 import { useNavigation } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { LoginButton } from '@/components/button';
-import ForgetPasswordText from './forgotpasswordText';
 import { Ionicons } from '@expo/vector-icons'; 
-import { login  } from "../../services/auth";
-import { setToken } from '@/app/services/apiTokens';
-
+import { login } from '../../services/auth';
+import { setToken, USER_TOKEN } from '@/app/services/apiTokens';
+import ForgetPasswordText from './forgotpasswordText';
+import { LoginButton } from '@/components/button';
 
 export default function SigninForms() {
-    const navigation = useNavigation(); // Use the navigation hook
+    const navigation = useNavigation(); 
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     const [passwordVisible, setPasswordVisible] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const togglePasswordVisibility = () => {
         setPasswordVisible(!passwordVisible);
     };
 
     const handleLogin = async () => {
+        if (!username || !password) {
+            Alert.alert('Validation Error', 'Please enter both username and password.');
+            return;
+        }
+
+        setLoading(true);
+
         try {
             const response = await login(username, password);
-            if (response.status === 200) {
-                // Store the auth token (if provided in the response)
-                const { access_token } = response.data;
-                if (access_token) {
-                    await setToken(USER_TOKEN, access_token);
-                }
+
+            console.log('Login Response:', response);
+
+            if (response) {
+
+                // const { access_token } = response;
+
+                // console.log('Access Token:', access_token);
+
+                // await setToken(access_token);
+                
+                console.log('Navigating to LoginSuccess');
                 navigation.navigate('LoginSuccess');
-    
-                setTimeout(() => {
-                    navigation.navigate('BusHome');
-                }, 1000); 
-            } else {
-                alert('Failed to log in. Please check your username and password.');
-            }
-        } catch (error) {
-            if (error.response && error.response.status === 401) {
-                alert('Incorrect username or password. Please try again.');
-            } else {
-                alert('An error occurred. Please try again later.');
-            }
+              } 
+            } 
+            catch (error) {
+                if (error.response && error.response.status === 401) {
+                    Alert.alert('Login Failed', 'Incorrect username or password. Please try again.');
+                } else {
+                    Alert.alert('Error', 'An error occurred. Please try again later.');
+                }
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -65,7 +74,7 @@ export default function SigninForms() {
                     <Text style={styles.inputText}>Password</Text>
                     <Input
                         onChangeText={setPassword}
-                        placeholder='Enter Password'
+                        placeholder="Enter Password"
                         p={10}
                         focusBorderColor="blue700"
                         style={styles.input}
@@ -83,7 +92,11 @@ export default function SigninForms() {
                     />
                 </View>
                 <ForgetPasswordText />
-                <LoginButton onPress={handleLogin} />
+                {loading ? (
+                    <ActivityIndicator size="large" color="#0000ff" />
+                ) : (
+                    <LoginButton onPress={handleLogin} />
+                )}
             </View>
         </View>
     );
@@ -93,26 +106,21 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'column',
         justifyContent: 'center',
+        padding: 16,
     },
     title: {
         fontSize: 24,
         fontWeight: 'bold',
-        margin: 18,
+        marginBottom: 20,
     },
     inputText: {
-        marginLeft: 12,
-        marginBottom: 4,
-        padding: 4,
-        borderRadius: 4,
+        marginBottom: 8,
         fontSize: 18,
     },
     input: {
         borderWidth: 1,
-        marginLeft: 14,
-        marginRight: 14,
-        marginTop: 4,
-        marginBottom: 4,
-        padding: 4,
+        marginBottom: 16,
+        padding: 12,
         borderRadius: 4,
     },
     inputFormTwo: {},

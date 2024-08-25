@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import EvilIcons from '@expo/vector-icons/EvilIcons';
@@ -13,6 +13,7 @@ import { useNavigation } from 'expo-router';
 import ProfileContainer from '@/app/components/profile/container';
 import EditProfileContainer from '@/app/components/profile/edit';
 import { getToken, USER_TOKEN } from '@/app/services/apiTokens';
+import {jwtDecode} from 'jwt-decode';
 
 
 export default function Naviagtion() {
@@ -78,15 +79,19 @@ export function PayNaviagtion() {
 
 export function MainNavigation() {
   const navigation = useNavigation();
-  const [userName, setUserName] = React.useState('');
+  const [username, setUserName] = useState('');
 
   useEffect(() => {
     const fetchUserName = async () => {
+
+      
+
       try {
-        const userToken = await getToken(USER_TOKEN); // Assuming USER_TOKEN stores user information including username
+        const userToken = await getToken(USER_TOKEN); // Ensure USER_TOKEN is the correct key
         if (userToken) {
-          const user = JSON.parse(userToken);
-          setUserName(user.name); // Adjust according to how your user data is structured
+          // Decode the token to get the username
+          const decodedToken = jwtDecode(userToken);
+          setUserName(decodedToken.username); // Adjust based on your token structure
         }
       } catch (error) {
         console.error('Failed to fetch user name', error);
@@ -107,17 +112,16 @@ export function MainNavigation() {
           <EvilIcons
             name="user"
             size={40}
-            onPress={() => navigation.navigate(userName ? 'Profile' : 'Login')}
+            onPress={() => navigation.navigate(username ? 'Profile' : 'Login')}
             color="white"
           />
-          <Text style={styles.subText}>{userName || 'Login'}</Text>
+          <Text style={styles.subText}>{username || 'Login'}</Text>
         </View>
       </View>
       <Slider />
     </View>
   );
 }
-
 
 export function MainBusHomeNavigation() {
   const navigation = useNavigation()

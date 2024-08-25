@@ -16,7 +16,7 @@ export default function SigninForms() {
     // const [lastName, setLastName] = React.useState('');
     const [username, setUsername] = React.useState('');
     const [email, setEmail] = React.useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
+    const [phonNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = React.useState("");
     const [isChecked, setChecked] = useState(false);
     // const [newpassword, setNewPassword] = React.useState("");
@@ -26,18 +26,15 @@ export default function SigninForms() {
         setPasswordVisible(!passwordVisible);
       };
 
-      const handleSignup = async () => {
+    const handleSignup = async () => {
         try {
-            const result = await signup(username, phoneNumber, email, password);
-            if (result.success) {
-                // Navigate to the OTP screen
-                Alert.alert('Success', 'Registration successful');
-                navigation.navigate('OTP');
-            }
-        } catch (error) {
+          const response = await signup(username, phonNumber, email, password);
+          navigation.navigate('Login');
+        }
+        catch (error) {
             Alert.alert('Error', 'Registration Failed. Please try again.');
         }
-    };
+      };
 
 
   return (
@@ -96,7 +93,7 @@ export default function SigninForms() {
                     style={styles.input}
                     focusBorderColor="blue700"
                     onChangeText={setPhoneNumber}
-                    value={phoneNumber}
+                    value={phonNumber}
                     placeholder="e.g +260 968"
                     keyboardType="phone-pad"/>
             </View>
