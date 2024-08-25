@@ -10,7 +10,7 @@ const AuthOptionBtn = () => {
   };
 
   const handleRegister = () => {
-    navigation.navigate('Profile'); // Navigate to Register screen
+    navigation.navigate('Register'); // Navigate to Register screen
   };
 
   return (
