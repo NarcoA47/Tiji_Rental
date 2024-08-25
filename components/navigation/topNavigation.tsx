@@ -17,20 +17,29 @@ import {jwtDecode} from 'jwt-decode';
 
 
 export default function Naviagtion() {
-  return (
     // Create a function the give async back function based on the screen presented
-    <TouchableOpacity>
+  const navigation = useNavigation();
+
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
+
+  return (
+    <TouchableOpacity onPress={handleGoBack}>
       <View style={styles.conatiner}>
-          <Ionicons style={styles.icon} name="chevron-back-circle" size={50} color="#0034BF" />
+        <Ionicons style={styles.icon} name="chevron-back-circle" size={50} color="#0034BF" />
       </View>
     </TouchableOpacity>
   )
 }
 export function WhiteNaviagtion() {
   const navigation = useNavigation()
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
   return (
     // Create a function the give async back function based on the screen presented
-    <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+    <TouchableOpacity onPress={handleGoBack}>
       <View style={styles.conatiner}>
         <View style={styles.row}>
           <Ionicons style={styles.icon} name="chevron-back-circle" size={50} color="#FFFFFF" />
@@ -42,9 +51,12 @@ export function WhiteNaviagtion() {
 }
 export function HistoryNaviagtion() {
   const navigation = useNavigation()
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
   return (
     // Create a function the give async back function based on the screen presented
-    <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+    <TouchableOpacity onPress={handleGoBack}>
       <View style={styles.conatiner}>
         <View style={styles.row}>
           <Ionicons style={styles.icon} name="chevron-back-circle" size={50} color="#FFFFFF" />
@@ -66,9 +78,13 @@ export function Close({onClose}){
 }
 
 export function PayNaviagtion() {
+  const navigation = useNavigation()
+  const handleGoBack = () => {
+    navigation.goBack();
+  };
   return (
     // Create a function the give async back function based on the screen presented
-    <TouchableOpacity>
+    <TouchableOpacity onPress={handleGoBack}>
       
       <View style={styles.parentContainer}>
           <Ionicons style={styles.icon} name="chevron-back-circle" size={50} color="#0034BF" />
@@ -83,9 +99,6 @@ export function MainNavigation() {
 
   useEffect(() => {
     const fetchUserName = async () => {
-
-      
-
       try {
         const userToken = await getToken(USER_TOKEN); // Ensure USER_TOKEN is the correct key
         if (userToken) {
@@ -237,8 +250,6 @@ export function ReturnNavigation() {
     </TouchableOpacity>
   )
 }
-
-
 
 const styles = StyleSheet.create({
 

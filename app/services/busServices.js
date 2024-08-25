@@ -20,7 +20,7 @@ axios.get('https://your-backend-url.com/tickets/')
   });
 
 // Example: Verify a QR code
-axios.post('https://your-backend-url.com/tickets/verify/', {
+axios.post('https:///tickets/verify/', {
   data: 'your-qr-code-data',
   isApp: true,
 })
