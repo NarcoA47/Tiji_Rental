@@ -12,10 +12,10 @@ export default function SupportListContainer() {
   return (
     <ScrollView>
         <View>
-            <Text mt="lg" letterSpacing={2} color="gray700">
+            <Text mt="lg" letterSpacing={2} color="gray700" style={{ margin: 15, flex: 1 }}>
               {contactDetails.about}
             </Text>
-            <Text mt="lg" letterSpacing={2} color="gray700">With the coming of COVID-19 ,we believe in diconjesting bus stations and only allowing passengers who have reserved and booked tickets to their destination to freely move in those premises. This is in view to curb the spread of COVID-19.</Text>
+            <Text mt="lg" letterSpacing={2} color="gray700" style={{ margin: 15, flex: 1 }}>With the coming of COVID-19 ,we believe in diconjesting bus stations and only allowing passengers who have reserved and booked tickets to their destination to freely move in those premises. This is in view to curb the spread of COVID-19.</Text>
         </View>
     </ScrollView>
   );

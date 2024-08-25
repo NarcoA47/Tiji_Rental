@@ -30,6 +30,7 @@ import SupportScreen from '../screens/SupportScreen';
 import TiJiAnimateOpenningScreen from '../screens/TiJiAnimatedScreen';
 import LoginSuccess from '../screens/successfulLoginScreen';
 import OTPResetPassword from '../screens/otpResetPasswordScreen';
+import SettingScreen from '../screens/Setting';
 
 
 const Stack = createNativeStackNavigator();
@@ -70,6 +71,7 @@ export default function TabLayout() {
       <Stack.Screen name="AddCardSetting" component={AddCardScreen}/>
       <Stack.Screen name="History" component={HistoryScreen}/>
       <Stack.Screen name="Support" component={SupportScreen}/>
+      <Stack.Screen name="Settings" component={SettingScreen}/>
 
       </Stack.Navigator>
     </GestureHandlerRootView>

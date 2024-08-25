@@ -2,6 +2,7 @@ import { SaveButton } from '@/components/button';
 import { HistorySettingMainNavigation } from '@/components/navigation/topNavigation';
 import React, { useState } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
+import TicketingContainer from '../components/history/list';
 
 
 
@@ -9,10 +10,9 @@ function HistoryScreen() {
 
     return (
 
-        <View>
+        <View style={{ backgroundColor: '#FFFF', flex: 1 }}>
             <HistorySettingMainNavigation/>
-            
-            {/* <SaveButton/> */}
+            <TicketingContainer/>
         </View>
     );
 }
