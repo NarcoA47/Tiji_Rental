@@ -1,6 +1,8 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const USER_TOKEN = 'userToken';
+export const ACCESS_TOKEN = 'accessToken';
+// export const USERNAME = 'userName';
 export const REFRESH_TOKEN = 'refreshToken';
 export const GET_STARTED_TOKEN = 'getStartedToken';
 export const DEVICE_TOKEN = 'deviceToken';
@@ -26,12 +28,17 @@ export const getToken = async (key) => {
 };
 
 export const setToken = async (key, value) => {
-  if (token) {
+  if (token) { 
     try {
-      await AsyncStorage.setItem(key, token);
+      //  = await AsyncStorage.setItem(key);
+       const token = await AsyncStorage.setItem(key, value);
+      return token;
+
     } catch (error) {
       console.error('Error storing token:', error);
     }
+  } else {
+    console.error('No token provided to store');
   }
 };
 

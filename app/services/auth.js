@@ -19,7 +19,6 @@ export const login = async (username, password) => {
         },
       });
 
-        console.log('User credentials:', response.data);
         return response.data;
       } else {
         console.error('Access token not found');
@@ -64,6 +63,8 @@ export const signup = async (username, phonNumber, email, password, navigation) 
       // Store tokens in AsyncStorage
       await setToken(USER_TOKEN, access_token);
       await setToken('refreshToken', refresh_token);
+      await AsyncStorage.setItem('USERNAME', data.username); // Store username
+
 
       // Navigate to the OTP screen
       navigation.navigate('OTP');

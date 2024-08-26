@@ -1,8 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react'
+import {jwtDecode} from 'jwt-decode';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet, Text, View } from 'react-native';
 import { Image } from 'react-native-magnus';
 
 export default function ProfileContainer() {
+
+  const [username, setUserName] = useState('');
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      try {
+        // Retrieve the token from AsyncStorage
+        const token = await AsyncStorage.getItem('USER_TOKEN');
+
+        if (token) {
+          // Decode the token to get the user_id
+          const decodedToken = jwtDecode(token);
+          const userId = decodedToken.user_id; // Adjust based on token structure
+
+          if (userId) {
+            // Fetch user details from your backend
+            const response = await axios.get(`https://tiji-dev.herokuapp.com/api/v1/users/${userId}`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+
+            // Extract the username from the response
+            const userData = response.data;
+            if (userData && userData.username) {
+              setUserName(userData.username);
+            } else {
+              console.error('Username not found in user data');
+            }
+          } else {
+            console.error('User ID not found in token');
+          }
+        } else {
+          console.error('No token found');
+        }
+      } catch (error) {
+        console.error('Failed to fetch username', error);
+      }
+    };
+
+    fetchUserName();
+  }, []);
+
   return (
     <View style={styles.container}>
       <View style={styles.cardTwo}>
@@ -18,7 +64,7 @@ export default function ProfileContainer() {
             }}
           />
           <View style={styles.textContainer}>
-            <Text style={styles.leadText}>Wa'ane Austin Mbale</Text>
+            <Text style={styles.leadText}>{username}</Text>
             <Text style={styles.descriptionText}>@GhostCypher</Text>
           </View>
         </View>

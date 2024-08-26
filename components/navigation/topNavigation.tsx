@@ -12,8 +12,10 @@ import { useNavigation } from 'expo-router';
 // import { useDispatch, useSelector } from 'react-redux';
 import ProfileContainer from '@/app/components/profile/container';
 import EditProfileContainer from '@/app/components/profile/edit';
-import { getToken, USER_TOKEN } from '@/app/services/apiTokens';
+import { ACCESS_TOKEN, getToken, USER_TOKEN } from '@/app/services/apiTokens';
 import {jwtDecode} from 'jwt-decode';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
 export default function Naviagtion() {
@@ -100,19 +102,43 @@ export function MainNavigation() {
   useEffect(() => {
     const fetchUserName = async () => {
       try {
-        const userToken = await getToken(USER_TOKEN); // Ensure USER_TOKEN is the correct key
-        if (userToken) {
-          // Decode the token to get the username
-          const decodedToken = jwtDecode(userToken);
-          setUserName(decodedToken.username); // Adjust based on your token structure
+        // Retrieve the token from AsyncStorage
+        const token = await AsyncStorage.getItem('USER_TOKEN');
+
+        if (token) {
+          // Decode the token to get the user_id
+          const decodedToken = jwtDecode(token);
+          const userId = decodedToken.user_id; // Adjust based on token structure
+
+          if (userId) {
+            // Fetch user details from your backend
+            const response = await axios.get(`https://tiji-dev.herokuapp.com/api/v1/users/${userId}`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+
+            // Extract the username from the response
+            const userData = response.data;
+            if (userData && userData.username) {
+              setUserName(userData.username);
+            } else {
+              console.error('Username not found in user data');
+            }
+          } else {
+            console.error('User ID not found in token');
+          }
+        } else {
+          console.error('No token found');
         }
       } catch (error) {
-        console.error('Failed to fetch user name', error);
+        console.error('Failed to fetch username', error);
       }
     };
 
     fetchUserName();
   }, []);
+  
 
   return (
     <View style={styles.mainContainer}>
@@ -125,7 +151,13 @@ export function MainNavigation() {
           <EvilIcons
             name="user"
             size={40}
-            onPress={() => navigation.navigate(username ? 'Profile' : 'Login')}
+            onPress={() => {
+              if (username) {
+                navigation.navigate('Profile');
+              } else {
+                navigation.navigate('Login');
+              }
+            }}
             color="white"
           />
           <Text style={styles.subText}>{username || 'Login'}</Text>
@@ -197,6 +229,8 @@ export function HeaderMainNavigation() {
   )
 }
 export function ProfileMainNavigation() {
+
+  
   return (
     <View style={styles.profileConatiner}>
       <View style={styles.adjucentContainer}>
