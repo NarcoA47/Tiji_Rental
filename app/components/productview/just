@@ -1,0 +1,30 @@
+<View style={styles.busManager}>
+        <View style={styles.busItem}>
+          <View style={styles.busItemHeader}>
+            <Text style={styles.busName}>{item.company}</Text>
+            <Text style={styles.busPriceHeader}>K{item.ticket_price}.00</Text>
+          </View>
+          <Text style={styles.busDetails}>{item.seats} of {item.total_seats} Seats Available</Text>
+          <View style={styles.route}>
+            <View style={styles.routeInfo}>
+              <Text style={styles.location}>{item.current_location}</Text>
+            </View>
+            <View style={styles.routeIcon}>
+              <View style={styles.routeUse}>
+                <View style={styles.dots} />
+                <View style={styles.dots} />
+                <View style={styles.dots} />
+                <View style={styles.dots} />
+                <FontAwesome6 name="train" size={24} color="#800080" />
+                <View style={styles.dots} />
+                <View style={styles.dots} />
+                <View style={styles.dots} />
+                <View style={styles.dots} />
+              </View>
+              <Text style={styles.duration}>{item.departure_time}</Text>
+            </View>
+            <View style={styles.routeInfo}>
+              <Text style={styles.location}>{item.where_to}</Text>
+            </View>
+          </View>
+        </View>

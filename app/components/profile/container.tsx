@@ -13,25 +13,26 @@ export default function ProfileContainer() {
     const fetchUserName = async () => {
       try {
         // Retrieve the token from AsyncStorage
-        const token = await AsyncStorage.getItem('USER_TOKEN');
+        const accessToken = await AsyncStorage.getItem('access_token');
 
-        if (token) {
+        if (accessToken) {
           // Decode the token to get the user_id
-          const decodedToken = jwtDecode(token);
-          const userId = decodedToken.user_id; // Adjust based on token structure
+          const decodedToken = jwtDecode(accessToken);
+          // const userId = decodedToken.accessToken; // Adjust based on token structure
 
-          if (userId) {
+          if (decodedToken) {
             // Fetch user details from your backend
-            const response = await axios.get(`https://tiji-dev.herokuapp.com/api/v1/users/${userId}`, {
+            const response = await axios.get(`https://tiji-dev.herokuapp.com/api/v1/users/login/`, {
               headers: {
-                Authorization: `Bearer ${token}`
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
               }
             });
 
             // Extract the username from the response
-            const userData = response.data;
-            if (userData && userData.username) {
-              setUserName(userData.username);
+            const decodedToken = response.data;
+            if (decodedToken && decodedToken.username) {
+              setUserName(decodedToken.username);
             } else {
               console.error('Username not found in user data');
             }

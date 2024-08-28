@@ -1,7 +1,7 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 import ImageBanner from '../components/successful/imageBanner'
-import { BusHomeContinue } from '@/components/button'
+import { BusHomeContinue, Continue } from '@/components/button'
 import LoginSuccessfullTextMessage from '../components/successful/LogintextManager '
 
 
@@ -10,7 +10,7 @@ function LoginSuccess() {
     <View>
         <ImageBanner/>
         <LoginSuccessfullTextMessage/>
-        <BusHomeContinue/>
+        <Continue/>
     </View>
   )
 }

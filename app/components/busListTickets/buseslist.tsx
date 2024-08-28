@@ -1,147 +1,152 @@
-import React from 'react';
-import { View, Text, FlatList, Button, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, FlatList, Button, TextInput, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
 import { useNavigation } from 'expo-router';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export default function BusListContainer() {
-    const dropdownRef = React.createRef();
-    const navigation = useNavigation()
+const BusListContainer = () => {
+  const navigation = useNavigation();
+  const [busesData, setBusesData] = useState([]);
+  const [ticketCount, setTicketCount] = useState({});
+  const [searchParams, setSearchParams] = useState({ from: '', to: '' });
+  const [loading, setLoading] = useState(false);  // Loading state
 
-    const busesData = [
-        { id: '1', name: 'Euro Bus Services', price: 250, seatsAvailable: 3, totalNumberofSeats: 10, time: '08:45 AM', from: 'Lusaka', to: 'Kabwe' },
-        { id: '2', name: 'Power Tools Bus Services', price: 250, seatsAvailable: 3, totalNumberofSeats: 13, time: '08:45 AM', from: 'Mazabuka', to: 'Lusaka' },
-        { id: '3', name: 'Shalom Bus Services', price: 250, seatsAvailable: 3, totalNumberofSeats: 15, time: '08:45 AM', from: 'Ndola', to: 'Kitwe' },
-        { id: '4', name: 'Euro Bus Services', price: 250, seatsAvailable: 3, totalNumberofSeats: 20, time: '08:45 AM', from: 'Monze', to: 'Choma' },
-        { id: '5', name: 'Euro Bus Services', price: 250, seatsAvailable: 3, totalNumberofSeats: 25, time: '08:45 AM', from: 'Mongu', to: 'Impika' },
-    ];
-    const [ticketCount, setTicketCount] = React.useState({});
-  
-    const handleIncrease = (id) => {
-      // setTicketCount((prev) => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
-    };
-  
-    const handleDecrease = (id) => {
-      setTicketCount((prev) => {
-        if (prev[id] > 0) {
-          return { ...prev, [id]: prev[id] - 1 };
-        }
-        return prev;
-      });
-    };
-  
-    const handleBuy = (name, count) => {
-      if (count > 0) {
-        alert(`Purchased ${count} tickets for ${name}`);
+  const fetchBusData = async () => {
+    setLoading(true); // Start loading
+    try {
+      const accessToken = await AsyncStorage.getItem('access_token');
+      if (accessToken) {
+        const response = await axios.get('https://tiji-dev.herokuapp.com/api/v1/buses/', {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
+          },
+          params: {
+            from: searchParams.from,
+            to: searchParams.to,
+          },
+        });
+
+        console.log('API Response:', response.data.results);
+        setBusesData(response.data.results);
       } else {
-        alert('Please select at least one ticket.');
+        console.error('Access token not found');
       }
-    };
-  
-    const [route, setRoute] = React.useState({ from: 'Lusaka', to: 'Kabwe', date: '8th July 2024' });
-    // const buses = [
-    //   { id: '1', name: 'Bus A', time: '08:00 AM', price: 'ZMW 100' },
-    //   { id: '2', name: 'Bus B', time: '10:00 AM', price: 'ZMW 120' },
-    //   { id: '3', name: 'Bus C', time: '01:00 PM', price: 'ZMW 110' },
-    // ];
-  
-    const changeRoute = () => {
-      // Logic to change route (mocked for example)
-      setRoute({ from: 'Lusaka', to: 'Kabwe', date: '10th July 2024' });
-    };
-  
-    const renderBusItem = ({ item }) => {
-      const count = ticketCount[item.id] || 0;
-      return (
-        <View style={styles.busManager}>
-          <View style={styles.busItem}>
-            <View style={styles.busItemHeader}>
-              <Text style={styles.busName}>{item.name}</Text>
-              <Text style={styles.busPriceHeader}>K{item.price}.00</Text>
-            </View>
-            <Text style={styles.busDetails}>{item.seatsAvailable} of {item.totalNumberofSeats} Seats Available</Text>
-            <View>
+    } catch (error) {
+      console.error('Error fetching bus data:', error);
+    } finally {
+      setLoading(false); // Stop loading
+    }
+  };
+
+  const handleSearch = () => {
+    fetchBusData();
+  };
+
+  const renderBusItem = ({ item }) => {
+    const count = ticketCount[item.id] || 0;
+    return (
+      <View style={styles.busManager}>
+        <View style={styles.busItem}>
+          <View style={styles.busItemHeader}>
+            <Text style={styles.busName}>{item.company}</Text>
+            <Text style={styles.busPriceHeader}>K{item.ticket_price}.00</Text>
+          </View>
+          <Text style={styles.busDetails}>{item.seats} of {item.total_seats} Seats Available</Text>
           <View style={styles.route}>
             <View style={styles.routeInfo}>
-            <Text style={styles.location}>{item.from}</Text>
-              {/* <Text style={styles.time}>3:00 PM</Text> */}
+              <Text style={styles.location}>{item.current_location}</Text>
             </View>
             <View style={styles.routeIcon}>
               <View style={styles.routeUse}>
-              <View style={styles.dots}/>
-              <View style={styles.dots}/>
-              <View style={styles.dots}/>
-              <View style={styles.dots}/>
-              <FontAwesome6 name="train" size={24} color="#800080" />
-              <View style={styles.dots}/>
-              <View style={styles.dots}/>
-              <View style={styles.dots}/>
-              <View style={styles.dots}/>
+                <View style={styles.dots} />
+                <View style={styles.dots} />
+                <View style={styles.dots} />
+                <View style={styles.dots} />
+                <FontAwesome6 name="train" size={24} color="#800080" />
+                <View style={styles.dots} />
+                <View style={styles.dots} />
+                <View style={styles.dots} />
+                <View style={styles.dots} />
               </View>
-              <Text style={styles.duration}>{item.time}</Text>
+              <Text style={styles.duration}>{item.departure_time}</Text>
             </View>
             <View style={styles.routeInfo}>
-              <Text style={styles.location}>{item.to}</Text>
-              {/* <Text style={styles.time}>12:00 AM</Text> */}
+              <Text style={styles.location}>{item.where_to}</Text>
             </View>
-            </View>
-
-            </View>
-          </View>
-
-          <View style={styles.ticketManager}>
-          <TouchableOpacity style={styles.buyButton} onPress={() => navigation.navigate('PassengerDetails')}>
-              <Text style={styles.buyButtonText} >BUY</Text>
-            </TouchableOpacity>
-
-            <Text style={styles.numberText}>Number Of Tickets</Text>
-
-            <View style={styles.ticketCounter}>
-              <TouchableOpacity onPress={() => handleDecrease(item.id)} style={styles.counterButtonLeft}>
-                <Text>-</Text>
-              </TouchableOpacity>
-              <Text>{count}</Text>
-              <TouchableOpacity onPress={() => handleIncrease(item.id)} style={styles.counterButtonRight}>
-                <Text>+</Text>
-              </TouchableOpacity>
-            </View>
-            
           </View>
         </View>
-      );
-    };
-  
-  return (
-    <ScrollView>
-        {/* <View style={styles.subheaderContainer}>
-            <View style={styles.grayLine} />
-        </View> */}
-        <View style={styles.container}>
-        <Text style={styles.title}>Bus Ticket</Text>
-        <View style={styles.routeContainer}>
-          <View>
-            <Text style={styles.routingText}>{`${route.from} → ${route.to}`}</Text>
-            <Text>{route.date}</Text>
+
+        <View style={styles.ticketManager}>
+          <TouchableOpacity style={styles.buyButton} onPress={() => navigation.navigate('PassengerDetails')}>
+            <Text style={styles.buyButtonText}>BUY</Text>
+          </TouchableOpacity>
+          <Text style={styles.numberText}>Number Of Tickets</Text>
+          <View style={styles.ticketCounter}>
+            <TouchableOpacity onPress={() => handleDecrease(item.id)} style={styles.counterButtonLeft}>
+              <Text>-</Text>
+            </TouchableOpacity>
+            <Text>{count}</Text>
+            <TouchableOpacity onPress={() => handleIncrease(item.id)} style={styles.counterButtonRight}>
+              <Text>+</Text>
+            </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.routeChangeBtn} onPress={changeRoute}>
-            <Text style={styles.routeChangetxt}>Change</Text>
+        </View>
+      </View>
+    );
+  };
+
+  return (
+    <ScrollView style={styles.container}>
+      <View style={styles.innerContainer}>
+        <Text style={styles.title}>Bus Ticket</Text>
+        <View style={styles.searchContainer}>
+          <TextInput
+            style={styles.input}
+            placeholder="From"
+            value={searchParams.from}
+            onChangeText={(text) => setSearchParams({ ...searchParams, from: text })}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="To"
+            value={searchParams.to}
+            onChangeText={(text) => setSearchParams({ ...searchParams, to: text })}
+          />
+          <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
+            <Text style={styles.searchButtonText}>Search</Text>
           </TouchableOpacity>
         </View>
-        <Text style={styles.subtitle}>Available Buses</Text>
+
+        {loading ? (
+          <ActivityIndicator size="large" color="#0056b3" />
+        ) : (!searchParams.from && !searchParams.to) ? (
+          <Text style={styles.placeholderText}>Please enter 'From' and 'To' locations to search for buses.</Text>
+        ) : (busesData.length === 0) ? (
+          <Text style={styles.placeholderText}>No buses found for the specified route.</Text>
+        ) : (
           <FlatList
             data={busesData}
             renderItem={renderBusItem}
-            keyExtractor={(item) => item.id}
+            keyExtractor={(item) => item.id.toString()}
+            contentContainerStyle={styles.flatListContent}
+            style={styles.flatList}
           />
+        )}
       </View>
     </ScrollView>
   );
-}
+};
+
+export default BusListContainer;
 
 const styles = StyleSheet.create({
     container: {
         padding: 16,
-        backgroundColor: '#fff',
+        backgroundColor: '#ffffff',
       },
+
       header: {
         fontSize: 24,
         fontWeight: 'bold',
@@ -176,6 +181,46 @@ const styles = StyleSheet.create({
       busPriceHeader: {
         fontSize: 12,
         fontWeight: 'bold',
+      },
+
+      title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,
+      },
+
+      searchContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 20,
+      },
+
+      searchButton: {
+        backgroundColor: '#0056b3',
+        padding: 10,
+        borderRadius: 8,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+
+      searchButtonText: {
+        color: '#fff',
+        fontWeight: 'bold',
+      },
+
+      placeholderText: {
+        textAlign: 'center',
+        fontSize: 16,
+        color: '#888',
+        marginTop: 20,
+      },
+
+      input: {
+        borderWidth: 1,
+        borderColor: '#ddd',
+        borderRadius: 8,
+        padding: 10,
+        width: '40%',
       },
 
       busName: {
@@ -235,11 +280,6 @@ const styles = StyleSheet.create({
       buyButtonText: {
         color: '#fff',
         fontWeight: 'bold',
-      },
-      title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
       },
       routeContainer: {
         flexDirection: 'row',
@@ -319,6 +359,20 @@ const styles = StyleSheet.create({
       routingText: {
         fontSize: 20,
         fontWeight: 'bold'
+      },
+      filterInput: {
+        borderColor: '#ddd',
+        borderWidth: 1,
+        borderRadius: 5,
+        padding: 8,
+        marginBottom: 10,
+      },
+
+      flatListContent: {
+        paddingBottom: 20,
+      },
+      flatList: {
+        backgroundColor: '#f5f5f5',
       },
 });
 

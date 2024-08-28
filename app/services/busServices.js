@@ -1,4 +1,4 @@
-import axios from 'axios';
+  import axios from 'axios';
 
 const fetchBuses = async (from, to) => {
   try {

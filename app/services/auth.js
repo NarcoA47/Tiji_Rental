@@ -1,48 +1,34 @@
 import apiClient from './apiClient';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { USER_TOKEN, setToken, removeToken } from '../services/apiTokens'; // Assuming you've created apiTokens.js
+import { USER_TOKEN, REFRESH_TOKEN, setToken, removeToken } from '../services/apiTokens'; // Assuming you've created apiTokens.js
 
 export const login = async (username, password) => {
   try {
-    // const response = await axios.post('https://tiji-dev.herokuapp.com/api/v1/users/login/', { username, password });
-
-
-    const accessToken = await AsyncStorage.getItem(USER_TOKEN);
-    if (accessToken) {
-
-      const response = await axios.post('https://tiji-dev.herokuapp.com/api/v1/users/login/', {
-        username, 
-        password,
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
-
-        return response.data;
-      } else {
-        console.error('Access token not found');
+    // Make the login request to obtain a new token
+    const response = await axios.post('https://tiji-dev.herokuapp.com/api/v1/users/login/', {
+      username, 
+      password
+    }, {
+      headers: {
+        'Content-Type': 'application/json',
       }
-  //   if (response.status === 200) {
-  //     const { access_token, refresh_token } = response.data;
+    });
 
-  //     // Store tokens in AsyncStorage
-  //     await setToken(USER_TOKEN, access_token);
-  //     await setToken(REFRESH_TOKEN, refresh_token);
+    // Check if the response contains the expected tokens
+    const { access_token, refresh_token } = response.data;
 
-  //     return response.data;
+    if (access_token) {
+      // Store the tokens in AsyncStorage
+      await AsyncStorage.setItem('access_token', access_token);
+      await AsyncStorage.setItem('refresh_token', refresh_token);
+      return response.data;
+    } else {
+      console.error('Login failed: Tokens not found in response');
+    }
 
-  //   } else {
-  //     throw new Error('Login failed. Please check your credentials.');
-  //   }
   } catch (error) {
     console.error('Error logging in:', error);
-    if (error.response) {
-      console.error('Error response data:', error.response.data);
-      throw error.response.data;
-    } else {
-      throw new Error('Network Error');
-    }
   }
 };
 
@@ -62,7 +48,7 @@ export const signup = async (username, phonNumber, email, password, navigation) 
 
       // Store tokens in AsyncStorage
       await setToken(USER_TOKEN, access_token);
-      await setToken('refreshToken', refresh_token);
+      await setToken(REFRESH_TOKEN, refresh_token);
       await AsyncStorage.setItem('USERNAME', data.username); // Store username
 
 

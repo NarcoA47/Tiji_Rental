@@ -126,33 +126,16 @@ export const ResetPasswordButton: React.FC<ResetPasswordButtonProps> = ({ onPres
 
   export function Continue() {
     const navigation = useNavigation()
-    // const [code, setCode] = React.useState('');
-    // const { phoneNumber } = route.params;
 
-    // const handleVerify = async () => {
-    //   try {
-    //     const response = await axios.post('http://your-django-backend-url/api/verify_code/', {
-    //       phone_number: phoneNumber,
-    //       code: code,
-    //     });
-    //     if (response.status === 200) {
-    //       // Verification successful, navigate to the next screen
-    //       navigation.navigate('Success'); // replace with your target screen
-    //     } else {
-    //       console.error('Invalid code');
-    //     }
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // };
     return (
       <View>
-          <TouchableOpacity style={styles.buttonManager} onPress={() => navigation.navigate('Success')}>
+          <TouchableOpacity style={styles.buttonManager} onPress={() => navigation.navigate('Product')}>
               <Text style={styles.buttonText}>Continue</Text>
           </TouchableOpacity>
       </View>
     )
   }
+  
   export function BusHomeContinue() {
     const navigation = useNavigation()
     return (

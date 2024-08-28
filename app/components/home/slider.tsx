@@ -11,7 +11,7 @@ function Slider() {
   return (
     <View style={styles.container}>
         <View style={styles.cardOne}>
-            <TouchableOpacity onPress={() => navigation.navigate('AuthOption')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Login')}>
             <View style={styles.contentOne}>
                 <Text style={styles.leadText}>Tickets</Text>
                 <Text style={styles.descriptionText}>Buy your ticket and explore</Text>
@@ -20,7 +20,7 @@ function Slider() {
             </TouchableOpacity>
         </View>
         <View style={styles.cardTwo}>
-            <TouchableOpacity onPress={() => navigation.navigate('ProductView')}>
+            <TouchableOpacity onPress={() => navigation.navigate('AuthOption')}>
                 <View style={styles.contentOne}>
                     <Text style={styles.leadText}>Car Hire</Text>
                     <Text style={styles.descriptionText}>Rent Your Car at a cost</Text>

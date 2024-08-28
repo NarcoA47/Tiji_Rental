@@ -1,22 +1,46 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import React, {useState, useEffect} from 'react'
+import axios from 'axios';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TouchableOpacity, StyleSheet, Image, ActivityIndicator, FlatList } from 'react-native';
 
 export default function MoreCards() {
-
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const navigation = useNavigation()
+  const navigation = useNavigation();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('https://your-api-url.com/endpoint');
-        setData(response.data);
-        setLoading(false);
+        const accessToken = await AsyncStorage.getItem('access_token');
+        if (accessToken) {
+          const response = await axios.get('https://tiji-dev.herokuapp.com/api/v1/cars/', {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${accessToken}`,
+            },
+          });
+          console.log('API Response:', response.data); // Log response data
+
+          // Assuming the relevant data is in response.data.results
+          const items = response.data.results.map(item => ({
+            id: item.id,
+            make: item.result.make,
+            model: item.result.model,
+            daily_rate: item.result.daily_rate,
+          }));
+
+          setData(items); // Update state with processed data
+        } else {
+          console.error('Access token not found');
+          setError('Access token not found');
+        }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error('Error fetching data:', error.response ? error.response.data : error.message);
+        setError('Error fetching data. Please try again later.');
+      } finally {
         setLoading(false);
       }
     };
@@ -28,119 +52,64 @@ export default function MoreCards() {
     return <ActivityIndicator size="large" color="#0000ff" />;
   }
 
+  if (error) {
+    return <Text style={styles.errorText}>{error}</Text>;
+  }
+
   return (
-    <View style={styles.conatiner}>
-        <View style={styles.cardLeadManager}>
-          <FlatList data={data} keyExtractor={(item, index) => index.toString()} 
-            renderItem={({ item }) => (
-          <View style={styles.cardManager}>
-            <Text>Porsche Cayman </Text>
-            <View>
-            <Image source={require('../../../assets/images/homeScreen/Car-hire.png')} style={styles.imageContainer}/>
-            </View>
-            <View  style={styles.footerContainer}>
+    <View style={styles.container}>
+      {data.length === 0 ? (
+        <Text style={styles.noDataText}>No cars available at the moment</Text>
+      ) : (
+        <FlatList
+          data={data}
+          keyExtractor={(item) => item.id.toString()} // Ensure 'id' is unique
+          renderItem={({ item }) => (
+            <View style={styles.cardManager}>
+              <Text>{item.make} {item.model}</Text>
               <View>
-                <Text style={styles.time}>Daily</Text>
-                <Text style={styles.price}>K250</Text>
+                <Image
+                  source={require('../../../assets/images/homeScreen/Car-hire.png')}
+                  style={styles.imageContainer}
+                />
               </View>
-              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
-                <Text style={styles.textColor}>Rent Now</Text>
-              </TouchableOpacity>
-            </View>
-          </View>)}
-          />
-          {/* <View style={styles.cardManager}>
-            <Text>Porsche Cayman </Text>
-            <View>
-            <Image source={require('../../../assets/images/homeScreen/Car-hire.png')} style={styles.imageContainer}/>
-            </View>
-            <View  style={styles.footerContainer}>
-              <View>
-                <Text style={styles.time}>Daily</Text>
-                <Text style={styles.price}>K250</Text>
+              <View style={styles.footerContainer}>
+                <View>
+                  <Text style={styles.time}>Daily</Text>
+                  <Text style={styles.price}>{item.daily_rate}</Text>
+                </View>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate('Checkout')}
+                  style={styles.buttonContainer}
+                >
+                  <Text style={styles.textColor}>Rent Now</Text>
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
-                <Text style={styles.textColor}>Rent Now</Text>
-              </TouchableOpacity>
             </View>
-          </View>
-          <View style={styles.cardManager}>
-            <Text>Porsche Cayman </Text>
-            <View>
-            <Image source={require('../../../assets/images/homeScreen/Car-hire.png')} style={styles.imageContainer}/>
-            </View>
-            <View  style={styles.footerContainer}>
-              <View>
-                <Text style={styles.time}>Daily</Text>
-                <Text style={styles.price}>K250</Text>
-              </View>
-              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
-                <Text style={styles.textColor}>Rent Now</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.cardManager}>
-            <Text>Porsche Cayman </Text>
-            <View>
-            <Image source={require('../../../assets/images/homeScreen/Car-hire.png')} style={styles.imageContainer}/>
-            </View>
-            <View  style={styles.footerContainer}>
-              <View>
-                <Text style={styles.time}>Daily</Text>
-                <Text style={styles.price}>K250</Text>
-              </View>
-              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
-                <Text style={styles.textColor}>Rent Now</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.cardManager}>
-            <Text>Porsche Cayman </Text>
-            <View>
-            <Image source={require('../../../assets/images/homeScreen/Car-hire.png')} style={styles.imageContainer}/>
-            </View>
-            <View  style={styles.footerContainer}>
-              <View>
-                <Text style={styles.time}>Daily</Text>
-                <Text style={styles.price}>K250</Text>
-              </View>
-              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
-                <Text style={styles.textColor}>Rent Now</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-          <View style={styles.cardManager}>
-            <Text>Porsche Cayman </Text>
-            <View>
-            <Image source={require('../../../assets/images/homeScreen/Car-hire.png')} style={styles.imageContainer}/>
-            </View>
-            <View  style={styles.footerContainer}>
-              <View>
-                <Text style={styles.time}>Daily</Text>
-                <Text style={styles.price}>K250</Text>
-              </View>
-              <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
-                <Text style={styles.textColor}>Rent Now</Text>
-              </TouchableOpacity>
-            </View>
-          </View> */}
-        </View>
+          )}
+        />
+      )}
     </View>
-  )
+  );
 }
 
-
 const styles = StyleSheet.create({
-  conatiner: {
+  container: {
     backgroundColor: '#f5f5f5',
     margin: 10,
   },
-
-  cardLeadManager: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
+  noDataText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
+    color: '#666',
   },
-
+  errorText: {
+    textAlign: 'center',
+    marginTop: 20,
+    fontSize: 16,
+    color: 'red',
+  },
   cardManager: {
     flexBasis: '42%',
     backgroundColor: '#CCC9C9',
@@ -148,18 +117,14 @@ const styles = StyleSheet.create({
     margin: 10,
     padding: 10,
   },
-
   imageContainer: {
     width: 150,
     height: 120,
-    
   },
-
   footerContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
-
   buttonContainer: {
     backgroundColor: '#0034BF',
     margin: 4,
@@ -170,18 +135,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     width: 80,
   },
-
   textColor: {
-    color: '#ffffff'
+    color: '#ffffff',
   },
-
   time: {
     fontSize: 20,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
-
   price: {
     fontSize: 14,
-    fontWeight: 'bold'
+    fontWeight: 'bold',
   },
-})
+});

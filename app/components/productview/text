@@ -1,0 +1,15 @@
+<View style={styles.cardManager}>
+      <Text>{item.make}</Text> {/* Replace with actual car name field */}
+      <View>
+        <Image source={{ uri: item.image_url }} style={styles.imageContainer} /> {/* Replace with actual image field */}
+      </View>
+      <View style={styles.footerContainer}>
+        <View>
+          <Text style={styles.time}>Daily</Text>
+          <Text style={styles.price}>K{item.daily_rate}</Text>
+        </View>
+        <TouchableOpacity onPress={() => navigation.navigate('Checkout')} style={styles.buttonContainer}>
+          <Text style={styles.textColor}>Rent Now</Text>
+        </TouchableOpacity>
+      </View>
+    </View>

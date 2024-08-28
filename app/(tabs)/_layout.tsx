@@ -48,7 +48,7 @@ export default function TabLayout() {
       <Stack.Screen name="TiJi" component={TiJiAnimateOpenningScreen}/>
       <Stack.Screen name="OnBoardingScreen" component={OnBoardingScreen}/>
       <Stack.Screen name="Login" component={LoginScreen}/>
-      <Stack.Screen name="Product" component={ProductScreen}/>
+      <Stack.Screen name="Product" component={ProductView}/>
       <Stack.Screen name="Ticket" component={BusTicketApp}/>
       <Stack.Screen name="Home" component={HomeScreenMain}/>
       <Stack.Screen name="BusHome" component={BusHomeScreen}/>
