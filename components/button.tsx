@@ -129,7 +129,18 @@ export const ResetPasswordButton: React.FC<ResetPasswordButtonProps> = ({ onPres
 
     return (
       <View>
-          <TouchableOpacity style={styles.buttonManager} onPress={() => navigation.navigate('ResetPassword')}>
+          <TouchableOpacity style={styles.buttonManager} onPress={() => navigation.navigate('ProductView')}>
+              <Text style={styles.buttonText}>Continue</Text>
+          </TouchableOpacity>
+      </View>
+    )
+  }
+  export function CarContinue() {
+    const navigation = useNavigation()
+
+    return (
+      <View>
+          <TouchableOpacity style={styles.buttonManager} onPress={() => navigation.navigate('ProductView')}>
               <Text style={styles.buttonText}>Continue</Text>
           </TouchableOpacity>
       </View>
