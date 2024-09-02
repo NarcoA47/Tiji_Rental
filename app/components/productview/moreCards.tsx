@@ -25,23 +25,13 @@ export default function MoreCards() {
           });
           console.log('API Response:', response.data); // Log response data
 
-          // Assuming the relevant data is directly in response.data.results
+          // Assuming the relevant data is in response.data.results
           const items = response.data.results.map(item => ({
             id: item.id,
-<<<<<<< HEAD
-            make: item.make,
-            model: item.model,
-            daily_rate: item.daily_rate,
-            image_url: item.image_url, // Make sure to include the image URL
-=======
             make: item.make, // Assuming this structure
             model: item.model,
             daily_rate: item.daily_rate,
-<<<<<<< HEAD
             image_url: item.image_url,
-=======
->>>>>>> 592a075a5a3553b312c76b74e7f56ec74672b22f
->>>>>>> 3ad16931841b9883c44b8672c90d528ff8fc235e
           }));
 
           setData(items); // Update state with processed data
@@ -59,6 +49,29 @@ export default function MoreCards() {
 
     fetchData();
   }, []);
+
+  const handleRentNow = async (carId) => {
+    try {
+      const accessToken = await AsyncStorage.getItem('access_token');
+      if (accessToken) {
+        const response = await axios.get(`https://tiji-dev.herokuapp.com/api/v1/cars/${carId}/`, {
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${accessToken}`,
+          },
+        });
+        const carDetails = response.data;
+
+        navigation.navigate('Checkout', { carDetails }); // Navigate with car details
+      } else {
+        console.error('Access token not found');
+        setError('Access token not found');
+      }
+    } catch (error) {
+      console.error('Error fetching car details:', error.response ? error.response.data : error.message);
+      setError('Error fetching car details. Please try again later.');
+    }
+  };
 
   if (loading) {
     return <ActivityIndicator size="large" color="#0000ff" />;
@@ -81,11 +94,7 @@ export default function MoreCards() {
               <Text>{item.make} </Text>
               <View>
                 <Image
-<<<<<<< HEAD
-                  source={{ uri: item.image_url }} // Display dynamic image
-=======
                   source={{ uri: item.image_url }}  // Use the dynamic image URL
->>>>>>> 592a075a5a3553b312c76b74e7f56ec74672b22f
                   style={styles.imageContainer}
                   // defaultSource={require('../../../assets/images/homeScreen/Car-hire.png')} // Fallback image if image_url fails to load
                 />
@@ -93,10 +102,10 @@ export default function MoreCards() {
               <View style={styles.footerContainer}>
                 <View>
                   <Text style={styles.time}>Daily</Text>
-                  <Text style={styles.price}>${item.daily_rate}</Text>
+                  <Text style={styles.price}>{item.daily_rate}</Text>
                 </View>
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('Checkout')}
+                  onPress={() => handleRentNow(item.id)} // Call the function with the car ID
                   style={styles.buttonContainer}
                 >
                   <Text style={styles.textColor}>Rent Now</Text>
@@ -137,7 +146,6 @@ const styles = StyleSheet.create({
   imageContainer: {
     width: 150,
     height: 120,
-    borderRadius: 10, // Optionally add border radius for images
   },
   footerContainer: {
     flexDirection: 'row',

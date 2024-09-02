@@ -1,37 +1,94 @@
 import { BookNowButton } from '@/components/button'
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native'
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 export default function FooterManager() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const accessToken = await AsyncStorage.getItem('access_token');
+        if (accessToken) {
+          const carIds = [1, 2, 3]; // Replace with dynamic IDs if needed
+          const response = await axios.get(`https://tiji-dev.herokuapp.com/api/v1/company/cars/?ids=${carIds.join(',')}`, {
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${accessToken}`,
+            },
+          });
+
+          const items = response.data.map(item => ({
+            id: item.id,
+            make: item.make,
+            model: item.model,
+            daily_rate: item.daily_rate,
+            image_url: item.image_url,
+            company: item.company,// Include company data
+            category: item.category
+          }));
+
+          setData(items); // Update state with processed data
+        } else {
+          console.error('Access token not found');
+          setError('Access token not found');
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error.response ? error.response.data : error.message);
+        setError('Error fetching data. Please try again later.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <View style={styles.container}>
-        <View style={styles.textCanvas}>
+      {data.map((item) => (
+        <View key={item.id} style={styles.textCanvas}>
           <View style={styles.textContainer}>
             <View style={styles.leadText}>
-              <Text style={styles.textTitle}>Merceded AMG</Text>
-              <Text style={styles.textPrice}>K1,000/day</Text>
+              <Text style={styles.textTitle}>{item.make}</Text>
+              <Text style={styles.textPrice}>K{item.daily_rate}/day</Text>
             </View>
             <View>
-            <AntDesign name="staro" size={24} color="#ffffff" />
+              <AntDesign name="staro" size={24} color="#ffffff" />
             </View>
           </View>
           <View style={styles.secondaryTextContainer}>
             <Text style={styles.secondLeadText}>Description</Text>
-            <Text style={styles.secondText}>Wanna ride the coolest sports car in the world</Text>
+            <Text style={styles.secondText}>{item.category.description}</Text>
           </View>
           <View style={styles.finalTextContainer}>
             <Text style={styles.finalTextLead}>Company Info</Text>
-            <Text style={styles.finalText}>About, Contact Info, Location</Text>
+            <Text style={styles.finalText}>
+              {item.company.name}
+            </Text>
+            <Text style={styles.finalText}>
+              {item.company.about}, 
+            </Text>
+            <Text style={styles.finalText}>
+              {item.company.contact_number}
+            </Text>
           </View>
         </View>
-        <BookNowButton/>
+      ))}
+      <BookNowButton />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
-    
     container: {
       backgroundColor: '#0034BF',
       borderTopLeftRadius: 50,
@@ -49,9 +106,7 @@ const styles = StyleSheet.create({
       marginBottom: 10,
     },
 
-    leadText: {
-      
-    },
+    leadText: {},
     
     textTitle: {
       fontSize: 24,
@@ -95,4 +150,4 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       color: '#ffffff'
     },
-})
+});

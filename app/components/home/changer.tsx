@@ -80,14 +80,10 @@ const Changer = () => {
             <View>
                 <TextInput
                     placeholder={currentLocation}
-<<<<<<< HEAD
-                    onPress={() => setDropdownVisible(!dropdownVisible)}
-=======
                     p={10}
                     onPress={() => setDropdownVisible(!dropdownVisible)} 
                     onChangeText={(text) => setSearchParams({ ...searchParams, from: text })}
                     focusBorderColor="blue700"
->>>>>>> 592a075a5a3553b312c76b74e7f56ec74672b22f
                     style={styles.input}
                     value={currentLocation}
                     editable={false}
@@ -97,12 +93,9 @@ const Changer = () => {
                 <TextInput
                     placeholder={selectedLocation}
                     onPress={() => setDropdownVisible(!dropdownVisible)}
-<<<<<<< HEAD
-=======
                     onChangeText={(text) => setSearchParams({ ...searchParams, to: text })}
                     p={10}
                     focusBorderColor="blue700"
->>>>>>> 592a075a5a3553b312c76b74e7f56ec74672b22f
                     style={styles.input}
                     value={selectedLocation}
                     editable={false}// Set text color to white

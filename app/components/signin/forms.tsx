@@ -85,14 +85,9 @@ export default function SigninForms() {
                 <Text style={styles.inputText}>Phone Number</Text>
                     <TextInput
                     style={styles.input}
-<<<<<<< HEAD
-                    onChangeText={setPhoneNumber}
-                    value={phonNumber}
-=======
-                    focusBorderColor="blue700"
+                    // focusBorderColor="blue700"
                     onChangeText={setphone_number => setPhoneNumber(setphone_number)}
                     value={phone_number}
->>>>>>> 592a075a5a3553b312c76b74e7f56ec74672b22f
                     placeholder="e.g +260 968"
                     keyboardType="phone-pad"/>
             </View>
