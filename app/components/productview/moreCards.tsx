@@ -31,6 +31,7 @@ export default function MoreCards() {
             make: item.make, // Assuming this structure
             model: item.model,
             daily_rate: item.daily_rate,
+            image_url: item.image_url,
           }));
 
           setData(items); // Update state with processed data
@@ -67,7 +68,7 @@ export default function MoreCards() {
           keyExtractor={(item) => item.id.toString()} // Ensure 'id' is unique
           renderItem={({ item }) => (
             <View style={styles.cardManager}>
-              <Text>{item.make} {item.model}</Text>
+              <Text>{item.make} </Text>
               <View>
                 <Image
                   source={{ uri: item.image_url }}  // Use the dynamic image URL
