@@ -28,16 +28,13 @@ export default function MoreCards() {
           // Assuming the relevant data is directly in response.data.results
           const items = response.data.results.map(item => ({
             id: item.id,
-<<<<<<< HEAD
             make: item.make,
             model: item.model,
             daily_rate: item.daily_rate,
-            image_url: item.image_url, // Make sure to include the image URL
-=======
+            image_url: item.image_url, 
             make: item.make, // Assuming this structure
             model: item.model,
             daily_rate: item.daily_rate,
->>>>>>> 592a075a5a3553b312c76b74e7f56ec74672b22f
           }));
 
           setData(items); // Update state with processed data
@@ -77,11 +74,8 @@ export default function MoreCards() {
               <Text>{item.make} {item.model}</Text>
               <View>
                 <Image
-<<<<<<< HEAD
-                  source={{ uri: item.image_url }} // Display dynamic image
-=======
-                  source={{ uri: item.image_url }}  // Use the dynamic image URL
->>>>>>> 592a075a5a3553b312c76b74e7f56ec74672b22f
+                  source={{ uri: item.image_url }}
+                  source={{ uri: item.image_url }} 
                   style={styles.imageContainer}
                   // defaultSource={require('../../../assets/images/homeScreen/Car-hire.png')} // Fallback image if image_url fails to load
                 />
