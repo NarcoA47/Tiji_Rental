@@ -1,4 +1,4 @@
-import { passwordReset } from '@/app/services/auth';
+import { passwordreset } from '@/app/services/auth';
 import { PasswordButton } from '@/components/button';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
@@ -8,10 +8,13 @@ export default function PasswordForms() {
 
     const [email, setEmail] = React.useState('');
     const navigation = useNavigation();
+    const [loading, setLoading] = useState(false);
+
     const handlePasswordReset = async () => {
+        setLoading(true);
         try {
-            const response = await passwordReset(email);
-            if (response.status === 200) {
+            const response = await passwordreset(email);
+            if (response) {
                 navigation.navigate('OTPResetPassword');
             }
         } catch (error) {

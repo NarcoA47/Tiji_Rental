@@ -16,7 +16,8 @@ export default function MoreCards() {
       try {
         const accessToken = await AsyncStorage.getItem('access_token');
         if (accessToken) {
-          const response = await axios.get('https://tiji-dev.herokuapp.com/api/v1/cars/', {
+          const carIds = [1, 2, 3]; // Replace with dynamic IDs if needed
+          const response = await axios.get(`https://tiji-dev.herokuapp.com/api/v1/cars/?ids=${carIds.join(',')}`, {
             headers: {
               'Content-Type': 'application/json',
               'Authorization': `Bearer ${accessToken}`,
@@ -27,10 +28,16 @@ export default function MoreCards() {
           // Assuming the relevant data is directly in response.data.results
           const items = response.data.results.map(item => ({
             id: item.id,
+<<<<<<< HEAD
             make: item.make,
             model: item.model,
             daily_rate: item.daily_rate,
             image_url: item.image_url, // Make sure to include the image URL
+=======
+            make: item.make, // Assuming this structure
+            model: item.model,
+            daily_rate: item.daily_rate,
+>>>>>>> 592a075a5a3553b312c76b74e7f56ec74672b22f
           }));
 
           setData(items); // Update state with processed data
@@ -70,8 +77,13 @@ export default function MoreCards() {
               <Text>{item.make} {item.model}</Text>
               <View>
                 <Image
+<<<<<<< HEAD
                   source={{ uri: item.image_url }} // Display dynamic image
+=======
+                  source={{ uri: item.image_url }}  // Use the dynamic image URL
+>>>>>>> 592a075a5a3553b312c76b74e7f56ec74672b22f
                   style={styles.imageContainer}
+                  // defaultSource={require('../../../assets/images/homeScreen/Car-hire.png')} // Fallback image if image_url fails to load
                 />
               </View>
               <View style={styles.footerContainer}>

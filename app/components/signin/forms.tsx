@@ -13,7 +13,7 @@ export default function SigninForms() {
 
     const [username, setUsername] = React.useState('');
     const [email, setEmail] = React.useState('');
-    const [phonNumber, setPhoneNumber] = useState('');
+    const [phone_number, setPhoneNumber] = useState('');
     const [password, setPassword] = React.useState("");
     const [isChecked, setChecked] = useState(false);
     const [passwordVisible, setPasswordVisible] = React.useState(false);
@@ -24,7 +24,7 @@ export default function SigninForms() {
 
     const handleSignup = async () => {
         try {
-          const response = await signup(username, phonNumber, email, password);
+          const response = await signup(username, phone_number, email, password);
           navigation.navigate('Login');
         }
         catch (error) {
@@ -85,8 +85,14 @@ export default function SigninForms() {
                 <Text style={styles.inputText}>Phone Number</Text>
                     <TextInput
                     style={styles.input}
+<<<<<<< HEAD
                     onChangeText={setPhoneNumber}
                     value={phonNumber}
+=======
+                    focusBorderColor="blue700"
+                    onChangeText={setphone_number => setPhoneNumber(setphone_number)}
+                    value={phone_number}
+>>>>>>> 592a075a5a3553b312c76b74e7f56ec74672b22f
                     placeholder="e.g +260 968"
                     keyboardType="phone-pad"/>
             </View>
