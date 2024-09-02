@@ -129,7 +129,7 @@ export const ResetPasswordButton: React.FC<ResetPasswordButtonProps> = ({ onPres
 
     return (
       <View>
-          <TouchableOpacity style={styles.buttonManager} onPress={() => navigation.navigate('BusHome')}>
+          <TouchableOpacity style={styles.buttonManager} onPress={() => navigation.navigate('ResetPassword')}>
               <Text style={styles.buttonText}>Continue</Text>
           </TouchableOpacity>
       </View>

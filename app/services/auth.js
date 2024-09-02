@@ -115,13 +115,14 @@ export const passwordreset = async (email) => {
 
 export const verifyPasswordResetCode = async (code) => {
   try {
-    const response = await apiClient.post('password-code-verify/', { code });
+    const response = await apiClient.post('users/password-code-verify/', { code });
     return response.data;
   } catch (error) {
     console.error('Error verifying password reset code:', error);
     throw error.response ? error.response.data : new Error('Network Error');
   }
 };
+
 
 export const logout = async (navigation) => {
   try {

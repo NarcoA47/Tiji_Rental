@@ -196,16 +196,16 @@ const styles = StyleSheet.create({
       },
 
       searchButton: {
-          backgroundColor: 'White',
-          padding: 10,
-          borderRadius: 27,
-          borderWidth:2,
-          borderColor: '#0056b3',
-          alignItems: 'center',
-          marginBottom: 10,
-          width: 100,
-          color: '#ffffff'
-        },
+        backgroundColor: 'White',
+        padding: 10,
+        borderRadius: 27,
+        borderWidth:2,
+        borderColor: '#0056b3',
+        alignItems: 'center',
+        marginBottom: 10,
+        width: 100,
+        color: '#ffffff'
+      },
   
 
       searchButtonText: {

@@ -4,12 +4,17 @@ import { Input } from 'react-native-magnus';
 
 import axios from 'axios';
 import { ResetPasswordButton } from '@/components/button';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function ResetPasswordForms({ navigation }) {
   const [newPassword, setNewPassword] = useState('');
   const [verifyPassword, setVerifyPassword] = useState('');
   const [loading, setLoading] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+};
   const handleResetPassword = async () => {
     if (newPassword !== verifyPassword) {
       Alert.alert('Error', 'Passwords do not match');
@@ -19,7 +24,7 @@ export default function ResetPasswordForms({ navigation }) {
     setLoading(true);
 
     try {
-      const response = await axios.post('https://your-backend-url.com/api/v1/password-reset/', {
+      const response = await axios.post('https://tiji-dev.herokuapp.com/api/v1/users/password-reset/', {
         password1: newPassword,
         password2: verifyPassword,
       });
@@ -55,7 +60,15 @@ export default function ResetPasswordForms({ navigation }) {
             style={styles.input}
             onChangeText={setNewPassword}
             value={newPassword}
-            secureTextEntry
+            secureTextEntry={!passwordVisible}
+            suffix={
+              <Ionicons
+                  name={passwordVisible ? 'eye' : 'eye-off'}
+                  size={24}
+                  color="gray"
+                  onPress={togglePasswordVisibility}
+              />
+          }
           />
         </View>
       </View>
@@ -67,7 +80,15 @@ export default function ResetPasswordForms({ navigation }) {
             style={styles.input}
             onChangeText={setVerifyPassword}
             value={verifyPassword}
-            secureTextEntry
+            secureTextEntry={!passwordVisible}
+            suffix={
+              <Ionicons
+                  name={passwordVisible ? 'eye' : 'eye-off'}
+                  size={24}
+                  color="gray"
+                  onPress={togglePasswordVisibility}
+              />
+          }
           />
         </View>
       </View>
