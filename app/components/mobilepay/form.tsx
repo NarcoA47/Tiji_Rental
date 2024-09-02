@@ -1,7 +1,7 @@
 import { PayButton } from '@/components/button';
 import React, { useState, useRef } from 'react';
-import { Image, View, Text, StyleSheet, ScrollView } from 'react-native';
-import { Input, Dropdown } from 'react-native-magnus';
+import { Image, View, Text, StyleSheet, ScrollView, TextInput } from 'react-native';
+// import { Input, Dropdown } from 'react-native-magnus';
 import axios from 'axios';
 
 export default function MobilePayForm() {
@@ -56,10 +56,9 @@ export default function MobilePayForm() {
                 <View style={styles.inputFormTwo}>
                     <View>
                         <Text style={styles.inputText}>Phone Number</Text>
-                        <Input
+                        <TextInput
                             style={styles.input}
                             onChangeText={setPhoneNumber}
-                            focusBorderColor="blue700"
                             value={phoneNumber}
                             placeholder="e.g +260 968"
                             keyboardType="phone-pad"
@@ -67,11 +66,9 @@ export default function MobilePayForm() {
                     </View>
                     <View>
                         <Text style={styles.inputText}>Amount</Text>
-                        <Input
+                        <TextInput
                             placeholder="11000"
                             onChangeText={setAmount}
-                            p={10}
-                            focusBorderColor="blue700"
                             style={styles.input}
                             value={amount}
                             keyboardType="numeric"
@@ -81,16 +78,14 @@ export default function MobilePayForm() {
 
                 <View>
                     <Text style={styles.inputText}>Mobile Provider</Text>
-                    <Input
+                    <TextInput
                         placeholder={mobileProvider}
                         onPress={() => setDropdownVisible(!dropdownVisible)}
-                        p={10}
-                        focusBorderColor="blue700"
                         style={styles.input}
                         value={mobileProvider}
                         editable={false}
                     />
-                    <Dropdown
+                    {/* <Dropdown
                         visible={dropdownVisible}
                         onClose={() => setDropdownVisible(false)}
                         title={
@@ -112,7 +107,7 @@ export default function MobilePayForm() {
                         <Dropdown.Option py="md" px="xl" block onPress={() => handleDropdownSelect('Zamtel')}>
                             Zamtel
                         </Dropdown.Option>
-                    </Dropdown>
+                    </Dropdown> */}
                 </View>
                 <PayButton onPress={initiatePayment}/>
             </View>

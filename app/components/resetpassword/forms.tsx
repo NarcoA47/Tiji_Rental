@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert, Button } from 'react-native';
-import { Input } from 'react-native-magnus';
+import { View, Text, StyleSheet, Alert, Button, TextInput } from 'react-native';
 
 import axios from 'axios';
 import { ResetPasswordButton } from '@/components/button';
@@ -55,8 +54,7 @@ export default function ResetPasswordForms({ navigation }) {
       <View style={styles.inputFormTwo}>
         <View>
           <Text style={styles.inputText}>New Password</Text>
-          <Input
-            focusBorderColor="blue700"
+          <TextInput
             style={styles.input}
             onChangeText={setNewPassword}
             value={newPassword}
@@ -75,8 +73,7 @@ export default function ResetPasswordForms({ navigation }) {
       <View style={styles.inputFormTwo}>
         <View>
           <Text style={styles.inputText}>Verify Password</Text>
-          <Input
-            focusBorderColor="blue700"
+          <TextInput
             style={styles.input}
             onChangeText={setVerifyPassword}
             value={verifyPassword}

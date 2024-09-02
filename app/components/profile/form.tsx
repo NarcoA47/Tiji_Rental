@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { TextInput } from 'react-native-paper';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Input } from 'react-native-magnus';
 
 export default function EditProfileForm() {
 
@@ -31,11 +29,7 @@ export default function EditProfileForm() {
         <View style={styles.inputFormTwo}>
             <View >
                 <TextInput
-                
-                label="Full Name"
-                activeOutlineColor='#0034BF'
                 onChangeText={setFirstName}
-                outlineColor='#0034BF'
                 value={firstName}
                 placeholder="Full Name"
                 />
@@ -44,7 +38,6 @@ export default function EditProfileForm() {
         <View style={styles.inputFormTwo}>
             <View >
                     <TextInput
-                    label="Username"
                     onChangeText={setUsername}
                     value={username}
                     placeholder="e.g Wayne29"
@@ -52,17 +45,13 @@ export default function EditProfileForm() {
             </View>
             <View >
                     <TextInput
-                    label="Phone Number(Required Field)"
                     onChangeText={onChangeNumber}
                     value={number}
-                    disabled
                     placeholder="e.g +260 968"
                     keyboardType="phone-pad"/>
             </View>
             <View >
                     <TextInput
-                    label="NRC(Optional)"
-                    
                     onChangeText={setEmail}
                     value={email}
                     placeholder="e.g austin23@gmail.com"
@@ -70,7 +59,6 @@ export default function EditProfileForm() {
             </View>
             <View>
                 <TextInput
-                label="Email"
                 onChangeText={text => setEmail(text)}
                 value={email}
                 placeholder="e.g austin23@gmail.com"

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Alert, ActivityIndicator } from 'react-native';
-import { Input, Text } from 'react-native-magnus';
+import { View, StyleSheet, Alert, ActivityIndicator, TextInput, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons'; 
 import { login } from '../../services/auth';
@@ -61,7 +60,7 @@ export default function SigninForms() {
             <View style={styles.inputFormTwo}>
                 <View>
                     <Text style={styles.inputText}>Phone Number</Text>
-                    <Input
+                    <TextInput
                         placeholder="e.g +260 968"
                         onChangeText={setUsername}
                         focusBorderColor="blue700"
@@ -72,7 +71,7 @@ export default function SigninForms() {
                 </View>
                 <View>
                     <Text style={styles.inputText}>Password</Text>
-                    <Input
+                    <TextInput
                         onChangeText={setPassword}
                         placeholder="Enter Password"
                         p={10}
@@ -80,7 +79,7 @@ export default function SigninForms() {
                         style={styles.input}
                         value={password}
                         secureTextEntry={!passwordVisible}
-                        keyboardType="visible-password"
+                        keyboardType="password"
                         suffix={
                             <Ionicons
                                 name={passwordVisible ? 'eye' : 'eye-off'}

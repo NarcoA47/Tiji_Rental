@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View, Switch, Alert, Modal, useColorScheme } from 'react-native';
-import { Input } from 'react-native-magnus';
+import { ScrollView, StyleSheet, Text, View, Switch, Alert, Modal, useColorScheme, TextInput } from 'react-native';
 import { List, Divider, Button } from 'react-native-paper';
 import { Ionicons } from '@expo/vector-icons';
 import { useNavigation } from 'expo-router';
@@ -45,7 +44,7 @@ export default function SettingsContainer() {
                 <View style={styles.modalOverlay}>
                     <View style={styles.modalContainer}>
                         <Text style={styles.modalTitle}>Add Email</Text>
-                        <Input
+                        <TextInput
                         style={styles.input}
                         placeholder="Enter email"
                         value={email}

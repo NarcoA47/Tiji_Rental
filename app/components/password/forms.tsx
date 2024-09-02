@@ -2,9 +2,7 @@ import { passwordreset } from '@/app/services/auth';
 import { PasswordButton } from '@/components/button';
 import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
-import { Input } from 'react-native-magnus';
-import { TextInput } from 'react-native-paper'; 
+import { View, Text, StyleSheet, Alert, TextInput } from 'react-native';
 
 export default function PasswordForms() {
 
@@ -31,10 +29,9 @@ export default function PasswordForms() {
         <View style={styles.inputFormTwo}>
         <View >
             <Text style={styles.inputText}>Email</Text>
-                <Input
+                <TextInput
                 style={styles.input}
                 onChangeText={setEmail}
-                focusBorderColor="blue700"
                 value={email}
                 placeholder="austin@gmail.com"
                 keyboardType="email-address"/>
