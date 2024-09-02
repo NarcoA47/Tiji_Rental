@@ -6,8 +6,38 @@ import { Ionicons } from '@expo/vector-icons'; // Importing the icon library
 
 const Changer = () => {
     const [currentLocation, setCurrentLocation] = useState('');
+    const [busesData, setBusesData] = useState([]);
+    const [searchParams, setSearchParams] = useState({ from: '', to: '' });
     const [selectedLocation, setSelectedLocation] = useState('Where are you going?');
     const [dropdownVisible, setDropdownVisible] = useState(false);
+    const [loading, setLoading] = useState(false);  
+    const fetchBusData = async () => {
+        setLoading(true); // Start loading
+        try {
+          const accessToken = await AsyncStorage.getItem('access_token');
+          if (accessToken) {
+            const response = await axios.get('https://tiji-dev.herokuapp.com/api/v1/buses/', {
+              headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${accessToken}`,
+              },
+              params: {
+                from: searchParams.from,
+                to: searchParams.to,
+              },
+            });
+    
+            console.log('API Response:', response.data.results);
+            setBusesData(response.data.results);
+          } else {
+            console.error('Access token not found');
+          }
+        } catch (error) {
+          console.error('Error fetching bus data:', error);
+        } finally {
+          setLoading(false); // Stop loading
+        }
+      };
     const [locations, setLocations] = useState([
         { label: 'Lusaka', value: 'Lusaka' },
         { label: 'London', value: 'London' },
@@ -52,6 +82,7 @@ const Changer = () => {
                     placeholder={currentLocation}
                     p={10}
                     onPress={() => setDropdownVisible(!dropdownVisible)} 
+                    onChangeText={(text) => setSearchParams({ ...searchParams, from: text })}
                     focusBorderColor="blue700"
                     style={styles.input}
                     value={currentLocation}
@@ -63,6 +94,7 @@ const Changer = () => {
                 <Input
                     placeholder={selectedLocation}
                     onPress={() => setDropdownVisible(!dropdownVisible)}
+                    onChangeText={(text) => setSearchParams({ ...searchParams, to: text })}
                     p={10}
                     focusBorderColor="blue700"
                     style={styles.input}
@@ -92,6 +124,7 @@ const Changer = () => {
                     ))}
                 </Dropdown>
             </View>
+            
         </View>
     );
 };

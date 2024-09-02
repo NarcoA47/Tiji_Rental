@@ -115,7 +115,7 @@ const BusListContainer = () => {
             onChangeText={(text) => setSearchParams({ ...searchParams, to: text })}
           />
           <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
-            <Text style={styles.searchButtonText}>Search</Text>
+            <Text style={styles.routeChangetxt}>Change</Text>
           </TouchableOpacity>
         </View>
 
@@ -196,12 +196,17 @@ const styles = StyleSheet.create({
       },
 
       searchButton: {
-        backgroundColor: '#0056b3',
-        padding: 10,
-        borderRadius: 8,
-        justifyContent: 'center',
-        alignItems: 'center',
-      },
+          backgroundColor: 'White',
+          padding: 10,
+          borderRadius: 27,
+          borderWidth:2,
+          borderColor: '#0056b3',
+          alignItems: 'center',
+          marginBottom: 10,
+          width: 100,
+          color: '#ffffff'
+        },
+  
 
       searchButtonText: {
         color: '#fff',
