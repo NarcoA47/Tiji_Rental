@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
-import {Checkbox } from "react-native-magnus";
+// import CheckBox from '@react-native-community/checkbox';
 
 export default function ForgetPasswordText() {
 
@@ -11,7 +11,7 @@ export default function ForgetPasswordText() {
   return (
     <View style={styles.container}>
         <View style={styles.checkboxManager}>
-            <Checkbox prefix={<Text flex={0} style={styles.checkBoxText}>Remeber Me</Text>} value={1}/>
+            {/* <CheckBox><Text style={styles.checkBoxText}>Remeber Me</Text></CheckBox> */}
             
         </View>
         <View style={styles.textManager}> 

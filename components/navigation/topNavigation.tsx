@@ -21,6 +21,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function Naviagtion() {
     // Create a function the give async back function based on the screen presented
   const navigation = useNavigation();
+  
 
   const handleGoBack = () => {
     navigation.goBack();

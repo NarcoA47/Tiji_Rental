@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Checkbox from 'expo-checkbox';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Input } from 'react-native-magnus';
 import RegisterButton from '@/components/button';
 import { Ionicons } from '@expo/vector-icons'; // Importing the icon library
 import { signup } from '@/app/services/auth';
@@ -12,14 +11,11 @@ export default function SigninForms() {
 
     const navigation = useNavigation(); 
 
-    // const [firstName, setFirstName] = React.useState('');
-    // const [lastName, setLastName] = React.useState('');
     const [username, setUsername] = React.useState('');
     const [email, setEmail] = React.useState('');
     const [phonNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = React.useState("");
     const [isChecked, setChecked] = useState(false);
-    // const [newpassword, setNewPassword] = React.useState("");
     const [passwordVisible, setPasswordVisible] = React.useState(false);
 
     const togglePasswordVisibility = () => {
@@ -67,9 +63,8 @@ export default function SigninForms() {
         <View style={styles.inputFormTwo}>
             <View >
                 <Text style={styles.inputText}>Username</Text>
-                    <Input
+                    <TextInput
                     style={styles.input}
-                    focusBorderColor="blue700"
                     onChangeText={setUsername}
                     value={username}
                     keyboardType='default'
@@ -78,9 +73,8 @@ export default function SigninForms() {
             </View>
             <View >
                 <Text style={styles.inputText}>Email</Text>
-                    <Input
+                    <TextInput
                     style={styles.input}
-                    focusBorderColor="blue700"
                     onChangeText={setEmail}
                     value={email}
                     keyboardType='email-address'
@@ -89,9 +83,8 @@ export default function SigninForms() {
             </View>
             <View >
                 <Text style={styles.inputText}>Phone Number</Text>
-                    <Input
+                    <TextInput
                     style={styles.input}
-                    focusBorderColor="blue700"
                     onChangeText={setPhoneNumber}
                     value={phonNumber}
                     placeholder="e.g +260 968"
@@ -99,22 +92,21 @@ export default function SigninForms() {
             </View>
             <View>
                 <Text style={styles.inputText}>New Password</Text>
-                <Input
+                <TextInput
                 style={styles.input}
-                focusBorderColor="blue700"
                 onChangeText={text => setPassword(text)}
                 value={password}
                 keyboardType="visible-password"
                 placeholder="New Password"
                 secureTextEntry={!passwordVisible}
-                suffix={
-                    <Ionicons
-                        name={passwordVisible ? 'eye' : 'eye-off'}
-                        size={24}
-                        color="gray"
-                        onPress={togglePasswordVisibility}
-                    />
-                }
+                // suffix={
+                //     <Ionicons
+                //         name={passwordVisible ? 'eye' : 'eye-off'}
+                //         size={24}
+                //         color="gray"
+                //         onPress={togglePasswordVisibility}
+                //     />
+                // }
                 />
                 {/* <TouchableOpacity onPress={togglePasswordVisibility} style={styles.visibilityToggle}>
                     <Text>{passwordVisible ? 'Hide' : 'Show'}</Text>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, View, TouchableOpacity,Alert, useColorScheme } from 'react-native';
-import { Input } from 'react-native-magnus';
+import { ScrollView, StyleSheet, Text, View, TouchableOpacity,Alert, useColorScheme, TextInput } from 'react-native';
+// import { Input } from 'react-native-magnus';
 import { List, Divider, IconButton } from 'react-native-paper';
 import { useNavigation } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -33,12 +33,12 @@ export default function TicketingContainer() {
       <View style={styles.container}>
         {/* Search Bar */}
         <View style={styles.searchContainer}>
-          <Input
+          <TextInput
             placeholder="Search Tickets"
             value={searchQuery}
             onChangeText={handleSearch}
             style={styles.searchInput}
-            suffix={<Ionicons icon="search-outline" onPress={() => {}} />}
+            // suffix={<Ionicons icon="search-outline" onPress={() => {}} />}
           />
         </View>
 

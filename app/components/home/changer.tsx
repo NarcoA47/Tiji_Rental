@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { Input, Dropdown } from 'react-native-magnus';
+import { StyleSheet, View, Text, TextInput } from 'react-native';
+// import { Input, Dropdown } from 'react-native-magnus';
 import * as Location from 'expo-location';
 import { Ionicons } from '@expo/vector-icons'; // Importing the icon library
 
@@ -48,30 +48,24 @@ const Changer = () => {
     return (
         <View style={styles.container}>
             <View>
-                <Input
+                <TextInput
                     placeholder={currentLocation}
-                    p={10}
-                    onPress={() => setDropdownVisible(!dropdownVisible)} 
-                    focusBorderColor="blue700"
+                    onPress={() => setDropdownVisible(!dropdownVisible)}
                     style={styles.input}
                     value={currentLocation}
                     editable={false}
-                    color="#FFFFFF" // Set text color to white
                 />
             </View>
             <View>
-                <Input
+                <TextInput
                     placeholder={selectedLocation}
                     onPress={() => setDropdownVisible(!dropdownVisible)}
-                    p={10}
-                    focusBorderColor="blue700"
                     style={styles.input}
                     value={selectedLocation}
-                    editable={false}
-                    color="#FFFFFF" // Set text color to white
+                    editable={false}// Set text color to white
                     // rightElement={() => <Ionicons name="help-circle-outline" size={24} color={MD3Colors.primary40} />}
                 />
-                <Dropdown
+                {/* <Dropdown
                     isVisible={dropdownVisible}
                     onClose={() => setDropdownVisible(false)}
                     title={<Text mx="xl" color="gray500" pb="md" style={styles.inputText}>Select a location</Text>}
@@ -90,7 +84,7 @@ const Changer = () => {
                             {location.label}
                         </Dropdown.Option>
                     ))}
-                </Dropdown>
+                </Dropdown> */}
             </View>
         </View>
     );

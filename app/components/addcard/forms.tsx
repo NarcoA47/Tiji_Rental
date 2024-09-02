@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { Image,View, Text, StyleSheet, ScrollView } from 'react-native';
+import { Image,View, Text, StyleSheet, ScrollView, TextInput } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import {Picker} from '@react-native-picker/picker';
 import RNPickerSelect from 'react-native-picker-select';
-import { Input } from 'react-native-magnus';
+// import { Input } from 'react-native-magnus';
 import axios from 'axios';
 import { PayButton } from '@/components/button';
 
@@ -58,30 +58,26 @@ export default function CardForm() {
         
         <View style={styles.inputFormTwo}>
             <View >
-                <Input
-                focusBorderColor="blue700"
+                <TextInput
                 style={styles.input}
                 placeholder="Name On Card"
                 value={nameOnCard}
                 onChangeText={setNameOnCard}
                 />
-                <Input
-                    focusBorderColor="blue700"
+                <TextInput
                     style={styles.input}
                     placeholder="Card Number"
                     keyboardType="numeric"
                     value={cardNumber}
                     onChangeText={setCardNumber}
                 />
-                <Input
-                focusBorderColor="blue700"
+                <TextInput
                 style={styles.input}
                 placeholder="MM/YY"
                 value={expiryDate}
                 onChangeText={setExpiryDate}
                 />
-                <Input
-                focusBorderColor="blue700"
+                <TextInput
                 style={styles.input}
                 placeholder="CVV"
                 keyboardType="numeric"

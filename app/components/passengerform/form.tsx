@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, TextInput } from 'react-native';
 import Checkbox from 'expo-checkbox';
 import { ScrollView } from 'react-native-gesture-handler';
-import { Input } from 'react-native-magnus';
 
 export default function PassengerForm() {
 
@@ -18,9 +17,8 @@ export default function PassengerForm() {
         <View style={styles.inputFormOne}>
             <View >
             <Text style={styles.inputText}>First Name</Text>
-                <Input
+                <TextInput
                 style={styles.inputOne}
-                focusBorderColor="blue700"
                 onChangeText={setFirstName}
                 value={firstName}
                 placeholder="First Name"
@@ -28,8 +26,7 @@ export default function PassengerForm() {
             </View>
             <View>
             <Text style={styles.inputText}>Last Name</Text>
-                <Input
-                focusBorderColor="blue700"
+                <TextInput
                 style={styles.inputOne}
                 onChangeText={setLastName}
                 value={lastName}
@@ -41,9 +38,8 @@ export default function PassengerForm() {
             
             <View >
                 <Text style={styles.inputText}>Phone Number</Text>
-                    <Input
+                    <TextInput
                     style={styles.input}
-                    focusBorderColor="blue700"
                     onChangeText={onChangeNumber}
                     value={number}
                     placeholder="e.g +260 968"
