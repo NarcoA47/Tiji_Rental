@@ -97,7 +97,7 @@ export const signup = async (username, phoneNumber, email, password, navigation)
 
 export const passwordreset = async (email) => {
   try {
-    const response = await axios.post('users/obtain-password-code/', { email });
+    const response = await apiClient.post('users/obtain-password-code/', { email });
     console.log('Response:', response);
     if (response.status === 200) {
       console.log('Password reset code sent successfully');

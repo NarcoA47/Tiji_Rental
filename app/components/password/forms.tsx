@@ -16,7 +16,7 @@ export default function PasswordForms() {
         setLoading(true);
         try {
             const response = await passwordreset(email);
-            if (response.status === 200) {
+            if (response) {
                 navigation.navigate('OTPResetPassword');
             }
         } catch (error) {
