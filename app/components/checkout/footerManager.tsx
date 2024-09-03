@@ -30,6 +30,7 @@ export default function FooterManager() {
             id: item.id,
             make: item.make,
             model: item.model,
+            amount: item.amount,
             daily_rate: item.daily_rate,
             image_url: item.image_url,
             company: item.company,// Include company data
@@ -59,7 +60,7 @@ export default function FooterManager() {
           <View style={styles.textContainer}>
             <View style={styles.leadText}>
               <Text style={styles.textTitle}>{item.make}</Text>
-              <Text style={styles.textPrice}>K{item.daily_rate}/day</Text>
+              <Text style={styles.textPrice}>K{item.amount}/day</Text>
             </View>
             <View>
               <AntDesign name="staro" size={24} color="#ffffff" />
