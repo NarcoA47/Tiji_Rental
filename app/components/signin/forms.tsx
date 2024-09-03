@@ -86,6 +86,9 @@ export default function SigninForms() {
                     <TextInput
                     style={styles.input}
                     // focusBorderColor="blue700"
+                    onChangeText={setPhoneNumber}
+                    value={phonNumber}
+                    focusBorderColor="blue700"
                     onChangeText={setphone_number => setPhoneNumber(setphone_number)}
                     value={phone_number}
                     placeholder="e.g +260 968"

@@ -4,6 +4,7 @@ import { useNavigation } from 'expo-router';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import AntDesign from '@expo/vector-icons/AntDesign';
 
 const BusListContainer = () => {
   const navigation = useNavigation();
@@ -115,7 +116,7 @@ const BusListContainer = () => {
             onChangeText={(text) => setSearchParams({ ...searchParams, to: text })}
           />
           <TouchableOpacity style={styles.searchButton} onPress={handleSearch}>
-            <Text style={styles.routeChangetxt}>Change</Text>
+            <AntDesign name="search1" size={24} color="#0056b3" />
           </TouchableOpacity>
         </View>
 
@@ -198,13 +199,14 @@ const styles = StyleSheet.create({
       searchButton: {
         backgroundColor: 'White',
         padding: 10,
-        borderRadius: 27,
+        borderRadius: 10,
         borderWidth:2,
         borderColor: '#0056b3',
         alignItems: 'center',
         marginBottom: 10,
-        width: 100,
-        color: '#ffffff'
+        width: 50,
+        color: '#ffffff',
+        margin: 6,
       },
   
 
@@ -226,6 +228,7 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         padding: 10,
         width: '40%',
+        margin: 4,
       },
 
       busName: {

@@ -28,10 +28,14 @@ export default function MoreCards() {
           // Assuming the relevant data is in response.data.results
           const items = response.data.results.map(item => ({
             id: item.id,
+            make: item.make,
+            model: item.model,
+            daily_rate: item.daily_rate,
+            image_url: item.image_url, 
             make: item.make, // Assuming this structure
             model: item.model,
             daily_rate: item.daily_rate,
-            image_url: item.image_url,
+
           }));
 
           setData(items); // Update state with processed data

@@ -10,7 +10,7 @@ function LoginSuccess() {
     <View>
         <ImageBanner/>
         <LoginSuccessfullTextMessage/>
-        <Continue/>
+        <BusHomeContinue/>
     </View>
   )
 }

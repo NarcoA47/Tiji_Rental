@@ -80,6 +80,8 @@ const Changer = () => {
             <View>
                 <TextInput
                     placeholder={currentLocation}
+                    onPress={() => setDropdownVisible(!dropdownVisible)}
+
                     p={10}
                     onPress={() => setDropdownVisible(!dropdownVisible)} 
                     onChangeText={(text) => setSearchParams({ ...searchParams, from: text })}
