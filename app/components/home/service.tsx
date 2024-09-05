@@ -15,16 +15,17 @@ export default function Services() {
       try {
         const accessToken = await AsyncStorage.getItem('access_token');
         if (accessToken) {
-          const carIds = [1, 2, 3]; // Replace with dynamic IDs if needed
-          const response = await axios.get(`https://tiji-dev.herokuapp.com/api/v1/company/cars/?ids=${carIds.join(',')}`, {
-            headers: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${accessToken}`,
-            },
+          // Fetching only car information for car ID 1
+          const carId = 1;
+          const response = await axios.get(`https://tiji-dev.herokuapp.com/api/v1/company/cars/?ids=${carId}`, {
+            // headers: {
+            //   'Content-Type': 'application/json',
+            //   'Authorization': `Bearer ${accessToken}`,
+            // },
           });
 
-          // Assuming the relevant data is in response.data
           const items = response.data.map(item => ({
+            id: item.id,
             image_url: item.image_url,
             company: item.company,
             category: item.category,
@@ -58,26 +59,25 @@ export default function Services() {
     <View style={styles.scrollContainer}>
       <Text style={styles.serviceTitle}>Services</Text>
       <View style={styles.services}>
-        {data.length === 0 ? (
-          <Text style={styles.noDataText}>No services available at the moment</Text>
-        ) : (
-          data.map((item) => (
-            <View key={item.id} style={styles.textCanvas}>
-              <TouchableOpacity onPress={() => navigation.navigate('AuthOption')}>
+        <TouchableOpacity onPress={() => navigation.navigate('CarAuthOption')}>
+          {data.length === 0 ? (
+            <Text style={styles.noDataText}>No services available at the moment</Text>
+          ) : (
+            data.map(item => (
+              <View key={item.id} style={styles.textCanvas}>
                 <View style={styles.serviceContent}>
                   <View style={styles.companyInfo}>
                     <Text style={styles.bodyTitle}>{item.company.name}</Text>
-                    {/* <Text style={styles.bodyText}>{item.company.about}</Text> */}
                     <Text style={styles.bodyText}>{item.company.address}</Text>
                   </View>
-                    <View>
-                      <Image source={{ uri: item.image_url }} style={styles.imageManager} />
-                    </View>
+                  <View>
+                    <Image source={{ uri: item.image_url }} style={styles.imageManager} />
+                  </View>
                 </View>
-              </TouchableOpacity>
-            </View>
-          )))
-        }
+              </View>
+            ))
+          )}
+        </TouchableOpacity>
       </View>
     </View>
   );

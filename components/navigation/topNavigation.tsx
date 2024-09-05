@@ -103,29 +103,19 @@ export function MainNavigation() {
   useEffect(() => {
     const fetchUserName = async () => {
       try {
-        // Retrieve the token from AsyncStorage
         const token = await AsyncStorage.getItem('USER_TOKEN');
-
         if (token) {
-          // Decode the token to get the user_id
           const decodedToken = jwtDecode(token);
-          const userId = decodedToken.user_id; // Adjust based on token structure
+          const userId = decodedToken.user_id;
 
           if (userId) {
-            // Fetch user details from your backend
             const response = await axios.get(`https://tiji-dev.herokuapp.com/api/v1/users/${userId}`, {
               headers: {
                 Authorization: `Bearer ${token}`
               }
             });
-
-            // Extract the username from the response
             const userData = response.data;
-            if (userData && userData.username) {
-              setUserName(userData.username);
-            } else {
-              console.error('Username not found in user data');
-            }
+            setUserName(userData.username || '');
           } else {
             console.error('User ID not found in token');
           }
@@ -139,7 +129,6 @@ export function MainNavigation() {
 
     fetchUserName();
   }, []);
-  
 
   return (
     <View style={styles.mainContainer}>
@@ -213,6 +202,38 @@ export function HeaderMainNavigation() {
 
   const navigation = useNavigation()
 
+  const [username, setUserName] = useState('');
+
+  useEffect(() => {
+    const fetchUserName = async () => {
+      try {
+        const token = await AsyncStorage.getItem('USER_TOKEN');
+        if (token) {
+          const decodedToken = jwtDecode(token);
+          const userId = decodedToken.user_id;
+
+          if (userId) {
+            const response = await axios.get(`https://tiji-dev.herokuapp.com/api/v1/users/${userId}`, {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+            const userData = response.data;
+            setUserName(userData.username || '');
+          } else {
+            console.error('User ID not found in token');
+          }
+        } else {
+          console.error('No token found');
+        }
+      } catch (error) {
+        console.error('Failed to fetch username', error);
+      }
+    };
+
+    fetchUserName();
+  }, []);
+
   return (
     <View style={styles.productConatiner}>
       <View style={styles.adjucentContainer}>
@@ -221,8 +242,19 @@ export function HeaderMainNavigation() {
           <Text style={styles.subText}>Chintu RD, 6039</Text>
         </View>
         <View>
-        <EvilIcons name="user"  onPress={() => navigation.navigate('Profile')} size={40} color="white" />
-        <Text style={styles.subText}>Login</Text>
+          <EvilIcons
+            name="user"
+            size={40}
+            onPress={() => {
+              if (username) {
+                navigation.navigate('Profile');
+              } else {
+                navigation.navigate('Login');
+              }
+            }}
+            color="white"
+          />
+          <Text style={styles.subText}>{username || 'Login'}</Text>
         </View>
       </View>
       <Container/>

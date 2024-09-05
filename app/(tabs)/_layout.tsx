@@ -31,6 +31,9 @@ import TiJiAnimateOpenningScreen from '../screens/TiJiAnimatedScreen';
 import LoginSuccess from '../screens/successfulLoginScreen';
 import OTPResetPassword from '../screens/otpResetPasswordScreen';
 import SettingScreen from '../screens/Setting';
+import CarLoginScreen from '../screens/carloginScreen';
+import CarAuthOptionScreen from '../screens/CarAuthScreen';
+import CarLoginSuccess from '../screens/successfulCarLoginScreen';
 
 
 const Stack = createNativeStackNavigator();
@@ -48,16 +51,19 @@ export default function TabLayout() {
       <Stack.Screen name="TiJi" component={TiJiAnimateOpenningScreen}/>
       <Stack.Screen name="OnBoardingScreen" component={OnBoardingScreen}/>
       <Stack.Screen name="Login" component={LoginScreen}/>
+      <Stack.Screen name="CarLogin" component={CarLoginScreen}/>
       <Stack.Screen name="Product" component={ProductView}/>
       <Stack.Screen name="Ticket" component={BusTicketApp}/>
       <Stack.Screen name="Home" component={HomeScreenMain}/>
       <Stack.Screen name="BusHome" component={BusHomeScreen}/>
       <Stack.Screen name="Register" component={SignupScreen}/>
       <Stack.Screen name="AuthOption" component={AuthOptionScreen}/>
+      <Stack.Screen name="CarAuthOption" component={CarAuthOptionScreen}/>
       <Stack.Screen name="ViewBuses" component={ViewBusScreen}/>
       <Stack.Screen name="TicketDetails" component={TicketDetails}/>
       <Stack.Screen name="Success" component={Success}/>
       <Stack.Screen name="LoginSuccess" component={LoginSuccess}/>
+      <Stack.Screen name="CarLoginSuccess" component={CarLoginSuccess}/>
       <Stack.Screen name="OTP" component={OTP}/>
       <Stack.Screen name="OTPResetPassword" component={OTPResetPassword}/>
       <Stack.Screen name="PassengerDetails" component={PassengerDetailsScreen}/>
