@@ -5,17 +5,16 @@ import { useDispatch, useSelector } from 'react-redux';
 const LocationSearch = (props: { onSelectLocation: any; placeholder: any; onPress: any; }) => {
   const { onSelectLocation, placeholder, onPress } = props;
   const [searchText, setSearchText] = useState('');
-  const [locations, setLocations] = useState([]);
-  const destinations = useSelector(state => state.location.locations);
+  const destinations = useSelector((state: any) => state.location.locations);
 
   const dispatch = useDispatch();
 
   const fetchLocations = () => {
-    let whereToLocations = destinations.results.filter(item =>
-      item.where_to.toLowerCase().includes(searchText.toLowerCase()),
-    );
-    return setLocations(whereToLocations);
-  };
+      let whereToLocations = destinations.results.filter((item: { where_to: string }) =>
+        item.where_to.toLowerCase().includes(searchText.toLowerCase()),
+      );
+      return whereToLocations;
+    };
 
   useEffect(() => {
     fetchLocations();
@@ -44,7 +43,7 @@ const LocationSearch = (props: { onSelectLocation: any; placeholder: any; onPres
       />
 
       <FlatList
-        data={locations}
+        data={destinations}
         keyExtractor={(item, index) => index.toString()}
         ListEmptyComponent={<Text style={styles.container}>No results</Text>}
         renderItem={({ item }) => (

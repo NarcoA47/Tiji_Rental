@@ -1,20 +1,21 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, Button, TextInput, StyleSheet, TouchableOpacity, ScrollView, ActivityIndicator } from 'react-native';
-import { useNavigation } from 'expo-router';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { TextInput } from 'react-native-paper';
 
 const BusListContainer = () => {
   const navigation = useNavigation();
   const [busesData, setBusesData] = useState([]);
-  const [ticketCount, setTicketCount] = useState({});
+  const [ticketCount, setTicketCount] = useState<{ [key: string]: number }>({});
   const [searchParams, setSearchParams] = useState({ from: '', to: '' });
-  const [loading, setLoading] = useState(false);  // Loading state
+  const [loading, setLoading] = useState(false);
 
   const fetchBusData = async () => {
-    setLoading(true); // Start loading
+    setLoading(true);
     try {
       const accessToken = await AsyncStorage.getItem('access_token');
       if (accessToken) {
@@ -29,7 +30,6 @@ const BusListContainer = () => {
           },
         });
 
-        console.log('API Response:', response.data.results);
         setBusesData(response.data.results);
       } else {
         console.error('Access token not found');
@@ -37,7 +37,7 @@ const BusListContainer = () => {
     } catch (error) {
       console.error('Error fetching bus data:', error);
     } finally {
-      setLoading(false); // Stop loading
+      setLoading(false);
     }
   };
 
@@ -45,12 +45,27 @@ const BusListContainer = () => {
     fetchBusData();
   };
 
-  const renderBusItem = ({ item }) => {
+  const handleIncrease = (id: string) => {
+    setTicketCount((prevCount) => ({
+      ...prevCount,
+      [id]: (prevCount[id] || 0) + 1,
+    }));
+  };
+
+  const handleDecrease = (id: string) => {
+    setTicketCount((prevCount) => ({
+      ...prevCount,
+      [id]: Math.max((prevCount[id] || 0) - 1, 0),
+    }));
+  };
+
+  const renderBusItem = ({ item }: { item: { id: string; company: string; ticket_price: number; seats: number; total_seats: number; current_location: string; where_to: string; departure_time: string; } }) => {
     const count = ticketCount[item.id] || 0;
+
     return (
       <View style={styles.busManager}>
         <View style={styles.busItem}>
-          <View style={styles.busItemHeader}>
+          <View style={styles.busPriceContainer}>
             <Text style={styles.busName}>{item.company}</Text>
             <Text style={styles.busPriceHeader}>K{item.ticket_price}.00</Text>
           </View>
@@ -80,7 +95,7 @@ const BusListContainer = () => {
         </View>
 
         <View style={styles.ticketManager}>
-          <TouchableOpacity style={styles.buyButton} onPress={() => navigation.navigate('PassengerDetails')}>
+          <TouchableOpacity style={styles.buyButton} onPress={() => navigation.navigate('PassengerDetails', { busDetails: item, ticketCount: count })}>
             <Text style={styles.buyButtonText}>BUY</Text>
           </TouchableOpacity>
           <Text style={styles.numberText}>Number Of Tickets</Text>
@@ -143,244 +158,223 @@ const BusListContainer = () => {
 export default BusListContainer;
 
 const styles = StyleSheet.create({
-    container: {
-        padding: 16,
-        backgroundColor: '#ffffff',
-      },
-
-      header: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#0056b3',
-        textAlign: 'center',
-      },
-      subHeader: {
-        fontSize: 20,
-        marginVertical: 10,
-        textAlign: 'center',
-      },
-
-      busManager: {
-        flexDirection: 'row'
-      },
-
-      busItem: {
-        margin: 5,
-        width: 220,
-        borderWidth: 1,
-        borderColor: '#ddd',
-        borderRadius: 8,
-        padding: 16,
-        backgroundColor: '#f9f9f9',
-      },
-
-      // busItemHeader: {
-      //   flexDirection: 'row',
-      //   justifyContent: 'space-between'
-      // },
-
-      busPriceHeader: {
-        fontSize: 12,
-        fontWeight: 'bold',
-      },
-
-      title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
-      },
-
-      searchContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 20,
-      },
-
-      searchButton: {
-        backgroundColor: 'White',
-        padding: 10,
-        borderRadius: 10,
-        borderWidth:2,
-        borderColor: '#0056b3',
-        alignItems: 'center',
-        marginBottom: 10,
-        width: 50,
-        color: '#ffffff',
-        margin: 6,
-      },
-  
-
-      searchButtonText: {
-        color: '#fff',
-        fontWeight: 'bold',
-      },
-
-      placeholderText: {
-        textAlign: 'center',
-        fontSize: 16,
-        color: '#888',
-        marginTop: 20,
-      },
-
-      input: {
-        borderWidth: 1,
-        borderColor: '#ddd',
-        borderRadius: 8,
-        padding: 10,
-        width: '40%',
-        margin: 4,
-      },
-
-      busName: {
-        fontSize: 16,
-        fontWeight: 'bold',
-      },
-      busDetails: {
-        marginVertical: 4,
-        fontWeight: 'bold',
-      },
-      busTime: {
-        marginBottom: 8,
-        fontStyle: 'italic',
-      },
-
-      ticketManager:{
-        margin: 5,
-        width: 140,
-        borderWidth: 1,
-        borderColor: '#ddd',
-        borderRadius: 8,
-        padding: 8,
-        backgroundColor: '#f9f9f9',
-        alignItems: 'center'
-      },
-
-      ticketCounter: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom:5,
-        marginTop: 10,
-      },
-      counterButtonLeft: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        padding: 8,
-        marginHorizontal: 4,
-        borderRadius: 4,
-        marginRight: 15,
-      },
-      counterButtonRight: {
-        borderWidth: 1,
-        borderColor: '#ccc',
-        padding: 8,
-        marginHorizontal: 4,
-        borderRadius: 4,
-        marginLeft: 15,
-      },
-      buyButton: {
-        backgroundColor: '#28a745',
-        padding: 10,
-        borderRadius: 5,
-        alignItems: 'center',
-        marginBottom: 10,
-        width: 100,
-      },
-      buyButtonText: {
-        color: '#fff',
-        fontWeight: 'bold',
-      },
-      routeContainer: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        backgroundColor: '#f0f0f0',
-        padding: 15,
-        borderRadius: 5,
-        marginBottom: 20,
-      },
-      subtitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        marginBottom: 10,
-      },
-      numberText: {
-        fontSize: 12,
-        fontWeight: 'bold',
-      },
-      route: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-      },
-      routeInfo: {
-        
-        alignItems: 'center',
-      },
-      location: {
-        fontSize: 12,
-        color: '#333',
-        fontWeight: 'bold',
-        marginBottom: 10,
-      },
-      time: {
-        fontSize: 16,
-        color: '#800080', // Purple color for the time
-        fontWeight: 'bold',
-      },
-      routeIcon: {
-        
-        alignItems: 'center',
-      },
-      routeUse: {
-        flexDirection: 'row',
-      },
-      duration: {
-        fontSize: 12,
-        color: '#999',
-        marginTop: 5,
-      },
-    
-      dots: {
-        position: 'relative',
-        top: 14,
-        width:3,
-        height: 1,
-        backgroundColor: '#800080',
-        borderRadius: 10,
-        margin: 2.5,
-      },
-
-      routeChangeBtn: {
-        backgroundColor: 'White',
-        padding: 10,
-        borderRadius: 27,
-        borderWidth:2,
-        borderColor: '#0056b3',
-        alignItems: 'center',
-        marginBottom: 10,
-        width: 100,
-        color: '#ffffff'
-      },
-
-      routeChangetxt: {
-        color: '#0056b3'
-      },
-      routingText: {
-        fontSize: 20,
-        fontWeight: 'bold'
-      },
-      filterInput: {
-        borderColor: '#ddd',
-        borderWidth: 1,
-        borderRadius: 5,
-        padding: 8,
-        marginBottom: 10,
-      },
-
-      flatListContent: {
-        paddingBottom: 20,
-      },
-      flatList: {
-        backgroundColor: '#f5f5f5',
-      },
+  container: {
+    padding: 16,
+    backgroundColor: '#ffffff',
+  },
+  header: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#0056b3',
+    textAlign: 'center',
+  },
+  subHeader: {
+    fontSize: 20,
+    marginVertical: 10,
+    textAlign: 'center',
+  },
+  busManager: {
+    flexDirection: 'row',
+  },
+  busItem: {
+    margin: 5,
+    width: 220,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    padding: 16,
+    backgroundColor: '#f9f9f9',
+  },
+  busPriceContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  busPriceHeader: {
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+  title: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 20,
+  },
+  searchButton: {
+    backgroundColor: 'White',
+    padding: 10,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: '#0056b3',
+    alignItems: 'center',
+    marginBottom: 10,
+    width: 50,
+    color: '#ffffff',
+    margin: 6,
+  },
+  searchButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  placeholderText: {
+    textAlign: 'center',
+    fontSize: 16,
+    color: '#888',
+    marginTop: 20,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    padding: 10,
+    width: '40%',
+    margin: 4,
+  },
+  busName: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  busDetails: {
+    marginVertical: 4,
+    fontWeight: 'bold',
+  },
+  busTime: {
+    marginBottom: 8,
+    fontStyle: 'italic',
+  },
+  ticketManager: {
+    margin: 5,
+    width: 140,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    borderRadius: 8,
+    padding: 8,
+    backgroundColor: '#f9f9f9',
+    alignItems: 'center',
+  },
+  ticketCounter: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 5,
+    marginTop: 10,
+  },
+  counterButtonLeft: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 8,
+    marginHorizontal: 4,
+    borderRadius: 4,
+    marginRight: 15,
+  },
+  counterButtonRight: {
+    borderWidth: 1,
+    borderColor: '#ccc',
+    padding: 8,
+    marginHorizontal: 4,
+    borderRadius: 4,
+    marginLeft: 15,
+  },
+  buyButton: {
+    backgroundColor: '#28a745',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginBottom: 10,
+    width: 100,
+  },
+  buyButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+  routeContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#f0f0f0',
+    padding: 15,
+    borderRadius: 5,
+    marginBottom: 20,
+  },
+  subtitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  numberText: {
+    fontSize: 12,
+    fontWeight: 'bold',
+  },
+  route: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  routeInfo: {
+    alignItems: 'center',
+  },
+  location: {
+    fontSize: 12,
+    color: '#333',
+    fontWeight: 'bold',
+    marginBottom: 10,
+  },
+  time: {
+    fontSize: 16,
+    color: '#800080',
+    fontWeight: 'bold',
+  },
+  routeIcon: {
+    alignItems: 'center',
+  },
+  routeUse: {
+    flexDirection: 'row',
+  },
+  duration: {
+    fontSize: 12,
+    color: '#999',
+    marginTop: 5,
+  },
+  dots: {
+    position: 'relative',
+    top: 14,
+    width: 3,
+    height: 1,
+    backgroundColor: '#800080',
+    borderRadius: 10,
+    margin: 2.5,
+  },
+  routeChangeBtn: {
+    backgroundColor: 'White',
+    padding: 10,
+    borderRadius: 27,
+    borderWidth: 2,
+    borderColor: '#0056b3',
+    alignItems: 'center',
+    marginBottom: 10,
+    width: 100,
+    color: '#ffffff',
+  },
+  routeChangetxt: {
+    color: '#0056b3',
+  },
+  routingText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  filterInput: {
+    borderColor: '#ddd',
+    borderWidth: 1,
+    borderRadius: 5,
+    padding: 8,
+    marginBottom: 10,
+  },
+  flatListContent: {
+    paddingBottom: 20,
+  },
+  flatList: {
+    backgroundColor: '#f5f5f5',
+  },
 });
 

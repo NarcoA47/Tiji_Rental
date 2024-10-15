@@ -14,7 +14,6 @@ import ForgetPasswordScreen from '../screens/forgetPassword';
 import ResetPasswordScreen from '../screens/resetPasswordScreen';
 import BusHomeScreen from '../screens/BusHomeScreen';
 import Checkout from '../screens/checkout';
-import PassengerDetailsScreen from '../screens/PassengerDetailsScreen';
 import ViewBusScreen from '../screens/ViewBusScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 import AuthOptionScreen from '../screens/AuthScreen';
@@ -34,6 +33,15 @@ import SettingScreen from '../screens/Setting';
 import CarLoginScreen from '../screens/carloginScreen';
 import CarAuthOptionScreen from '../screens/CarAuthScreen';
 import CarLoginSuccess from '../screens/successfulCarLoginScreen';
+import { PassengerDetails } from '../screens/PassengerDetailsScreen';
+
+type RootStackParamList = {
+
+  BusList: undefined;
+
+  PassengerDetails: { busDetails: any; ticketCount: number };
+
+};
 
 
 const Stack = createNativeStackNavigator();
@@ -66,7 +74,7 @@ export default function TabLayout() {
       <Stack.Screen name="CarLoginSuccess" component={CarLoginSuccess}/>
       <Stack.Screen name="OTP" component={OTP}/>
       <Stack.Screen name="OTPResetPassword" component={OTPResetPassword}/>
-      <Stack.Screen name="PassengerDetails" component={PassengerDetailsScreen}/>
+      <Stack.Screen name="PassengerDetails" component={PassengerDetails}/>
       <Stack.Screen name="ForgetPassword" component={ForgetPasswordScreen}/>
       <Stack.Screen name="ResetPassword" component={ResetPasswordScreen}/>
       <Stack.Screen name="Payment" component={PaymentScreen}/>

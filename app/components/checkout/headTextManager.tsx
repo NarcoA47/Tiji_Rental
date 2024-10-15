@@ -5,9 +5,18 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
 export default function HeadTextManager() {
-  const [data, setData] = useState([]);
+  interface CarData {
+    company: {
+      name: string;
+      address: string;
+    };
+    category: string;
+    id: number;
+  }
+
+  const [data, setData] = useState<CarData[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const navigation = useNavigation();
 
@@ -24,7 +33,7 @@ export default function HeadTextManager() {
             },
           });
 
-          const items = response.data.map(item => ({
+          const items = response.data.map((item: { company: any; category: any; }) => ({
             company: item.company,// Include company data
             category: item.category
           }));
@@ -35,7 +44,8 @@ export default function HeadTextManager() {
           setError('Access token not found');
         }
       } catch (error) {
-        console.error('Error fetching data:', error.response ? error.response.data : error.message);
+        const err = error as any;
+        console.error('Error fetching data:', err.response ? err.response.data : err.message);
         setError('Error fetching data. Please try again later.');
       } finally {
         setLoading(false);

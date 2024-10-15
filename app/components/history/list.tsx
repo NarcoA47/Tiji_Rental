@@ -15,7 +15,7 @@ export default function TicketingContainer() {
     { id: 4, title: 'Ndola', date: 'Wed, 01 Nov 2023 at 09:10', amount: -20 }
   ]);
 
-  const handleSearch = (query) => {
+  const handleSearch = (query: React.SetStateAction<string>) => {
     setSearchQuery(query);
   };
 
@@ -23,7 +23,7 @@ export default function TicketingContainer() {
     ticket.title.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleTicketPress = (ticket) => {
+  const handleTicketPress = (ticket: { id: number; title: string; date: string; amount: number; }) => {
     // Navigate to the TicketDetails screen and pass the ticket details as parameters
     navigation.navigate('TicketDetails', { ticket });
   };

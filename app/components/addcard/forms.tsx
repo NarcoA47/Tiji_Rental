@@ -39,12 +39,13 @@ export default function CardForm() {
             }
         } catch (error) {
             // Handle error responses
-            if (error.response) {
-                console.error('Error response:', error.response.data);
-            } else if (error.request) {
-                console.error('No response received:', error.request);
+            const err = error as any;
+            if (err.response) {
+                console.error('Error response:', err.response.data);
+            } else if (err.request) {
+                console.error('No response received:', err.request);
             } else {
-                console.error('Error setting up request:', error.message);
+                console.error('Error setting up request:', err.message);
             }
         }
     };

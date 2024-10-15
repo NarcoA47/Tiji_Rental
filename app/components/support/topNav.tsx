@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Alert } from 'react-native';
-import { Image } from 'react-native-magnus';
+// import { Image } from 'react-native-magnus';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons'; //// Use the icon component from react-native-magnus
 import { useNavigation } from '@react-navigation/native';
 

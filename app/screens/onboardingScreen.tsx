@@ -40,7 +40,7 @@ const App = () => {
     <OnBoardingScreenThree key="3" />,
   ];
 
-  const renderItem = ({ item }) => {
+  const renderItem = ({ item }: { item: JSX.Element }) => {
     return item;
   };
 

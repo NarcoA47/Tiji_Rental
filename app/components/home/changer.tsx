@@ -3,6 +3,8 @@ import { StyleSheet, View, Text, TextInput } from 'react-native';
 // import { Input, Dropdown } from 'react-native-magnus';
 import * as Location from 'expo-location';
 import { Ionicons } from '@expo/vector-icons'; // Importing the icon library
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import axios from 'axios';
 
 const Changer = () => {
     const [currentLocation, setCurrentLocation] = useState('');
@@ -70,10 +72,10 @@ const Changer = () => {
         })();
     }, []);
 
-    const handleDropdownSelect = (value) => {
-        setSelectedLocation(value);
-        setDropdownVisible(false);
-    };
+    // const handleDropdownSelect = (value) => {
+    //     setSelectedLocation(value);
+    //     setDropdownVisible(false);
+    // };
 
     return (
         <View style={styles.container}>
@@ -81,11 +83,7 @@ const Changer = () => {
                 <TextInput
                     placeholder={currentLocation}
                     onPress={() => setDropdownVisible(!dropdownVisible)}
-
-                    p={10}
-                    onPress={() => setDropdownVisible(!dropdownVisible)} 
                     onChangeText={(text) => setSearchParams({ ...searchParams, from: text })}
-                    focusBorderColor="blue700"
                     style={styles.input}
                     value={currentLocation}
                     editable={false}
