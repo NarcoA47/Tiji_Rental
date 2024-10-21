@@ -15,23 +15,24 @@ export default function Services() {
       try {
         const accessToken = await AsyncStorage.getItem('access_token');
         if (accessToken) {
-          // Fetching only car information for car ID 1
-          const carId = 1;
+          const carId = 1;o
           const response = await axios.get(`https://tiji-dev.herokuapp.com/api/v1/company/cars/?ids=${carId}`, {
-            // headers: {
-            //   'Content-Type': 'application/json',
-            //   'Authorization': `Bearer ${accessToken}`,
-            // },
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${accessToken}`,  // Ensure headers are passed
+            },
           });
-
+  
+          console.log(response.data);  // Log the response to check structure
+  
           const items = response.data.map(item => ({
             id: item.id,
             image_url: item.image_url,
             company: item.company,
             category: item.category,
           }));
-
-          setData(items);
+  
+          setData(items);  // Update state with the fetched data
         } else {
           console.error('Access token not found');
           setError('Access token not found');
@@ -43,9 +44,10 @@ export default function Services() {
         setLoading(false);
       }
     };
-
+  
     fetchData();
   }, []);
+  
 
   if (loading) {
     return <ActivityIndicator size="large" color="#0000ff" />;
@@ -60,7 +62,8 @@ export default function Services() {
       <Text style={styles.serviceTitle}>Services</Text>
       <View style={styles.services}>
         <TouchableOpacity onPress={() => navigation.navigate('CarAuthOption')}>
-          {data.length === 0 ? (
+          {
+          data.length === 0 ? (
             <Text style={styles.noDataText}>No services available at the moment</Text>
           ) : (
             data.map(item => (
@@ -76,7 +79,9 @@ export default function Services() {
                 </View>
               </View>
             ))
-          )}
+          )
+        }
+
         </TouchableOpacity>
       </View>
     </View>
